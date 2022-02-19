@@ -17,6 +17,7 @@ export class AppComponent {
     if (this.refDir) {
       this.refDir.viewContainerRef.clear();
       const component = this.refDir.createComponent();
+      component.instance.navbarLinkNames = ['Парковка', 'Страховка', 'Бензин', 'Обслуживание'];
       component.instance.onCloseBtnClick
         .subscribe(() => this.refDir && this.refDir.viewContainerRef.clear());
     }

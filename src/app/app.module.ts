@@ -10,7 +10,7 @@ import { OrderPageComponent } from './order-page/order-page.component';
 import { LocationComponent } from './shared/components/location/location.component';
 import { ButtonComponent } from './shared/components/button/button.component';
 import { LandingPageInfoComponent } from './landing-page/landing-page-info/landing-page-info.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { RefDirective } from './shared/directives/ref.directive';
 
 @NgModule({

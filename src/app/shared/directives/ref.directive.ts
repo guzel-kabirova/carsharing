@@ -1,6 +1,6 @@
 import {Directive, ViewContainerRef} from '@angular/core';
 
-import {NavbarComponent} from '../../navbar/navbar.component';
+import {NavbarComponent} from '../components/navbar/navbar.component';
 
 @Directive({
   selector: '[appRef]'
