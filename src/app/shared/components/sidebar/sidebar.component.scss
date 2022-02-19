@@ -6,6 +6,9 @@
   height: 100vh;
   padding: 32px 8px 15px;
   background-color: var(--color-black-blue);
+  @media (max-width: 320px) {
+    background: none;
+  }
 
   &__btn {
     width: 48px;

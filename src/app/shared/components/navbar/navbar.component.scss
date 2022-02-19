@@ -15,14 +15,25 @@
   left: 0;
   width: calc(50% + 64px);
   padding: 32px 16px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .content {
   margin-left: 128px;
+  @media (max-width: 320px) {
+    margin-left: 0;
+  }
 }
 
 .navbar {
   margin: 240px 0 40px;
+  @media (max-width: 320px) {
+    margin: 28px 0 38px;
+  }
+
   &__link {
     display: block;
     font: var(--font-nav-link);
