@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1;
   padding: 32px 64px;
   height: 100vh;
   @media (max-width: 320px) {
@@ -13,10 +12,12 @@
 .header {
   display: flex;
   justify-content: space-between;
+
   @media (max-width: 320px) {
-    justify-content: flex-end;
     align-items: flex-end;
     flex-direction: column;
+    gap: 8px;
+    padding: 16px 16px 0;
   }
 
   &__logo {
@@ -29,9 +30,23 @@
   margin-top: 160px;
   flex-grow: 1;
 
+  @media (max-width: 320px) {
+    margin-top: 34px;
+  }
+
+  &__info {
+    @media (max-width: 320px) {
+      padding: 0 16px;
+    }
+  }
+
   &__title {
     font: var(--font-landing-title);
     color: var(--color-black);
+
+    @media (max-width: 320px) {
+      font: var(--font-landing-title-adaptive);
+    }
 
     &_accent {
       margin-top: 4px;
@@ -43,6 +58,11 @@
     font: var(--font-landing-text);
     color: var(--color-gray);
     margin: 34px 0 60px;
+
+    @media (max-width: 320px) {
+      font: var(--font-landing-text-adaptive);
+      margin: 16px 0 32px;
+    }
   }
 }
 
