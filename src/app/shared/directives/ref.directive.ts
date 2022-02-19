@@ -1,4 +1,5 @@
 import {Directive, ViewContainerRef} from '@angular/core';
+
 import {NavbarComponent} from '../../navbar/navbar.component';
 
 @Directive({
@@ -11,5 +12,4 @@ export class RefDirective {
   createComponent() {
     return this.viewContainerRef.createComponent(NavbarComponent);
   }
-
 }

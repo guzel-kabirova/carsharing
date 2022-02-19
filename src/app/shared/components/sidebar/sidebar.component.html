@@ -1,8 +1,8 @@
 <aside class="sidebar">
-  <button class="sidebar__btn" (click)="showNav()">
+  <button (click)="showNav()">
     <img alt="navigation menu" src="../../../../assets/icons/menu-burger.svg">
   </button>
-  <button class="sidebar__btn sidebar__btn_lang" (click)="toggleLanguage()">
+  <button class="sidebar__btn sidebar__btn" (click)="toggleLanguage()">
     {{isRussian ? 'Eng' : 'Рус'}}
   </button>
 </aside>

@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
+import {Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,20 +6,16 @@ import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '
   styleUrls: ['./sidebar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   @Output()
-  onMenuClick = new EventEmitter();
+  onOpenBtnClick = new EventEmitter();
 
   public isRussian = true;
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
+  constructor() { }
 
   public showNav() {
-    this.onMenuClick.emit();
+    this.onOpenBtnClick.emit();
   }
 
   public toggleLanguage() {

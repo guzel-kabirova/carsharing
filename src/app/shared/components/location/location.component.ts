@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-location',
@@ -6,11 +6,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./location.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LocationComponent implements OnInit {
+export class LocationComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

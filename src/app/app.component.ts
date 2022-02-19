@@ -17,7 +17,7 @@ export class AppComponent {
     if (this.refDir) {
       this.refDir.viewContainerRef.clear();
       const component = this.refDir.createComponent();
-      component.instance.onClose
+      component.instance.onCloseBtnClick
         .subscribe(() => this.refDir && this.refDir.viewContainerRef.clear());
     }
   }

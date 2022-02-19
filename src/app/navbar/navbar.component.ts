@@ -9,7 +9,7 @@ import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter} from '
 export class NavbarComponent implements OnInit {
 
   @Output()
-  onClose = new EventEmitter<void>();
+  onCloseBtnClick = new EventEmitter<void>();
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public closeNav() {
-    this.onClose.emit();
+    this.onCloseBtnClick.emit();
   }
 
 }
