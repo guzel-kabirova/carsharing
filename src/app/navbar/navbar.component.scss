@@ -1,0 +1,41 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-black-blue);
+  opacity: 0.8;
+}
+
+.container {
+  background-color: var(--color-black-blue);
+  position: absolute;
+  height: 100vh;
+  left: 0;
+  width: calc(50% + 64px);
+  padding: 32px 16px;
+}
+
+.content {
+  margin-left: 128px;
+}
+
+.navbar {
+  margin: 240px 0 40px;
+  &__link {
+    display: block;
+    font: var(--font-nav-link);
+    color: var(--color-white);
+    margin-bottom: 15px;
+
+    &:hover {
+      color: var(--color-main-accent);
+    }
+  }
+}
+
+.social {
+  display: flex;
+  gap: 24px;
+}
