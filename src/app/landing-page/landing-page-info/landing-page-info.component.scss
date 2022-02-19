@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 32px 64px;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &__logo {
+    font: var(--font-logo);
+    color: var(--color-main-accent)
+  }
+}
+
+.main {
+  margin-top: 160px;
+  flex-grow: 1;
+
+  &__title {
+    font: var(--font-landing-title);
+    color: var(--color-black);
+
+    &_accent {
+      margin-top: 4px;
+      color: var(--color-main-accent);
+    }
+  }
+
+  &__text {
+    font: var(--font-landing-text);
+    color: var(--color-gray);
+    margin: 34px 0 60px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+
+  &__info {
+    font: var(--font-text);
+    color: var(--color-gray);
+
+    &_important {
+      color: var(--color-black);
+    }
+  }
+}

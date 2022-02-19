@@ -1,0 +1,22 @@
+:root {
+  --font-fallback: -apple-system, 'BlinkMacSystemFont', system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --font-family: 'Roboto', var(--font-fallback);
+
+  --font-logo: 700 30px var(--font-family);
+  --font-text: 400 14px var(--font-family);
+  --font-landing-title: 700 70px var(--font-family);
+  --font-landing-text: 300 26px var(--font-family);
+  --font-btn: 500 18px var(--font-family);
+  --font-btn-second: 500 14px var(--font-family);
+
+  --color-white: #FFFFFF;
+  --color-black: #121212;
+  --color-black-blue: #151B1F;
+  --color-main-accent: #0EC261;
+  --color-blue: #007BFF;
+  --color-gray: #999999;
+  --color-gray-light: #EEEEEE;
+
+  --color-gradient-btn-green: linear-gradient(45deg, #0EC261, #039F67);
+  --color-text-btn: var(--color-white);
+}

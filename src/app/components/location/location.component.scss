@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  align-items: end;
+}
+
+.location {
+  font: var(--font-text);
+  color: var(--color-gray);
+  margin-left: 7px;
+}
+
+
