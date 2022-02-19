@@ -14,24 +14,23 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RefDirective } from './shared/directives/ref.directive';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SliderComponent,
-    SidebarComponent,
-    LandingPageComponent,
-    OrderPageComponent,
-    LocationComponent,
-    ButtonComponent,
-    LandingPageInfoComponent,
-    NavbarComponent,
-    RefDirective,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [NavbarComponent],
+    declarations: [
+        AppComponent,
+        SliderComponent,
+        SidebarComponent,
+        LandingPageComponent,
+        OrderPageComponent,
+        LocationComponent,
+        ButtonComponent,
+        LandingPageInfoComponent,
+        NavbarComponent,
+        RefDirective,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
