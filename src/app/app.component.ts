@@ -1,6 +1,6 @@
-import {Component, ComponentFactoryResolver, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+
 import {RefDirective} from './shared/directives/ref.directive';
-import {NavbarComponent} from './navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +13,12 @@ export class AppComponent {
 
   title = 'carsharing';
 
-  constructor(private resolver: ComponentFactoryResolver) {
-  }
-
   public openNav() {
     if (this.refDir) {
       this.refDir.viewContainerRef.clear();
-      this.refDir.createComponent();
+      const component = this.refDir.createComponent();
+      component.instance.onClose
+        .subscribe(() => this.refDir && this.refDir.viewContainerRef.clear());
     }
-
   }
 }

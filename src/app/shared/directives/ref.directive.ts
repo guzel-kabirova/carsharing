@@ -9,7 +9,7 @@ export class RefDirective {
   constructor(public viewContainerRef: ViewContainerRef) { }
 
   createComponent() {
-    this.viewContainerRef.createComponent(NavbarComponent);
+    return this.viewContainerRef.createComponent(NavbarComponent);
   }
 
 }
