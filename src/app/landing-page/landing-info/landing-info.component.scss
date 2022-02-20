@@ -53,6 +53,7 @@
   &__title {
     font: var(--font-landing-title);
     color: var(--color-black);
+    overflow-wrap: break-word;
 
     @media (max-width: 320px) {
       font: var(--font-landing-title-adaptive);

@@ -66,8 +66,7 @@
   z-index: 1;
 
   &:hover {
-    background-color: var(--color-main-accent);
-    opacity: 0.2;
+    background-color: rgba(14, 194, 97, 0.2);
   }
 
   &__icon {

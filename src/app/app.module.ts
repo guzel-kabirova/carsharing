@@ -12,8 +12,8 @@ import {ButtonComponent} from './shared/components/buttons/button/button.compone
 import {LandingInfoComponent} from './landing-page/landing-info/landing-info.component';
 import {NavbarComponent} from './shared/components/navbar/navbar.component';
 import {RefDirective} from './shared/directives/ref.directive';
-import {IconModule} from './icon/icon.module';
-import {ICONS_PATH} from './icon/icons-path';
+import {IconModule} from './shared/components/icon/icon.module';
+import {ICONS_PATH} from './shared/components/icon/icons-path';
 import { LangComponent } from './shared/components/buttons/lang/lang.component';
 
 @NgModule({
