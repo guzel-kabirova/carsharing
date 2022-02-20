@@ -2,7 +2,7 @@
   <button (click)="showNav()">
     <svg class="sidebar__icon" icon="menu-burger"></svg>
   </button>
-  <button class="sidebar__btn" (click)="toggleLanguage()">
-    {{isRussian ? 'Eng' : 'Рус'}}
-  </button>
+  <div class="sidebar__btn">
+  <app-lang></app-lang>
+  </div>
 </aside>

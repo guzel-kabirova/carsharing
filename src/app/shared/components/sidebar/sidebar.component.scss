@@ -8,7 +8,12 @@
   background-color: var(--color-black-blue);
 
   @media (max-width: 320px) {
-    display: none;
+    background: none;
+    height: inherit;
+    padding: 0;
+    position: absolute;
+    left: 16px;
+    top: 16px;
   }
 
   &__icon {
@@ -22,20 +27,8 @@
   }
 
   &__btn {
-    width: 48px;
-    height: 48px;
-    border: none;
-    border-radius: 50%;
-    font: var(--font-btn-second);
-    color: var(--color-main-accent);
-
-    &:hover {
-      border: 1px solid var(--color-gray-light);
-      color: var(--color-white);
-    }
-
-    &:active {
-      color: var(--color-main-accent);
+    @media (max-width: 320px) {
+      display: none;
     }
   }
 }
