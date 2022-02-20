@@ -1,14 +1,30 @@
-.btn {
+:host {
+  --btn-width: 250px;
+  --btn-color: var(--color-gradient-btn-green);
+
   border: none;
-  background-image: var(--color-gradient-btn-green);
+  background-image: var(--btn-color);
   color: var(--color-text-btn);
   font: var(--font-btn);
-  width: 250px;
+  width: var(--btn-width);
   height: 48px;
   border-radius: 8px;
 
   @media (max-width: 320px) {
     width: 100%;
     border-radius: 0;
+  }
+
+  &:not([disabled]):hover{
+    filter: brightness(0.9);
+  }
+
+  &:active {
+    filter: brightness(0.8);
+  }
+
+  &:disabled {
+    background-image: none;
+    background-color: var(--color-gray-light);
   }
 }

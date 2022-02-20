@@ -3,12 +3,18 @@
   background-color: var(--color-black-blue);
   height: 100vh;
   color: var(--color-gray-light);
+
   @media (max-width: 768px) {
     display: none;
   }
 
+  &__btn {
+    --btn-width: 160px;
+    --btn-color: var(--color-gradient-btn-green-landing);
+  }
+
   &__content {
-    padding: 205px 32px;
+    padding: 205px 32px 0;
   }
 
   &__title {

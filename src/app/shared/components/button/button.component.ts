@@ -1,12 +1,21 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import {Component, ChangeDetectionStrategy, Input, Renderer2, ElementRef, OnInit, HostBinding} from '@angular/core';
 
 @Component({
-  selector: 'app-button',
+  selector: 'button[app-button]',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonComponent {
+export class ButtonComponent implements OnInit {
+  @Input()
+  @HostBinding('style.width')
+  width = '';
 
   constructor() { }
+
+  ngOnInit(): void {
+
+  }
+
+
 }
