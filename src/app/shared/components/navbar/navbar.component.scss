@@ -28,6 +28,14 @@
   }
 }
 
+.btn {
+  &__icon {
+    width: 32px;
+    height: 32px;
+    color: var(--color-white);
+  }
+}
+
 .navbar {
   margin: 240px 0 40px;
   @media (max-width: 320px) {
@@ -50,4 +58,14 @@
 .social {
   display: flex;
   gap: 24px;
+
+  &__icon {
+    width: 32px;
+    height: 32px;
+    color: var(--color-white);
+
+    &:hover {
+      color: var(--color-main-accent);
+    }
+  }
 }

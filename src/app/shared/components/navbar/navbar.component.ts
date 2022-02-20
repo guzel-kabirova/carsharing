@@ -9,6 +9,8 @@ import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input}
 export class NavbarComponent implements OnInit {
   @Input()
   navbarLinkNames?: string[];
+  @Input()
+  socialIcons?: string[];
   @Output()
   onCloseBtnClick = new EventEmitter<void>();
 

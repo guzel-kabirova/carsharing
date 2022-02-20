@@ -18,6 +18,7 @@ export class AppComponent {
       this.refDir.viewContainerRef.clear();
       const component = this.refDir.createComponent();
       component.instance.navbarLinkNames = ['Парковка', 'Страховка', 'Бензин', 'Обслуживание'];
+      component.instance.socialIcons = ['social-telegram', 'social-facebook', 'social-instagram'];
       component.instance.onCloseBtnClick
         .subscribe(() => this.refDir && this.refDir.viewContainerRef.clear());
     }
