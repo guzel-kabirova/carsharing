@@ -1,22 +1,29 @@
 <div class="slider">
-  <button class="btn">
+  <button class="btn" (click)="decreaseCurrentSlide()">
     <svg class="btn__icon" icon="arrow-left"></svg>
   </button>
+
   <div class="container">
-    <div class="slider__content">
-      <h2 class="slider__title">Бесплатная парковка</h2>
-      <p class="slider__text">Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а
-        также в аэропортах.</p>
-      <button app-button class="slider__btn">Подробнее</button>
-    </div>
+    <ng-container *ngIf="slides?.length">
+      <div *ngFor="let slide of slides; let i = index;">
+        <div class="slider__content" [class.slider__content_active]="i === currentSlide">
+          <div class="wrapper">
+          <h2 class="slider__title">{{slide.title}}</h2>
+          <p class="slider__text">{{slide.text}}</p>
+          <button app-button class="slider__btn" style="background-image: {{slide.btnColor}}">Подробнее</button>
+          </div>
+          <img class="slider__picture" src="{{slide.picture.src}}" alt="{{slide.picture.alt}}">
+        </div>
+      </div>
+    </ng-container>
     <div class="action-line">
-      <div class="action-line__circle"></div>
-      <div class="action-line__circle action-line__circle_active"></div>
-      <div class="action-line__circle"></div>
-      <div class="action-line__circle"></div>
+      <div class="action-line__circle" *ngFor="let slide of slides; let i = index"
+           [class.action-line__circle_active]="i === currentSlide">
+      </div>
     </div>
   </div>
-  <button class="btn">
+
+  <button class="btn" (click)="increaseCurrentSlide()">
     <svg class="btn__icon" icon="arrow-right"></svg>
   </button>
 </div>
