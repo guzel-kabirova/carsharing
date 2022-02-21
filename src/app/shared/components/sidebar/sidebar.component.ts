@@ -8,7 +8,7 @@ import {Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angular
 })
 export class SidebarComponent {
   @Output()
-  onOpenBtnClick = new EventEmitter();
+  onOpenBtnClick = new EventEmitter<void>();
 
   constructor() { }
 

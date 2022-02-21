@@ -6,7 +6,7 @@
   <div class="container">
     <ng-container *ngIf="slides?.length">
       <div *ngFor="let slide of slides; let i = index;">
-        <div class="slider__content" [class.slider__content_active]="i === currentSlide">
+        <div class="slider__content" [ngStyle]="{display: i === currentSlide ? 'block' : 'none'}">
           <div class="wrapper">
           <h2 class="slider__title">{{slide.title}}</h2>
           <p class="slider__text">{{slide.text}}</p>
@@ -18,7 +18,7 @@
     </ng-container>
     <div class="action-line">
       <div class="action-line__circle" *ngFor="let slide of slides; let i = index"
-           [class.action-line__circle_active]="i === currentSlide">
+           [ngStyle]="{backgroundColor: i === currentSlide ? 'var(--color-main-accent)' : 'var(--color-gray-light)'}">
       </div>
     </div>
   </div>

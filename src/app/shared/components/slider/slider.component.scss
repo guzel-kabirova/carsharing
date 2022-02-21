@@ -36,10 +36,6 @@
     bottom: 0;
     top: 0;
     display: none;
-
-    &_active {
-      display: block;
-    }
   }
 
   &__title {
@@ -86,10 +82,6 @@
     height: 8px;
     border-radius: 50%;
     background-color: var(--color-gray-light);
-
-    &_active {
-      background-color: var(--color-main-accent);
-    }
   }
 }
 

@@ -1,12 +1,12 @@
-import {Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   @Input()
   navbarLinkNames?: string[];
   @Input()
@@ -14,9 +14,7 @@ export class NavbarComponent implements OnInit {
   @Output()
   onCloseBtnClick = new EventEmitter<void>();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
   public closeNav() {
