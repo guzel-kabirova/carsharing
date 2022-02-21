@@ -7,8 +7,13 @@
   color: var(--color-gray-light);
   position: relative;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1023px) {
     display: none;
+  }
+
+  &__btn {
+    --btn-width: 160px;
+    --btn-color: var(--color-gradient-btn-green-landing);
   }
 
   &__content {
@@ -30,11 +35,6 @@
     padding: 8px 0 32px;
   }
 
-  &__btn {
-    --btn-width: 160px;
-    --btn-color: var(--color-gradient-btn-green-landing);
-  }
-
   &__picture {
     position: absolute;
     left: 0;
@@ -53,6 +53,10 @@
   height: 100vh;
   padding: 0 28px;
   z-index: 1;
+
+  @media (max-width: 1439px) {
+    padding: 0 12px;
+  }
 
   &:hover {
     background-color: rgba(14, 194, 97, 0.2);
