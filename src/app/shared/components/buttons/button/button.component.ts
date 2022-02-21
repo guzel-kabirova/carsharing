@@ -1,15 +1,11 @@
-import {Component, ChangeDetectionStrategy, Input, HostBinding} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostBinding, Input} from '@angular/core';
 
 @Component({
   selector: 'button[app-button]',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent {
-  @Input()
-  @HostBinding('style.width')
-  width = '';
-
   constructor() { }
 }

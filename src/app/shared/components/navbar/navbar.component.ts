@@ -14,8 +14,7 @@ export class NavbarComponent {
   @Output()
   onCloseBtnClick = new EventEmitter<void>();
 
-  constructor() {
-  }
+  constructor() { }
 
   public closeNav() {
     this.onCloseBtnClick.emit();

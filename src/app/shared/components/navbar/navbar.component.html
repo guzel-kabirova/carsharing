@@ -4,8 +4,8 @@
     <button (click)="closeNav()">
       <svg class="nav__close" icon="menu-close"></svg>
     </button>
-    <div class="content">
-      <ul class="nav__content">
+    <div class="nav__content">
+      <ul class="nav__links">
         <li *ngFor="let linkName of navbarLinkNames"><a class="nav__link">{{linkName}}</a></li>
       </ul>
       <ul class="nav__social">

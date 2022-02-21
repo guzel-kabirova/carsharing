@@ -14,7 +14,7 @@ import {NavbarComponent} from './shared/components/navbar/navbar.component';
 import {RefDirective} from './shared/directives/ref.directive';
 import {IconModule} from './shared/components/icon/icon.module';
 import {ICONS_PATH} from './shared/components/icon/icons-path';
-import { LangComponent } from './shared/components/buttons/lang/lang.component';
+import {LangComponent} from './shared/components/buttons/lang/lang.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +38,8 @@ import { LangComponent } from './shared/components/buttons/lang/lang.component';
   providers: [
     {
       provide: ICONS_PATH,
-      useValue: 'assets/icons'
-    }
+      useValue: 'assets/icons',
+    },
   ],
   bootstrap: [AppComponent],
 })

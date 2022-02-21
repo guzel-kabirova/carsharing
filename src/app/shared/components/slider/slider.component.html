@@ -4,18 +4,17 @@
   </button>
 
   <div class="container">
-    <ng-container *ngIf="slides?.length">
       <div *ngFor="let slide of slides; let i = index;">
         <div class="slider__content" [ngStyle]="{display: i === currentSlide ? 'block' : 'none'}">
           <div class="wrapper">
-          <h2 class="slider__title">{{slide.title}}</h2>
-          <p class="slider__text">{{slide.text}}</p>
-          <button app-button class="slider__btn" style="background-image: {{slide.btnColor}}">Подробнее</button>
+            <h2 class="slider__title">{{slide.title}}</h2>
+            <p class="slider__text">{{slide.text}}</p>
+            <button app-button class="slider__btn" style="background-image: {{slide.btnColor}}">Подробнее</button>
           </div>
           <img class="slider__picture" src="{{slide.picture.src}}" alt="{{slide.picture.alt}}">
         </div>
       </div>
-    </ng-container>
+
     <div class="action-line">
       <div class="action-line__circle" *ngFor="let slide of slides; let i = index"
            [ngStyle]="{backgroundColor: i === currentSlide ? 'var(--color-main-accent)' : 'var(--color-gray-light)'}">

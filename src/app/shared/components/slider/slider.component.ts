@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+
 import {Slide} from '../../../landing-page/landing-page.interface';
 
 @Component({
@@ -13,8 +14,7 @@ export class SliderComponent {
 
   public currentSlide = 0;
 
-  constructor() {
-  }
+  constructor() { }
 
   public increaseCurrentSlide() {
     this.currentSlide = this.currentSlide === this.slides.length - 1 ? 0 : ++this.currentSlide;

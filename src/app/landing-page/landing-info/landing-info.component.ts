@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'app-landing-info',
@@ -7,6 +7,5 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingInfoComponent {
-  constructor() {
-  }
+  constructor() { }
 }

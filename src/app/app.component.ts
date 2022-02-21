@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 
 import {RefDirective} from './shared/directives/ref.directive';
+import {NAV_LINKS, NAV_SOCIAL_ICONS} from './CONST';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,8 @@ export class AppComponent {
     if (this.refDir) {
       this.refDir.viewContainerRef.clear();
       const component = this.refDir.createComponent();
-      component.instance.navbarLinkNames = ['Парковка', 'Страховка', 'Бензин', 'Обслуживание'];
-      component.instance.socialIcons = ['social-telegram', 'social-facebook', 'social-instagram'];
+      component.instance.navbarLinkNames = NAV_LINKS;
+      component.instance.socialIcons = NAV_SOCIAL_ICONS;
       component.instance.onCloseBtnClick
         .subscribe(() => this.refDir && this.refDir.viewContainerRef.clear());
     }

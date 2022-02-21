@@ -23,17 +23,6 @@
   }
 }
 
-.content {
-  margin-left: 128px;
-  @media (max-width: 320px) {
-    padding: 28px;
-    margin-left: 0;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-  }
-}
-
 .nav {
   &__close {
     width: 32px;
@@ -42,7 +31,20 @@
   }
 
   &__content {
+    margin-left: 128px;
+
+    @media (max-width: 320px) {
+      padding: 28px;
+      margin-left: 0;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+  }
+
+  &__links {
     margin: 240px 0 40px;
+
     @media (max-width: 320px) {
       margin: 28px 0 38px;
     }
@@ -57,7 +59,6 @@
 
     @media (max-width: 320px) {
       font: var(--font-nav-link-adaptive);
-
     }
 
     &:hover {

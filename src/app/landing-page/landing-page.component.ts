@@ -13,6 +13,5 @@ import {SLIDES} from '../CONST';
 export class LandingPageComponent {
   slides: Slide[] = SLIDES;
 
-  constructor() {
-  }
+  constructor() { }
 }
