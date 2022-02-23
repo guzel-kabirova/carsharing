@@ -52,8 +52,12 @@
             ],
             "styles": [
               "node_modules/normalize.scss/normalize.scss",
+              "src/fonts.scss",
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/app/styles/basic", "src/app/styles/mixins", "src/app/styles/variables"]
+            },
             "scripts": []
           },
           "configurations": {
