@@ -1,17 +1,14 @@
-import {Component, OnInit, ChangeDetectionStrategy, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-info-list',
   templateUrl: './info-list.component.html',
   styleUrls: ['./info-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InfoListComponent implements OnInit {
+export class InfoListComponent {
   @Input()
   itemList: string[] = [];
+
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

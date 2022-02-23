@@ -15,17 +15,17 @@ import {RefDirective} from './shared/directives/ref.directive';
 import {IconModule} from './shared/components/icon/icon.module';
 import {ICONS_PATH} from './shared/components/icon/icons-path';
 import {LangComponent} from './shared/components/buttons/lang/lang.component';
-import { LogoComponent } from './shared/components/logo/logo.component';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { StepperComponent } from './shared/components/stepper/stepper.component';
-import { StepComponent } from './shared/components/stepper/step/step.component';
-import { StepperArrowComponent } from './shared/components/stepper/stepper-arrow/stepper-arrow.component';
-import { StepLocationComponent } from './shared/components/step-location/step-location.component';
-import { LabelComponent } from './shared/components/label/label.component';
-import { InputComponent } from './shared/components/input/input.component';
-import { MainOrderInfoComponent } from './order-page/main-order-info/main-order-info.component';
-import { InfoListComponent } from './shared/components/info-list/info-list.component';
-import { InfoItemComponent } from './shared/components/info-list/info-item/info-item.component';
+import {LogoComponent} from './shared/components/logo/logo.component';
+import {HeaderComponent} from './shared/components/header/header.component';
+import {StepperComponent} from './shared/components/stepper/stepper.component';
+import {StepComponent} from './shared/components/stepper/step/step.component';
+import {StepperArrowComponent} from './shared/components/stepper/stepper-arrow/stepper-arrow.component';
+import {StepLocationComponent} from './order-page/steps/step-location/step-location.component';
+import {LabelComponent} from './shared/components/label/label.component';
+import {InputComponent} from './shared/components/input/input.component';
+import {MainOrderInfoComponent} from './order-page/main-order-info/main-order-info.component';
+import {InfoListComponent} from './shared/components/info-list/info-list.component';
+import {InfoItemComponent} from './shared/components/info-list/info-item/info-item.component';
 
 @NgModule({
   declarations: [

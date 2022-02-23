@@ -5,8 +5,12 @@
   background-color: var(--color-white);
   z-index: 1;
 }
-.container {
+.header {
   padding: 32px 64px;
+
+  @media (min-width: 1440px) {
+    padding: 32px 0;
+  }
 }
 
 .main {
