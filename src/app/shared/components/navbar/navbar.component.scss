@@ -13,12 +13,12 @@
   position: absolute;
   height: 100vh;
   left: 0;
-  width: calc(50% + 64px);
+  width: calc(50% + 32px);
   padding: 32px 16px;
   z-index: 2;
 
   @media (min-width: 1024px) and (max-width: 1439px) {
-    width: calc(60% + 64px);
+    width: calc(60% + 32px);
   }
 
   @media (max-width: 1023px) {
