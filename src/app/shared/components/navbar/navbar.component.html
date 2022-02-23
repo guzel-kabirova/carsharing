@@ -1,0 +1,22 @@
+<div class="backdrop"></div>
+<div class="container">
+  <div class="nav">
+    <button (click)="closeNav()">
+      <svg class="nav__close" icon="menu-close"></svg>
+    </button>
+    <div class="nav__content">
+      <ul class="nav__links">
+        <li *ngFor="let linkName of navbarLinkNames"><a class="nav__link">{{linkName}}</a></li>
+      </ul>
+      <ul class="nav__social">
+        <li *ngFor="let icon of socialIcons"><a>
+          <svg class="nav__icon" icon="{{icon}}"></svg>
+        </a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="btn">
+    <app-lang></app-lang>
+  </div>
+</div>
+
