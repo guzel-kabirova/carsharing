@@ -1,0 +1,14 @@
+.location {
+  &__input {
+    width: 323px;
+    margin-bottom: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+.map {
+  display: block;
+  margin: 16px 0;
+}

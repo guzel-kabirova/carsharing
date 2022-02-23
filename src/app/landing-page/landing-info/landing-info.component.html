@@ -1,7 +1,4 @@
-<header class="header">
-  <span class="header__logo">Need for drive</span>
-  <app-location></app-location>
-</header>
+<app-header></app-header>
 
 <main class="main">
   <div class="main__info">
@@ -9,7 +6,7 @@
     <h2 class="main__title main__title_accent">Need for drive</h2>
     <h3 class="main__text">Поминутная аренда авто твоего города</h3>
   </div>
-  <button class="main__btn" app-button>Забронировать</button>
+  <button class="main__btn" app-button (click)="navigateToOrderPage()">Забронировать</button>
 </main>
 
 <footer class="footer">

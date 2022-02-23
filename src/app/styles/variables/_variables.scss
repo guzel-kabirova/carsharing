@@ -2,16 +2,19 @@
   --font-fallback: -apple-system, 'BlinkMacSystemFont', system-ui, 'Segoe UI', 'Helvetica Neue', sans-serif;
   --font-family: 'Roboto', var(--font-fallback);
 
-  --font-logo: 700 30px var(--font-family);
-  --font-text: 400 14px var(--font-family);
   --font-landing-title: 700 70px var(--font-family);
-  --font-landing-text: 300 26px var(--font-family);
-  --font-btn: 500 18px var(--font-family);
-  --font-btn-second: 500 14px var(--font-family);
-  --font-nav-link: 500 32px var(--font-family);
   --font-slider-title: 500 40px var(--font-family);
+  --font-nav-link: 500 32px var(--font-family);
+  --font-logo: 700 30px var(--font-family);
+  --font-landing-text: 300 26px var(--font-family);
   --font-slider-text: 300 24px var(--font-family);
-
+  --font-btn: 500 18px var(--font-family);
+  --font-order-title: 500 16px var(--font-family);
+  --font-order-text: 400 16px var(--font-family);
+  --font-step: 700 14px var(--font-family);
+  --font-btn-second: 500 14px var(--font-family);
+  --font-text: 400 14px var(--font-family);
+  --font-interactive-text: 300 14px var(--font-family);
 
   --font-landing-title-adaptive: 700 32px var(--font-family);
   --font-landing-text-adaptive: 300 18px var(--font-family);

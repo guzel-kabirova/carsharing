@@ -1,0 +1,6 @@
+<div class="stepper">
+  <app-step *ngFor="let step of steps; let isLast = last"
+            [stepText]="step"
+            [isLast]="isLast">
+  </app-step>
+</div>
