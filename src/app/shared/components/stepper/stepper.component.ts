@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
+import {Component, ChangeDetectionStrategy, Output, EventEmitter, Input} from '@angular/core';
 import {STEPS} from '../../../CONST';
 
 @Component({
@@ -8,9 +8,14 @@ import {STEPS} from '../../../CONST';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepperComponent {
-  public steps = STEPS;
+
+  @Input()
+  activeStep = 0;
+
   @Output()
   stepChanged = new EventEmitter<number>();
+
+  public steps = STEPS;
 
   constructor() { }
 

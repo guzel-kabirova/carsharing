@@ -13,6 +13,10 @@ export class StepComponent {
   stepText = '';
   @Input()
   isLast = false;
+  @Input()
+  isActive = false;
+  @Input()
+  isCompleted = false;
 
   @Output()
   stepChanged = new EventEmitter<number>();

@@ -5,6 +5,8 @@
     [isLast]="isLast"
     [stepIndex]="i"
     (stepChanged)="changeStep($event)"
+    [isActive]="i === activeStep"
+    [isCompleted]="i < activeStep"
   >
   </app-step>
 </div>
