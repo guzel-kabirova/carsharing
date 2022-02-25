@@ -26,6 +26,9 @@ import {InputComponent} from './shared/components/input/input.component';
 import {MainOrderInfoComponent} from './order-page/main-order-info/main-order-info.component';
 import {InfoListComponent} from './shared/components/info-list/info-list.component';
 import {InfoItemComponent} from './shared/components/info-list/info-item/info-item.component';
+import { StepModelComponent } from './order-page/steps/step-model/step-model.component';
+import { StepExtraComponent } from './order-page/steps/step-extra/step-extra.component';
+import { StepFinalComponent } from './order-page/steps/step-final/step-final.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,9 @@ import {InfoItemComponent} from './shared/components/info-list/info-item/info-it
     MainOrderInfoComponent,
     InfoListComponent,
     InfoItemComponent,
+    StepModelComponent,
+    StepExtraComponent,
+    StepFinalComponent,
   ],
   imports: [
     BrowserModule,

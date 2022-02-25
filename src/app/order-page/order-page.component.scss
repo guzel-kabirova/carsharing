@@ -40,9 +40,11 @@
   &__step {
     padding-top: 32px;
     margin-right: 192px;
+    width: 736px;
 
     @media (max-width: 1439px) {
       margin-right: 0;
+      width: inherit;
     }
 
     @media (max-width: 767px) {

@@ -2,4 +2,12 @@
   cursor: pointer;
   font: var(--font-step);
   color: var(--color-gray);
+
+  &__active {
+    color: var(--color-main-accent);
+  }
+
+  &__completed{
+    color: var(--color-main-black);
+  }
 }

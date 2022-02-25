@@ -7,5 +7,11 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderPageComponent {
+  activeStep = 0;
+
   constructor() { }
+
+  changeContent(step: number) {
+    this.activeStep = step;
+  }
 }
