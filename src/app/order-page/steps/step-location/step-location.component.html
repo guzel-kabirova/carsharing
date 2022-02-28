@@ -1,12 +1,13 @@
-<form class="location">
+<ng-container *ngIf="form">
+<form class="location" [formGroup]="form">
   <div class="location__input">
     <div>
       <app-label labelId="city" labelText="Город"></app-label>
-      <input app-input id="city" placeholder="Введите город...">
+      <input app-input id="city" placeholder="Введите город..." formControlName="city">
     </div>
     <div>
       <app-label labelId="pointOfIssue" labelText="Пункт выдачи"></app-label>
-      <input app-input id="pointOfIssue" placeholder="Начните вводить пункт...">
+      <input app-input id="pointOfIssue" placeholder="Начните вводить пункт..." formControlName="pointOfIssue">
     </div>
   </div>
   <div class="location__map">
@@ -14,4 +15,4 @@
     <img class="map" alt="map" src="./assets/pictures/map.jpg">
   </div>
 </form>
-
+</ng-container>

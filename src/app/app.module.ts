@@ -29,6 +29,7 @@ import {InfoItemComponent} from './shared/components/info-list/info-item/info-it
 import { StepModelComponent } from './order-page/steps/step-model/step-model.component';
 import { StepExtraComponent } from './order-page/steps/step-extra/step-extra.component';
 import { StepFinalComponent } from './order-page/steps/step-final/step-final.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -58,11 +59,12 @@ import { StepFinalComponent } from './order-page/steps/step-final/step-final.com
     StepExtraComponent,
     StepFinalComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    IconModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        IconModule,
+        ReactiveFormsModule,
+    ],
   providers: [
     {
       provide: ICONS_PATH,

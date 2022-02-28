@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-step-location',
@@ -6,7 +7,15 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   styleUrls: ['./step-location.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StepLocationComponent {
+export class StepLocationComponent implements OnInit {
+  form?: FormGroup;
 
-  constructor() { }
+  constructor(private _fb: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.form = this._fb.group({
+      city: ['', Validators.required],
+      pointOfIssue: ['', Validators.required],
+    })
+  }
 }

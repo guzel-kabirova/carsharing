@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-step-extra',
@@ -7,10 +8,16 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepExtraComponent implements OnInit {
+  form?: FormGroup;
 
-  constructor() { }
+  constructor(private _fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this._fb.group({
+      color: ['', Validators.required],
+      date: ['', Validators.required],
+      rate: ['', Validators.required],
+      extra: ['', Validators.required],
+    })
   }
-
 }
