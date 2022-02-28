@@ -6,7 +6,9 @@
     [stepIndex]="i"
     (stepChanged)="changeStep($event)"
     [isActive]="i === activeStep"
-    [isCompleted]="i < activeStep"
+    [isCompleted]="stepsState[i]"
+    [isDisabled]="i > 0 ? !stepsState[i - 1] : false"
   >
+    {{stepsState[i]}}
   </app-step>
 </div>

@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {StepsService} from './steps/steps.service';
 
 @Component({
   selector: 'app-order-page',
@@ -8,8 +9,9 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class OrderPageComponent {
   activeStep = 0;
+  public stepsState = this._steps.stepsState$;
 
-  constructor() { }
+  constructor(private _steps: StepsService) { }
 
   changeContent(step: number) {
     this.activeStep = step;

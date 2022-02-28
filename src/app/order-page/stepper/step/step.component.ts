@@ -17,6 +17,8 @@ export class StepComponent {
   isActive = false;
   @Input()
   isCompleted = false;
+  @Input()
+  isDisabled = true;
 
   @Output()
   stepChanged = new EventEmitter<number>();

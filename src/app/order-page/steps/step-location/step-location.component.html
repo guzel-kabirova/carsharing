@@ -1,5 +1,5 @@
 <ng-container *ngIf="form">
-<form class="location" [formGroup]="form">
+<form class="location" [formGroup]="form" (change)="changeLocation()">
   <div class="location__input">
     <div>
       <app-label labelId="city" labelText="Город"></app-label>

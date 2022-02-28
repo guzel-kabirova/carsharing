@@ -1,0 +1,7 @@
+<button class="step"
+        [ngStyle]="{color: isActive ? 'var(--color-main-accent)' : isCompleted ? 'var(--color-main-black)' : 'var(--color-gray)'}"
+        (click)="changeStep()"
+        [disabled]="isDisabled"
+>{{stepText}}
+</button>
+<app-stepper-arrow *ngIf="!isLast"></app-stepper-arrow>
