@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-step-final',
@@ -6,11 +6,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./step-final.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StepFinalComponent implements OnInit {
+export class StepFinalComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

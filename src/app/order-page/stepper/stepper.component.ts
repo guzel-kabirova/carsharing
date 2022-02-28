@@ -1,4 +1,5 @@
 import {Component, ChangeDetectionStrategy, Output, EventEmitter, Input} from '@angular/core';
+
 import {STEPS} from '../../CONST';
 
 @Component({
@@ -11,11 +12,11 @@ export class StepperComponent {
   @Input()
   activeStep = 0;
 
-  @Output()
-  stepChanged = new EventEmitter<number>();
-
   @Input()
   stepsState = [false, false, false, false];
+
+  @Output()
+  stepChanged = new EventEmitter<number>();
 
   public steps = STEPS;
 

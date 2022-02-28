@@ -9,14 +9,19 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
 export class StepComponent {
   @Input()
   stepIndex?: number;
+
   @Input()
   stepText = '';
+
   @Input()
   isLast = false;
+
   @Input()
   isActive = false;
+
   @Input()
   isCompleted = false;
+
   @Input()
   isDisabled = true;
 

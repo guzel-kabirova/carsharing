@@ -8,7 +8,5 @@
     [isActive]="i === activeStep"
     [isCompleted]="stepsState[i]"
     [isDisabled]="i > 0 ? !stepsState[i - 1] : false"
-  >
-    {{stepsState[i]}}
-  </app-step>
+  ></app-step>
 </div>

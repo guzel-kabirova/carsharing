@@ -5,9 +5,9 @@
   <div class="top__stepper">
     <app-stepper
       *ngIf="stepsState | async as state"
-    (stepChanged)="changeContent($event)"
-    [activeStep]="activeStep"
-    [stepsState]="state"
+      (stepChanged)="changeContent($event)"
+      [activeStep]="activeStep"
+      [stepsState]="state"
     ></app-stepper>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+
 import {StepsService} from '../steps.service';
 
 @Component({
@@ -14,8 +15,7 @@ export class StepLocationComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _steps: StepsService,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.form = this._fb.group({
