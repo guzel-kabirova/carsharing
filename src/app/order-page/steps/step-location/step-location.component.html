@@ -1,18 +1,21 @@
 <ng-container *ngIf="form">
-<form class="location" [formGroup]="form" (change)="changeLocation()">
-  <div class="location__input">
-    <div>
-      <app-label labelId="city" labelText="Город"></app-label>
-      <input app-input id="city" placeholder="Введите город..." formControlName="city">
+  <form class="location" [formGroup]="form" (change)="changeLocation()">
+    <div class="location__inputs">
+      <div>
+        <app-label labelId="city" labelText="Город"></app-label>
+        <div class="location__input">
+          <input app-input id="city" placeholder="Введите город..." formControlName="city">
+          <svg icon="reset" class="location__icon" [ngStyle]="{display: form.get('city')?.value ? 'block' : 'none'}" (click)="reset()"></svg>
+        </div>
+      </div>
+      <div>
+        <app-label labelId="pointOfIssue" labelText="Пункт выдачи"></app-label>
+        <input app-input id="pointOfIssue" placeholder="Начните вводить пункт..." formControlName="pointOfIssue">
+      </div>
     </div>
-    <div>
-      <app-label labelId="pointOfIssue" labelText="Пункт выдачи"></app-label>
-      <input app-input id="pointOfIssue" placeholder="Начните вводить пункт..." formControlName="pointOfIssue">
+    <div class="location__map">
+      <app-label labelText="Выбрать на карте:"></app-label>
+      <img class="map" alt="map" src="./assets/pictures/map.jpg">
     </div>
-  </div>
-  <div class="location__map">
-    <app-label labelText="Выбрать на карте:"></app-label>
-    <img class="map" alt="map" src="./assets/pictures/map.jpg">
-  </div>
-</form>
+  </form>
 </ng-container>

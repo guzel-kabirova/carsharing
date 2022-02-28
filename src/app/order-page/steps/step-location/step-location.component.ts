@@ -29,4 +29,10 @@ export class StepLocationComponent implements OnInit {
   public changeLocation() {
     this._steps.changeLocation(this.form?.value);
   }
+
+  public reset() {
+    this.form?.patchValue({
+      city: ''
+    })
+  }
 }
