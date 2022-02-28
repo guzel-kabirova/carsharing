@@ -12,10 +12,12 @@
 
 <main class="main">
   <div class="main__step">
-    <app-step-location *ngIf="activeStep === 0"></app-step-location>
-    <app-step-model *ngIf="activeStep === 1"></app-step-model>
-    <app-step-extra *ngIf="activeStep === 2"></app-step-extra>
-    <app-step-final *ngIf="activeStep === 3"></app-step-final>
+    <ng-container [ngSwitch]="activeStep">
+      <app-step-location *ngSwitchCase="0"></app-step-location>
+      <app-step-model *ngSwitchCase="1"></app-step-model>
+      <app-step-extra *ngSwitchCase="2"></app-step-extra>
+      <app-step-final *ngSwitchCase="3"></app-step-final>
+    </ng-container>
   </div>
   <div class="main__info">
     <app-main-order-info></app-main-order-info>
