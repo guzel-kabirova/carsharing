@@ -9,6 +9,7 @@ import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 export class LabelComponent {
   @Input()
   labelId = '';
+
   @Input()
   labelText = '';
 
