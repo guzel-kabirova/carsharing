@@ -1,6 +1,6 @@
-export interface Location {
+export interface ILocation {
   city: string | null;
   pointOfIssue: string | null;
 }
 
-export type StepsState = [boolean, boolean, boolean, boolean];
+export type TStepsState = [boolean, boolean, boolean, boolean];

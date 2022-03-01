@@ -21,7 +21,7 @@ export class StepLocationComponent implements OnInit {
     this.form = this._fb.group({
       city: ['', Validators.required],
       pointOfIssue: ['', Validators.required],
-    })
+    });
 
     this.form.setValue(this._steps.getLocation());
   }
@@ -32,7 +32,7 @@ export class StepLocationComponent implements OnInit {
 
   public reset() {
     this.form?.patchValue({
-      city: ''
-    })
+      city: '',
+    });
   }
 }

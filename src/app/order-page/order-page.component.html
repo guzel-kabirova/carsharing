@@ -5,7 +5,7 @@
   <div class="top__stepper">
     <app-stepper
       *ngIf="stepsState | async as state"
-      (stepChanged)="changeContent($event)"
+      (changeStep)="changeContent($event)"
       [activeStep]="activeStep"
       [stepsState]="state"
     ></app-stepper>
@@ -15,10 +15,10 @@
 <main class="main">
   <div class="main__step">
     <ng-container [ngSwitch]="activeStep">
-      <app-step-location *ngSwitchCase="0"></app-step-location>
-      <app-step-model *ngSwitchCase="1"></app-step-model>
-      <app-step-extra *ngSwitchCase="2"></app-step-extra>
-      <app-step-final *ngSwitchCase="3"></app-step-final>
+      <app-step-location *ngSwitchCase="step.Location"></app-step-location>
+      <app-step-model *ngSwitchCase="step.Model"></app-step-model>
+      <app-step-extra *ngSwitchCase="step.Extra"></app-step-extra>
+      <app-step-final *ngSwitchCase="step.Final"></app-step-final>
     </ng-container>
   </div>
   <div class="main__info">

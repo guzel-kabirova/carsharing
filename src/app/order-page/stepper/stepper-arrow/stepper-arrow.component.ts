@@ -4,7 +4,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   selector: 'app-stepper-arrow',
   templateUrl: './stepper-arrow.component.html',
   styleUrls: ['./stepper-arrow.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepperArrowComponent {
   constructor() { }

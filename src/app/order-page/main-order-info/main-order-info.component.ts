@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {ORDER_INFO_LIST} from '../../CONST';
+
+import {ORDER_INFO_LIST} from '../order-page.const';
+
 
 @Component({
   selector: 'app-main-order-info',

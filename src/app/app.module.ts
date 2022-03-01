@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -26,10 +27,9 @@ import {InputComponent} from './shared/components/input/input.component';
 import {MainOrderInfoComponent} from './order-page/main-order-info/main-order-info.component';
 import {InfoListComponent} from './shared/components/info-list/info-list.component';
 import {InfoItemComponent} from './shared/components/info-list/info-item/info-item.component';
-import { StepModelComponent } from './order-page/steps/step-model/step-model.component';
-import { StepExtraComponent } from './order-page/steps/step-extra/step-extra.component';
-import { StepFinalComponent } from './order-page/steps/step-final/step-final.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {StepModelComponent} from './order-page/steps/step-model/step-model.component';
+import {StepExtraComponent} from './order-page/steps/step-extra/step-extra.component';
+import {StepFinalComponent} from './order-page/steps/step-final/step-final.component';
 
 @NgModule({
   declarations: [
@@ -59,12 +59,12 @@ import {ReactiveFormsModule} from '@angular/forms';
     StepExtraComponent,
     StepFinalComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        IconModule,
-        ReactiveFormsModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    IconModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     {
       provide: ICONS_PATH,

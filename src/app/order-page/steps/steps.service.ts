@@ -1,31 +1,31 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
-import {Location, StepsState} from './steps.interface';
+import {ILocation, TStepsState} from './steps.interface';
 import {NO_LOCATION, STEPS_STATE_INITIAL} from './steps.initial';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StepsService {
-  private _stepsState = new BehaviorSubject<StepsState>(STEPS_STATE_INITIAL);
+  private _stepsState = new BehaviorSubject<TStepsState>(STEPS_STATE_INITIAL);
   public stepsState$ = this._stepsState.asObservable();
 
-  private _location = new BehaviorSubject<Location>(NO_LOCATION);
+  private _location = new BehaviorSubject<ILocation>(NO_LOCATION);
 
   constructor() { }
 
   changeStepsState(i: number, isCompleted: boolean) {
-    let newState: StepsState = [...this.getStepsState()];
+    let newState: TStepsState = [...this.getStepsState()];
     newState[i] = isCompleted;
     this._stepsState.next(newState);
   }
 
-  getStepsState(): StepsState {
+  getStepsState(): TStepsState {
     return this._stepsState.getValue();
   }
 
-  changeLocation(value: Location) {
+  changeLocation(value: ILocation) {
     this._location.next(value);
     this.changeStepsState(0, this.isLocationFull());
   }
@@ -35,7 +35,7 @@ export class StepsService {
     return !!currentData.city && !!currentData.pointOfIssue;
   }
 
-  getLocation(): Location {
+  getLocation(): ILocation {
     return this._location.getValue();
   }
 }

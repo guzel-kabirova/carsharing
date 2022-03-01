@@ -1,11 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-step-extra',
   templateUrl: './step-extra.component.html',
   styleUrls: ['./step-extra.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepExtraComponent implements OnInit {
   form?: FormGroup;
@@ -18,6 +18,6 @@ export class StepExtraComponent implements OnInit {
       date: ['', Validators.required],
       rate: ['', Validators.required],
       extra: ['', Validators.required],
-    })
+    });
   }
 }

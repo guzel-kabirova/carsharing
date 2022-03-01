@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, HostBinding, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 @Component({
   selector: 'button[app-button]',

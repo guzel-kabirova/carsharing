@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 
 import {RefDirective} from './shared/directives/ref.directive';
-import {NAV_LINKS, NAV_SOCIAL_ICONS} from './CONST';
+import {NAV_LINKS, NAV_SOCIAL_ICONS} from './landing-page/landing-page.const';
 
 @Component({
   selector: 'app-root',

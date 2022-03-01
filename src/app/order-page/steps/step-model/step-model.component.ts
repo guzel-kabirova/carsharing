@@ -1,11 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-step-model',
   templateUrl: './step-model.component.html',
   styleUrls: ['./step-model.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepModelComponent implements OnInit {
   form?: FormGroup;
@@ -15,6 +15,6 @@ export class StepModelComponent implements OnInit {
   ngOnInit(): void {
     this.form = this._fb.group({
       model: ['', Validators.required],
-    })
+    });
   }
 }

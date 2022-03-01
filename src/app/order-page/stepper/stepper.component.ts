@@ -1,6 +1,8 @@
-import {Component, ChangeDetectionStrategy, Output, EventEmitter, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 
-import {STEPS} from '../../CONST';
+import {STEPS} from '../order-page.const';
+import {STEPS_STATE_INITIAL} from '../steps/steps.initial';
+
 
 @Component({
   selector: 'app-stepper',
@@ -13,16 +15,12 @@ export class StepperComponent {
   activeStep = 0;
 
   @Input()
-  stepsState = [false, false, false, false];
+  stepsState = STEPS_STATE_INITIAL;
 
   @Output()
-  stepChanged = new EventEmitter<number>();
+  changeStep = new EventEmitter<number>();
 
   public steps = STEPS;
 
   constructor() { }
-
-  public changeStep(step: number) {
-    this.stepChanged.emit(step);
-  }
 }

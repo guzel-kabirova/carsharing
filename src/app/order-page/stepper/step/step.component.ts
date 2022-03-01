@@ -8,9 +8,6 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
 })
 export class StepComponent {
   @Input()
-  stepIndex?: number;
-
-  @Input()
   stepText = '';
 
   @Input()
@@ -26,11 +23,7 @@ export class StepComponent {
   isDisabled = true;
 
   @Output()
-  stepChanged = new EventEmitter<number>();
+  change = new EventEmitter<number>();
 
   constructor() { }
-
-  public changeStep() {
-    this.stepChanged.emit(this.stepIndex);
-  }
 }
