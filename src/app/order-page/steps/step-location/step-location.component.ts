@@ -34,5 +34,6 @@ export class StepLocationComponent implements OnInit {
     this.form?.patchValue({
       city: '',
     });
+    this.changeLocation();
   }
 }
