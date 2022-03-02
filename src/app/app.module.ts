@@ -31,6 +31,7 @@ import {StepModelComponent} from './order-page/steps/step-model/step-model.compo
 import {StepExtraComponent} from './order-page/steps/step-extra/step-extra.component';
 import {StepFinalComponent} from './order-page/steps/step-final/step-final.component';
 import {AutoCardComponent} from './order-page/steps/step-model/auto-card/auto-card.component';
+import {RadioButtonComponent} from './shared/components/radio-button/radio-button.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import {AutoCardComponent} from './order-page/steps/step-model/auto-card/auto-ca
     StepExtraComponent,
     StepFinalComponent,
     AutoCardComponent,
+    RadioButtonComponent,
   ],
   imports: [
     BrowserModule,

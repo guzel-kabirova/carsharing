@@ -1,0 +1,6 @@
+<div *ngIf="item">
+  <app-label [labelId]="item.idName" [labelText]="item.text">
+    <input class="modern" type="radio" name="model" [id]="item.idName" [value]="item.text">
+    <span class="custom" [id]="item.idName"></span>
+  </app-label>
+</div>

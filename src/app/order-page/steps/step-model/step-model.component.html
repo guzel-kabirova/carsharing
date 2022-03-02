@@ -1,10 +1,9 @@
 <ng-container *ngIf="form">
   <form class="model" [formGroup]="form">
     <div class="type">
-      <div class="type__radio" *ngFor="let type of modelTypes">
-        <input type="radio" name="model" id="{{type.idName}}" value="{{type.text}}" formControlName="model">
-        <app-label labelId="{{type.idName}}" labelText="{{type.text}}"></app-label>
-      </div>
+      <ng-container *ngFor="let type of modelTypes">
+        <app-radio-button [item]="type"></app-radio-button>
+      </ng-container>
     </div>
 
     <div class="auto">
