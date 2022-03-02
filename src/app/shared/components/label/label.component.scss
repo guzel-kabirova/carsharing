@@ -1,0 +1,9 @@
+.label {
+  font: var(--font-interactive-text);
+  color: var(--color-black);
+  margin-right: 8px;
+
+  @media (max-width: 767px) {
+    display: block;
+  }
+}

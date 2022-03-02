@@ -1,0 +1,8 @@
+.step {
+  cursor: pointer;
+  font: var(--font-step);
+
+  &:disabled {
+    cursor: inherit;
+  }
+}

@@ -1,4 +1,4 @@
-import {Slide} from './landing-page/landing-page.interface';
+import {Slide} from './landing-page.interface';
 
 export const SLIDES: Slide[] = [
   {
@@ -28,4 +28,5 @@ export const SLIDES: Slide[] = [
 ];
 
 export const NAV_LINKS: string[] = ['Парковка', 'Страховка', 'Бензин', 'Обслуживание'];
+
 export const NAV_SOCIAL_ICONS: string[] = ['social-telegram', 'social-facebook', 'social-instagram'];

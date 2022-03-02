@@ -1,5 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
+import {StepsService} from './steps/steps.service';
+import {Step} from './order-page.enum';
+
 @Component({
   selector: 'app-order-page',
   templateUrl: './order-page.component.html',
@@ -7,5 +10,13 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderPageComponent {
-  constructor() { }
+  public step = Step;
+  public activeStep = this.step.Location;
+  public stepsState = this._steps.stepsState$;
+
+  constructor(private _steps: StepsService) { }
+
+  public changeContent(step: number) {
+    this.activeStep = step;
+  }
 }

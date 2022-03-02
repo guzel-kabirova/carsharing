@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
 import {Slide} from './landing-page.interface';
-import {SLIDES} from '../CONST';
+import {SLIDES} from './landing-page.const';
 
 
 @Component({
