@@ -3,7 +3,7 @@
     <div class="type">
       <div class="type__radio" *ngFor="let type of modelTypes">
         <input type="radio" name="model" id="{{type.idName}}" value="{{type.text}}" formControlName="model">
-        <app-label labelId="all" labelText="{{type.text}}"></app-label>
+        <app-label labelId="{{type.idName}}" labelText="{{type.text}}"></app-label>
       </div>
     </div>
 
