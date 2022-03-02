@@ -1,0 +1,16 @@
+.type {
+  display: flex;
+  gap: 16px;
+
+  &__radio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.auto {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

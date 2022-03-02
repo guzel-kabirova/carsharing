@@ -1,6 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
+import {MODEL_TYPES} from '../../order-page.const';
+
 @Component({
   selector: 'app-step-model',
   templateUrl: './step-model.component.html',
@@ -8,7 +10,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepModelComponent implements OnInit {
-  form?: FormGroup;
+  public form?: FormGroup;
+  public modelTypes = MODEL_TYPES;
 
   constructor(private _fb: FormBuilder) { }
 

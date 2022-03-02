@@ -30,6 +30,7 @@ import {InfoItemComponent} from './shared/components/info-list/info-item/info-it
 import {StepModelComponent} from './order-page/steps/step-model/step-model.component';
 import {StepExtraComponent} from './order-page/steps/step-extra/step-extra.component';
 import {StepFinalComponent} from './order-page/steps/step-final/step-final.component';
+import {AutoCardComponent} from './order-page/steps/step-model/auto-card/auto-card.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {StepFinalComponent} from './order-page/steps/step-final/step-final.compo
     StepModelComponent,
     StepExtraComponent,
     StepFinalComponent,
+    AutoCardComponent,
   ],
   imports: [
     BrowserModule,
