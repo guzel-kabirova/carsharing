@@ -23,7 +23,7 @@ export class StepComponent {
   isDisabled = true;
 
   @Output()
-  change = new EventEmitter<number>();
+  change = new EventEmitter<void>();
 
   constructor() { }
 }
