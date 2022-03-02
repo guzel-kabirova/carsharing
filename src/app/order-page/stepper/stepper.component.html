@@ -1,0 +1,11 @@
+<div class="stepper">
+  <app-step
+    *ngFor="let step of steps; let isLast = last; let i = index"
+    [stepText]="step"
+    [isLast]="isLast"
+    (change)="changeStep.emit(i)"
+    [isActive]="i === activeStep"
+    [isCompleted]="stepsState[i]"
+    [isDisabled]="i > 0 ? !stepsState[i - 1] : false"
+  ></app-step>
+</div>

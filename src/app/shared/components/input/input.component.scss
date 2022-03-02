@@ -1,0 +1,10 @@
+:host {
+  border: none;
+  width: 224px;
+  border-bottom: 1px solid var(--color-gray);
+}
+
+:host::placeholder {
+  font: var(--font-interactive-text);
+  color: var(--color-gray);
+}

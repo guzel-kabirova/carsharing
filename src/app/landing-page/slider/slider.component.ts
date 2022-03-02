@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
-import {Slide} from '../../../landing-page/landing-page.interface';
+import {Slide} from '../landing-page.interface';
 
 @Component({
   selector: 'app-slider',

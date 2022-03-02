@@ -7,8 +7,7 @@ import {NavbarComponent} from '../components/navbar/navbar.component';
 })
 export class RefDirective {
 
-  constructor(public viewContainerRef: ViewContainerRef) {
-  }
+  constructor(public viewContainerRef: ViewContainerRef) { }
 
   createComponent() {
     return this.viewContainerRef.createComponent(NavbarComponent);

@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-landing-info',
@@ -7,5 +8,9 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingInfoComponent {
-  constructor() { }
+  constructor(private router: Router) { }
+
+  public navigateToOrderPage() {
+    this.router.navigate(['/order']);
+  }
 }
