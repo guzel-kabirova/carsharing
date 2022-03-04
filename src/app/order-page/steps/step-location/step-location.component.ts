@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {StepsService} from '../steps.service';
+import {StepLocationFacadeServices} from './services/step-location.facade.services';
 
 @Component({
   selector: 'app-step-location',
@@ -14,7 +14,7 @@ export class StepLocationComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _steps: StepsService,
+    private _facade: StepLocationFacadeServices,
   ) { }
 
   ngOnInit(): void {
@@ -23,11 +23,16 @@ export class StepLocationComponent implements OnInit {
       pointOfIssue: ['', Validators.required],
     });
 
-    this.form.setValue(this._steps.getLocation());
+    this.form.setValue(this._facade.getLocation());
+    this._facade.getPointsOfIssue().subscribe(res => console.log(res));
   }
 
   public changeLocation() {
-    this._steps.changeLocation(this.form?.value);
+    this._facade.changeLocation(this.form?.value);
+  }
+
+  public changeCity() {
+
   }
 
   public reset() {

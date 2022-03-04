@@ -4,8 +4,10 @@
       <div>
         <app-label labelId="city" labelText="Город"></app-label>
         <div class="location__input">
-          <input app-input id="city" placeholder="Введите город..." formControlName="city">
-          <svg icon="reset" class="location__icon" [ngStyle]="{display: form.get('city')?.value ? 'block' : 'none'}" (click)="reset()"></svg>
+          <input app-input id="city" placeholder="Введите город..." formControlName="city" (change)="changeCity()">
+          <svg icon="reset" class="location__icon" [ngStyle]="{display: form.get('city')?.value ? 'block' : 'none'}"
+               (click)="reset()">
+          </svg>
         </div>
       </div>
       <div>

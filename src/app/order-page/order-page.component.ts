@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
-import {StepsService} from './steps/steps.service';
+import {StepsStateService} from './steps/services/steps.state.service';
 import {Step} from './order-page.enum';
 
 @Component({
@@ -14,7 +14,7 @@ export class OrderPageComponent {
   public activeStep = this.step.Location;
   public stepsState = this._steps.stepsState$;
 
-  constructor(private _steps: StepsService) { }
+  constructor(private _steps: StepsStateService) { }
 
   public changeContent(step: number) {
     this.activeStep = step;

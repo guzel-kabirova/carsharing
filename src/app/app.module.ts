@@ -1,6 +1,7 @@
-import {NgModule} from '@angular/core';
+import {NgModule, Provider} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -32,6 +33,18 @@ import {StepExtraComponent} from './order-page/steps/step-extra/step-extra.compo
 import {StepFinalComponent} from './order-page/steps/step-final/step-final.component';
 import {AutoCardComponent} from './order-page/steps/step-model/auto-card/auto-card.component';
 import {RadioButtonComponent} from './shared/components/radio-button/radio-button.component';
+import {AppInterceptor} from './shared/app.interceptor';
+
+const ICONS_PROVIDER: Provider = {
+  provide: ICONS_PATH,
+  useValue: 'assets/icons',
+};
+
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: AppInterceptor,
+  multi: true,
+};
 
 @NgModule({
   declarations: [
@@ -68,12 +81,11 @@ import {RadioButtonComponent} from './shared/components/radio-button/radio-butto
     AppRoutingModule,
     IconModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
-    {
-      provide: ICONS_PATH,
-      useValue: 'assets/icons',
-    },
+    ICONS_PROVIDER,
+    INTERCEPTOR_PROVIDER,
   ],
   bootstrap: [AppComponent],
 })
