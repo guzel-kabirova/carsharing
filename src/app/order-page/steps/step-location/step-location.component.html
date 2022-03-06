@@ -3,10 +3,13 @@
     <div class="location__inputs">
       <div class="wrapper__input">
         <app-label labelId="city" labelText="Город"></app-label>
-        <app-combo-box [items]="cities">
+        <app-combo-box [items]="cities" [open]="isInputClicked"
+                       (closeAutocomplete)="isInputClicked = false"
+        >
           <div class="location__input">
             <input app-input id="city" placeholder="Введите город..." formControlName="city" autocomplete="off"
-                   (change)="changeCity()">
+                   (click)="isInputClicked = true"
+            >
             <svg icon="reset" class="location__icon" [ngStyle]="{display: form.get('city')?.value ? 'block' : 'none'}"
                  (click)="reset()">
             </svg>

@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, Component, ContentChild, HostListener, Input} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  EventEmitter,
+  HostListener,
+  Input,
+  Output,
+} from '@angular/core';
 import {NgControl} from '@angular/forms';
 
 import {limit} from '../../utility/limit';
@@ -13,6 +21,12 @@ export class ComboBoxComponent {
   @Input()
   items: readonly string[] = [];
 
+  @Input()
+  open = false;
+
+  @Output()
+  closeAutocomplete = new EventEmitter<void>();
+
   private activeIndex = NaN;
 
   @ContentChild(NgControl)
@@ -21,12 +35,13 @@ export class ComboBoxComponent {
   @HostListener('keydown.arrowUp', ['-1'])
   @HostListener('keydown.arrowDown', ['1'])
   onArrow(step: number) {
-    this.activeIndex = this.open ? limit(this.activeIndex + step, this.filteredItems.length - 1) : 0;
+    this.activeIndex = limit(this.activeIndex + step, this.filteredItems.length - 1);
   }
 
   @HostListener('keydown.escape')
   @HostListener('focusout')
   close() {
+    this.closeAutocomplete.emit();
     this.activeIndex = NaN;
   }
 
@@ -35,48 +50,44 @@ export class ComboBoxComponent {
     this.selectItem(this.open ? this.filteredItems[this.clampedIndex] : this.value);
   }
 
-  get open(): boolean {
-    return !isNaN(this.activeIndex);
-  }
-
-  get clampedIndex(): number {
-    return limit(this.activeIndex, this.filteredItems.length - 1);
-  }
-
   get filteredItems(): readonly string[] {
     return this.filter(this.items, this.value);
   }
 
+  private get clampedIndex(): number {
+    return limit(this.activeIndex, this.filteredItems.length - 1);
+  }
+
   private get value(): string {
     return this.control?.value
-      ? String(this.control?.value)
+      ? this.control?.value.toString()
       : '';
   }
 
   constructor() { }
 
-  isActive(index: number): boolean {
+  public isActive(index: number): boolean {
     return index === this.clampedIndex;
   }
 
-  onMouseEnter(index: number) {
+  public onMouseEnter(index: number) {
     this.activeIndex = index;
   }
 
-  onClick(item: string) {
+  public preventMouseEvent(event: MouseEvent) {
+    event.preventDefault();
+  }
+
+  public onClick(item: string) {
     this.selectItem(item);
   }
 
-  private selectItem(item: string) {
-    this.control?.control?.setValue(item);
+  private selectItem(value: string) {
+    this.control?.control?.setValue(value);
     this.close();
   }
 
   private filter(items: readonly string[], value: string) {
     return items.filter(item => item.toLocaleLowerCase().includes(value.trim().toLocaleLowerCase()));
-  }
-
-  public preventMouseEvent(event: MouseEvent) {
-    event.preventDefault();
   }
 }

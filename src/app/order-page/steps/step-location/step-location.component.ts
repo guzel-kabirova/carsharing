@@ -13,6 +13,7 @@ import {CITIES} from './step-location.const';
 export class StepLocationComponent implements OnInit {
   public form?: FormGroup;
   public cities = CITIES;
+  public isInputClicked = false;
 
   constructor(
     private _fb: FormBuilder,
@@ -31,10 +32,6 @@ export class StepLocationComponent implements OnInit {
 
   public changeLocation() {
     this._facade.changeLocation(this.form?.value);
-  }
-
-  public changeCity() {
-
   }
 
   public reset() {
