@@ -1,0 +1,23 @@
+.autocomplete {
+  border: 1px solid var(--color-gray-light);
+  background-color: var(--color-white);
+  padding: 5px 0;
+  width: 224px;
+  height: 106px;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  display: none;
+
+  &__text {
+    cursor: default;
+    color: var(--color-gray);
+    font: var(--font-interactive-text);
+    padding: 3px 8px;
+
+    &:hover {
+      color: var(--color-main-accent);
+    }
+  }
+}

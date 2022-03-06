@@ -34,6 +34,7 @@ import {StepFinalComponent} from './order-page/steps/step-final/step-final.compo
 import {AutoCardComponent} from './order-page/steps/step-model/auto-card/auto-card.component';
 import {RadioButtonComponent} from './shared/components/radio-button/radio-button.component';
 import {AppInterceptor} from './shared/app.interceptor';
+import {ComboBoxComponent} from './shared/components/combo-box/combo-box.component';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -75,6 +76,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     StepFinalComponent,
     AutoCardComponent,
     RadioButtonComponent,
+    ComboBoxComponent,
   ],
   imports: [
     BrowserModule,

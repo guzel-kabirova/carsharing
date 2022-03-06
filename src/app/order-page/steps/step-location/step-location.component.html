@@ -1,18 +1,22 @@
 <ng-container *ngIf="form">
   <form class="location" [formGroup]="form" (change)="changeLocation()">
     <div class="location__inputs">
-      <div>
+      <div class="wrapper__input">
         <app-label labelId="city" labelText="Город"></app-label>
-        <div class="location__input">
-          <input app-input id="city" placeholder="Введите город..." formControlName="city" (change)="changeCity()">
-          <svg icon="reset" class="location__icon" [ngStyle]="{display: form.get('city')?.value ? 'block' : 'none'}"
-               (click)="reset()">
-          </svg>
-        </div>
+        <app-combo-box [items]="cities">
+          <div class="location__input">
+            <input app-input id="city" placeholder="Введите город..." formControlName="city" autocomplete="off"
+                   (change)="changeCity()">
+            <svg icon="reset" class="location__icon" [ngStyle]="{display: form.get('city')?.value ? 'block' : 'none'}"
+                 (click)="reset()">
+            </svg>
+          </div>
+        </app-combo-box>
       </div>
       <div>
         <app-label labelId="pointOfIssue" labelText="Пункт выдачи"></app-label>
-        <input app-input id="pointOfIssue" placeholder="Начните вводить пункт..." formControlName="pointOfIssue">
+        <input app-input id="pointOfIssue" placeholder="Начните вводить пункт..." formControlName="pointOfIssue"
+               autocomplete="off">
       </div>
     </div>
     <div class="location__map">

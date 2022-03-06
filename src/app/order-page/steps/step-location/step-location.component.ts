@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {StepLocationFacadeServices} from './services/step-location.facade.services';
+import {CITIES} from './step-location.const';
 
 @Component({
   selector: 'app-step-location',
@@ -10,7 +11,8 @@ import {StepLocationFacadeServices} from './services/step-location.facade.servic
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepLocationComponent implements OnInit {
-  form?: FormGroup;
+  public form?: FormGroup;
+  public cities = CITIES;
 
   constructor(
     private _fb: FormBuilder,
