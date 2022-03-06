@@ -1,5 +1,7 @@
 import {
+  AfterContentChecked,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ContentChild,
   EventEmitter,
@@ -17,7 +19,7 @@ import {limit} from '../../utility/limit';
   styleUrls: ['./combo-box.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ComboBoxComponent {
+export class ComboBoxComponent implements AfterContentChecked {
   @Input()
   items: readonly string[] = [];
 
@@ -64,7 +66,11 @@ export class ComboBoxComponent {
       : '';
   }
 
-  constructor() { }
+  constructor(private _cdr: ChangeDetectorRef) { }
+
+  ngAfterContentChecked(): void {
+    this._cdr.markForCheck();
+  }
 
   public isActive(index: number): boolean {
     return index === this.clampedIndex;
