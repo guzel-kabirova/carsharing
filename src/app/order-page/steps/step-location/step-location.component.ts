@@ -26,7 +26,7 @@ export class StepLocationComponent implements OnInit {
     });
 
     this.form.setValue(this._facade.getLocation());
-    this._facade.getPointsOfIssue().subscribe(res => console.log(res));
+    this._facade.getPointsOfIssue().subscribe();
   }
 
   public changeLocation() {

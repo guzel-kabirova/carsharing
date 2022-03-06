@@ -21,12 +21,7 @@ export class StepLocationApiService {
   getPointsOfIssue(): Observable<any> {
     return this._http.get<IGetPointsOfIssueResponse>(`${API_URL}db/point`)
       .pipe(
-        map(response => {
-          console.log(response);
-          response.data
-            .filter(point => point.cityId)
-            .map(point => new PointsOfIssueModel(point));
-        }),
+        map(response => response.data.filter(point => point.cityId).map(point => new PointsOfIssueModel(point))),
         tap(points => this._store.setPointsOfIssue(points)),
         switchMap(() => this._store.pointsOfIssue$),
       );

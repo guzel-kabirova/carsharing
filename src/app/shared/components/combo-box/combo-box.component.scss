@@ -3,12 +3,11 @@
   background-color: var(--color-white);
   padding: 5px 0;
   width: 224px;
-  height: 106px;
+  max-height: 106px;
   overflow: auto;
   position: absolute;
   right: 0;
   top: 100%;
-  display: none;
 
   &__text {
     cursor: default;
@@ -16,7 +15,7 @@
     font: var(--font-interactive-text);
     padding: 3px 8px;
 
-    &:hover {
+    &_active {
       color: var(--color-main-accent);
     }
   }
