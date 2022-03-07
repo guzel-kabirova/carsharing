@@ -3,12 +3,12 @@
     <div class="location__inputs">
       <div class="wrapper__input">
         <app-label labelId="city" labelText="Город"></app-label>
-        <app-combo-box [items]="cities" [open]="isInputClicked"
-                       (closeAutocomplete)="isInputClicked = false"
+        <app-combo-box [items]="cities" [open]="isCityInputClicked"
+                       (closeAutocomplete)="isCityInputClicked = false"
         >
           <div class="location__input">
             <input app-input id="city" placeholder="Введите город..." formControlName="city" autocomplete="off"
-                   (click)="isInputClicked = true"
+                   (click)="isCityInputClicked = true"
             >
             <svg icon="reset" class="location__icon" [ngStyle]="{display: form.get('city')?.value ? 'block' : 'none'}"
                  (click)="reset()">
@@ -16,10 +16,17 @@
           </div>
         </app-combo-box>
       </div>
-      <div>
+
+      <div class="wrapper__input">
         <app-label labelId="pointOfIssue" labelText="Пункт выдачи"></app-label>
-        <input app-input id="pointOfIssue" placeholder="Начните вводить пункт..." formControlName="pointOfIssue"
-               autocomplete="off">
+        <app-combo-box [items]="filteredPoints" [open]="isPointsInputClicked"
+                       (closeAutocomplete)="isPointsInputClicked = false"
+        >
+          <input app-input id="pointOfIssue" placeholder="Начните вводить пункт..." formControlName="pointOfIssue"
+                 autocomplete="off"
+                 (click)="showPoints()"
+          >
+        </app-combo-box>
       </div>
     </div>
     <div class="location__map">

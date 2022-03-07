@@ -13,7 +13,9 @@ import {CITIES} from './step-location.const';
 export class StepLocationComponent implements OnInit {
   public form?: FormGroup;
   public cities = CITIES;
-  public isInputClicked = false;
+  public isCityInputClicked = false;
+  public isPointsInputClicked = false;
+  public filteredPoints: string[] = [];
 
   constructor(
     private _fb: FormBuilder,
@@ -39,5 +41,14 @@ export class StepLocationComponent implements OnInit {
       city: '',
     });
     this.changeLocation();
+  }
+
+  public showPoints() {
+    this.isPointsInputClicked = true;
+    const city = this.form?.get('city')?.value;
+    this._facade.store.filterPointsOfIssueByCity(city);
+    this._facade.store.filteredPointsOfIssue$.subscribe(points => {
+      this.filteredPoints = points.map(point => point.address);
+    });
   }
 }
