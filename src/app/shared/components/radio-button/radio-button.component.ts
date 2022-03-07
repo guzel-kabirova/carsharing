@@ -1,6 +1,9 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
-import {IModelType} from '../../../order-page/steps/steps.interface';
+interface IRadioButton {
+  id: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-radio-button',
@@ -10,7 +13,7 @@ import {IModelType} from '../../../order-page/steps/steps.interface';
 })
 export class RadioButtonComponent {
   @Input()
-  item?: IModelType;
+  item?: IRadioButton;
 
   constructor() { }
 }

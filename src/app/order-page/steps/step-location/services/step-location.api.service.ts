@@ -3,11 +3,9 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map, switchMap, tap} from 'rxjs/operators';
 
-import {environment} from '../../../../../environments/environment';
 import {StepLocationStoreService} from './step-location.store.service';
 import {IGetPointsOfIssueResponse, PointsOfIssueModel} from '../step-location.interface';
-
-const API_URL = environment.apiUrl;
+import {API_URL} from '../../../../shared/app.const';
 
 @Injectable({
   providedIn: 'root',

@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {CarModel} from '../step-model.interface';
 
 @Component({
   selector: 'app-auto-card',
@@ -7,5 +8,8 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AutoCardComponent {
+  @Input()
+  car?: CarModel;
+
   constructor() { }
 }
