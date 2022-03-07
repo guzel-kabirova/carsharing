@@ -27,8 +27,32 @@
     display: block;
     width: 256px;
     height: 116px;
-    background-color: var(--color-gray-light);
     margin: 36px 0 0 80px;
     object-fit: cover;
+    position: relative;
+
+    &:before {
+      content: ' ';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: var(--color-gray-light);
+      border: 1px dotted var(--color-gray);
+    }
+
+    &:after {
+      content: attr(alt);
+      display: block;
+      font: var(--font-text);
+      color: var(--color-gray);
+      position: absolute;
+      top: calc(50% - 8px);
+      left: 0;
+      width: 100%;
+      text-align: center;
+    }
   }
 }

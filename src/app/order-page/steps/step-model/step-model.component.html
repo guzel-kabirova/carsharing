@@ -7,8 +7,11 @@
       </ng-container>
     </div>
 
-    <div class="auto" *ngIf="cars$ | async as cars">
+    <div class="auto" *ngIf="cars$ | async as cars; else noAuto">
       <app-auto-card *ngFor="let car of cars" [car]="car"></app-auto-card>
     </div>
+    <ng-template #noAuto>
+      <div class="auto">Загрузка...</div>
+    </ng-template>
   </form>
 </ng-container>
