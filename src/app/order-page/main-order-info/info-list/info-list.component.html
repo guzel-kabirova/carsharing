@@ -4,5 +4,9 @@
       Пункт выдачи:<span class="info__value">{{location.city}},<br> {{location.pointOfIssue}}</span>
     </li>
   </ng-container>
-  <li class="info__item">Модель:<span class="info__value">Ульяновск,<br> Нариманова 42</span></li>
+
+  <ng-container *ngIf="state[1]">
+    <li class="info__item" *ngIf="carModel$ | async as carModel">Модель:<span
+      class="info__value">{{carModel.name}}, {{carModel.number}}</span></li>
+  </ng-container>
 </ul>

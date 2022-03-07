@@ -16,8 +16,8 @@ export class StepModelApiService {
     private _store: StepModelStoreService,
   ) {}
 
-  getCars(): Observable<any> {
-    return this._http.get<IGetCarsResponse>(`${API_URL}db/car`)
+  getCars(): Observable<CarModel[]> {
+    return this._http.get<IGetCarsResponse>(`${API_URL}db/car?limit=6`)
       .pipe(
         map(response => response.data.map(car => new CarModel(car))),
         tap(cars => this._store.setCars(cars)),

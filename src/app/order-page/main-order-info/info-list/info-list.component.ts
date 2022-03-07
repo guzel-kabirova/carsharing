@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
-import {StepsStateService} from '../../../order-page/steps/services/steps.state.service';
+import {StepsStateService} from '../../steps/services/steps.state.service';
 
 @Component({
   selector: 'app-info-list',
@@ -14,6 +14,7 @@ export class InfoListComponent {
 
   public state$ = this._state.stepsState$;
   public location$ = this._state.location$;
+  public carModel$ = this._state.carModel$;
 
   constructor(private _state: StepsStateService) { }
 }

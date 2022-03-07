@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {StepModelFacadeService} from './services/step-model.facade.service';
 import {ALL_CATEGORIES} from './step-model.const';
+import {CarModel} from './step-model.interface';
 
 @Component({
   selector: 'app-step-model',
@@ -11,6 +12,7 @@ import {ALL_CATEGORIES} from './step-model.const';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepModelComponent implements OnInit {
+  public formFilter?: FormGroup;
   public form?: FormGroup;
   public cars$ = this._facade.getCars();
 
@@ -23,8 +25,19 @@ export class StepModelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.formFilter = this._fb.group({
+      model: [''],
+    });
+
     this.form = this._fb.group({
-      model: ['', Validators.required],
+      car: ['', Validators.required],
+    });
+  }
+
+  public selectCar(car: CarModel) {
+    this._facade.changeCarModel(car);
+    this.form?.setValue({
+      car: car.name,
     });
   }
 }

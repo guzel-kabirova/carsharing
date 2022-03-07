@@ -1,3 +1,9 @@
+export interface ICarModel {
+  id: string;
+  name: string;
+  number: string;
+}
+
 export interface IGetCarsResponse {
   data: ICarsDto[];
 }
@@ -33,6 +39,7 @@ export interface ICarPicture {
 export class CarModel {
   id: string;
   name: string;
+  number: string;
   priceMax: number;
   priceMin: number;
   thumbnailUrl: string;
@@ -43,6 +50,7 @@ export class CarModel {
   constructor(car: ICarsDto) {
     this.id = car.id;
     this.name = car.name;
+    this.number = car.number;
     this.priceMax = car.priceMax;
     this.priceMin = car.priceMin;
     this.thumbnailUrl = car.thumbnail.path;
