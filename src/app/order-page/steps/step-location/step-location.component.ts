@@ -2,7 +2,6 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import {StepLocationFacadeServices} from './services/step-location.facade.services';
-import {CITIES} from './step-location.const';
 
 @Component({
   selector: 'app-step-location',
@@ -12,7 +11,7 @@ import {CITIES} from './step-location.const';
 })
 export class StepLocationComponent implements OnInit {
   public form?: FormGroup;
-  public cities = CITIES;
+  public cities$ = this._facade.store.cities$;
   public isCityInputClicked = false;
   public isPointsInputClicked = false;
   public filteredPoints: string[] = [];
@@ -23,6 +22,7 @@ export class StepLocationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this._facade.getCities().subscribe();
     this.form = this._fb.group({
       city: ['', Validators.required],
       pointOfIssue: ['', Validators.required],

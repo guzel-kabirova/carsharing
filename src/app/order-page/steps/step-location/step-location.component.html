@@ -1,7 +1,7 @@
 <ng-container *ngIf="form">
   <form class="location" [formGroup]="form">
     <div class="location__inputs">
-      <div class="wrapper__input">
+      <div class="wrapper__input" *ngIf="cities$ | async as cities">
         <app-label labelId="city" labelText="Город"></app-label>
         <app-combo-box [items]="cities" [open]="isCityInputClicked"
                        (closeAutocomplete)="isCityInputClicked = false"

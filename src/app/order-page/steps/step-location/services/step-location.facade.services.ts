@@ -19,6 +19,10 @@ export class StepLocationFacadeServices {
     private _store: StepLocationStoreService,
   ) {}
 
+  public getCities(): Observable<any> {
+    return this._api.getCities();
+  }
+
   public getLocation(): ILocation {
     return this._state.getLocation();
   }

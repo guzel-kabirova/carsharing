@@ -7,6 +7,9 @@ import {PointsOfIssueModel} from '../step-location.interface';
   providedIn: 'root',
 })
 export class StepLocationStoreService {
+  private cities = new BehaviorSubject<string[]>([]);
+  public cities$ = this.cities.asObservable();
+
   private pointsOfIssue = new BehaviorSubject<PointsOfIssueModel[]>([]);
   public pointsOfIssue$ = this.pointsOfIssue.asObservable();
 
@@ -15,7 +18,11 @@ export class StepLocationStoreService {
 
   constructor() {}
 
-  public setPointsOfIssue(points: any) {
+  public setCities(cities: string[]) {
+    this.cities.next(cities);
+  }
+
+  public setPointsOfIssue(points: PointsOfIssueModel[]) {
     this.pointsOfIssue.next(points);
   }
 
