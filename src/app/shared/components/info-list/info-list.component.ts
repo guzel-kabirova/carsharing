@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
+import {StepsStateService} from '../../../order-page/steps/services/steps.state.service';
+
 @Component({
   selector: 'app-info-list',
   templateUrl: './info-list.component.html',
@@ -10,5 +12,8 @@ export class InfoListComponent {
   @Input()
   itemList: string[] = [];
 
-  constructor() { }
+  public state$ = this._state.stepsState$;
+  public location$ = this._state.location$;
+
+  constructor(private _state: StepsStateService) { }
 }

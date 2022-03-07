@@ -12,6 +12,7 @@ export class StepsStateService {
   public stepsState$ = this._stepsState.asObservable();
 
   private _location = new BehaviorSubject<ILocation>(NO_LOCATION);
+  public location$ = this._location.asObservable();
 
   constructor() { }
 
