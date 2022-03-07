@@ -1,5 +1,5 @@
 <div class="auto" *ngIf="car">
   <h2 class="auto__name">{{car.name}}</h2>
   <h3 class="auto__price">{{car.priceMin}} - {{car.priceMax}} ₽</h3>
-  <div class="auto__picture"></div>
+  <img alt="{{car.name}}" class="auto__picture" src="{{car.thumbnailUrl}}">
 </div>
