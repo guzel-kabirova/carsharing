@@ -36,7 +36,7 @@ export class StepLocationComponent implements OnInit {
     this._facade.changeLocation(this.form?.value);
   }
 
-  public reset() {
+  public resetCity() {
     this.form?.patchValue({
       city: '',
     });
@@ -50,5 +50,12 @@ export class StepLocationComponent implements OnInit {
     this._facade.store.filteredPointsOfIssue$.subscribe(points => {
       this.filteredPoints = points.map(point => point.address);
     });
+  }
+
+  public resetPoints() {
+    this.form?.patchValue({
+      pointOfIssue: '',
+    });
+    this.changeLocation();
   }
 }

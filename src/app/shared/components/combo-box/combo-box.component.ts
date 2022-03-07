@@ -29,6 +29,9 @@ export class ComboBoxComponent implements AfterContentChecked {
   @Output()
   closeAutocomplete = new EventEmitter<void>();
 
+  @Output()
+  changeSelection = new EventEmitter<void>();
+
   private activeIndex = NaN;
 
   @ContentChild(NgControl)
@@ -90,6 +93,7 @@ export class ComboBoxComponent implements AfterContentChecked {
 
   private selectItem(value: string) {
     this.control?.control?.setValue(value);
+    this.changeSelection.emit();
     this.close();
   }
 

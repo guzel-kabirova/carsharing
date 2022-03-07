@@ -35,6 +35,7 @@ import {AutoCardComponent} from './order-page/steps/step-model/auto-card/auto-ca
 import {RadioButtonComponent} from './shared/components/radio-button/radio-button.component';
 import {AppInterceptor} from './shared/app.interceptor';
 import {ComboBoxComponent} from './shared/components/combo-box/combo-box.component';
+import {ResetComponent} from './shared/components/buttons/reset/reset.component';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -77,6 +78,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AutoCardComponent,
     RadioButtonComponent,
     ComboBoxComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,
