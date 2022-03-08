@@ -22,6 +22,10 @@ export class StepModelStoreService {
     this._cars.next(cars);
   }
 
+  private setFilteredCars(cars: CarModel[]) {
+    this._filteredCars.next(cars);
+  }
+
   public setCategories(categories: CategoryModel[]) {
     this._categories.next(categories);
   }
@@ -29,9 +33,15 @@ export class StepModelStoreService {
   public changeActiveCar(id: string) {
     const newCars = this._cars.getValue().map(car => car.id === id
       ? {...car, isActive: true}
-      : {...car, isActive: false}
+      : {...car, isActive: false},
     );
-    this._cars.next(newCars);
+    this.setCars(newCars);
+
+    const newFilteredCars = this._filteredCars.getValue().map(car => car.id === id
+      ? {...car, isActive: true}
+      : {...car, isActive: false},
+    );
+    this.setFilteredCars(newFilteredCars);
   }
 
   public filterCarsByCategories(id: string) {
