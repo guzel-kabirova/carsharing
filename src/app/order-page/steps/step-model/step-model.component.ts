@@ -14,7 +14,7 @@ import {CarModel} from './step-model.interface';
 export class StepModelComponent implements OnInit {
   public formFilter?: FormGroup;
   public form?: FormGroup;
-  public cars$ = this._facade.getCars();
+  public cars$ = this._facade.store.cars$;
 
   public allCategories = ALL_CATEGORIES;
   public categories$ = this._facade.getCategories();

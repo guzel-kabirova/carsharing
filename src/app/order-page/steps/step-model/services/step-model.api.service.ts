@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {map, switchMapTo, tap} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 import {API_URL} from '../../../../shared/app.const';
 import {CarModel, CategoryModel, IGetCarsResponse, IGetCategoriesResponse} from '../step-model.interface';
@@ -17,11 +17,10 @@ export class StepModelApiService {
   ) {}
 
   getCars(): Observable<CarModel[]> {
-    return this._http.get<IGetCarsResponse>(`${API_URL}db/car?limit=6`)
+    return this._http.get<IGetCarsResponse>(`${API_URL}db/car`)
       .pipe(
         map(response => response.data.map(car => new CarModel(car))),
         tap(cars => this._store.setCars(cars)),
-        switchMapTo(this._store.cars$),
       );
   }
 
