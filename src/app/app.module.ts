@@ -36,6 +36,7 @@ import {AppInterceptor} from './shared/app.interceptor';
 import {ComboBoxComponent} from './shared/components/combo-box/combo-box.component';
 import {ResetComponent} from './shared/components/buttons/reset/reset.component';
 import {CheckboxComponent} from './shared/components/checkbox/checkbox.component';
+import {DialogConfirmComponent} from './order-page/steps/step-final/dialog-confirm/dialog-confirm.component';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -79,6 +80,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ComboBoxComponent,
     ResetComponent,
     CheckboxComponent,
+    DialogConfirmComponent,
   ],
   imports: [
     BrowserModule,
