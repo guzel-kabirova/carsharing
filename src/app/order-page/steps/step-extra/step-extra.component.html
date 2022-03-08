@@ -1,1 +1,38 @@
-<p>step-extra works!</p>
+<div class="section">
+  <app-label labelId="color" labelText="Цвет"></app-label>
+  <div class="section__field horizontal">
+    <app-radio-button *ngFor="let color of colors" [item]="color" groupName="colors"></app-radio-button>
+  </div>
+</div>
+
+<div class="section">
+  <app-label labelId="date" labelText="Дата аренды"></app-label>
+  <div class="section__field vertical">
+    <div>
+      <app-label labelId="dateFrom" labelText="С"></app-label>
+      <input app-input placeholder="Введите дату и время" type="datetime" id="dateFrom">
+    </div>
+
+    <div>
+      <app-label labelId="dateTo" labelText="По"></app-label>
+      <input app-input placeholder="Введите дату и время" type="datetime" id="dateTo">
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <app-label labelId="tariff" labelText="Тариф"></app-label>
+  <div class="section__field vertical">
+    <app-radio-button *ngFor="let tariff of tariffs" [item]="tariff" groupName="tariffs"></app-radio-button>
+  </div>
+</div>
+
+<div class="section">
+  <app-label labelId="service" labelText="Доп услуги"></app-label>
+  <div class="section__field vertical">
+    <app-label *ngFor="let service of services" [labelId]="service.id" [labelText]="service.name">
+      <input type="checkbox" [id]="service.id">
+    </app-label>
+  </div>
+</div>
+

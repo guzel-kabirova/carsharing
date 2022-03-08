@@ -1,0 +1,18 @@
+.section {
+  margin-bottom: 32px;
+
+  &__field {
+    margin-top: 16px;
+  }
+}
+
+.horizontal {
+  display: flex;
+  gap: 16px;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

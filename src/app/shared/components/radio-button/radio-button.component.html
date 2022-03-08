@@ -1,6 +1,7 @@
 <div *ngIf="item">
   <app-label [labelId]="item.id" [labelText]="item.name">
-    <input class="modern" type="radio" name="model" [id]="item.id" [value]="item.name" [checked]="true" (change)="changeRadioBtn.emit(item.id)">
+    <input class="modern" type="radio" [name]="groupName" [id]="item.id" [value]="item.name" [checked]="true"
+           (change)="changeRadioBtn.emit(item.id)">
     <span class="custom" [id]="item.id"></span>
   </app-label>
 </div>

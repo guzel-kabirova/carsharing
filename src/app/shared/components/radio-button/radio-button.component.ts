@@ -18,5 +18,8 @@ export class RadioButtonComponent {
   @Output()
   changeRadioBtn = new EventEmitter<string>();
 
+  @Input()
+  groupName = '';
+
   constructor() { }
 }
