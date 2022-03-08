@@ -35,6 +35,7 @@ export class StepModelComponent implements OnInit {
   }
 
   public selectCar(car: CarModel) {
+    this._facade.changeActiveCar(car.id);
     this._facade.changeCarModel(car);
     this.form?.setValue({
       car: car.name,

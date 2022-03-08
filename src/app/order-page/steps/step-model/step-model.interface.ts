@@ -43,6 +43,7 @@ export class CarModel {
   priceMax: number;
   priceMin: number;
   thumbnailUrl: string;
+  isActive: boolean;
   categoryId: ICategory;
   colors: string[] = [];
   tank: number;
@@ -57,6 +58,7 @@ export class CarModel {
     this.categoryId = car.categoryId;
     this.colors = car.colors;
     this.tank = car.tank;
+    this.isActive = false;
   }
 }
 

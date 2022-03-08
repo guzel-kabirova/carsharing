@@ -29,4 +29,8 @@ export class StepModelFacadeService {
   changeCarModel(car: ICarModel) {
     this._state.changeCarModel(car);
   }
+
+  changeActiveCar(id: string) {
+    this._store.changeActiveCar(id);
+  }
 }

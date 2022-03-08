@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
+import {CarModel} from '../step-model.interface';
+
 @Injectable({
   providedIn: 'root',
 })
 export class StepModelStoreService {
-  private cars = new BehaviorSubject([]);
+  private cars = new BehaviorSubject<CarModel[]>([]);
   public cars$ = this.cars.asObservable();
 
   private categories = new BehaviorSubject([]);
@@ -19,5 +21,10 @@ export class StepModelStoreService {
 
   setCategories(categories: any) {
     this.cars.next(categories);
+  }
+
+  changeActiveCar(id: string) {
+    const newCars = this.cars.getValue().map(car => car.id === id ? {...car, isActive: true} : {...car, isActive: false});
+    this.cars.next(newCars);
   }
 }
