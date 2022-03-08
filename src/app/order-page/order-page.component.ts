@@ -17,6 +17,7 @@ export class OrderPageComponent {
   constructor(private _steps: StepsStateService) { }
 
   public changeContent(step: number) {
+    this._steps.changeActiveStep(step);
     this.activeStep = step;
   }
 }

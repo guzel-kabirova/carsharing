@@ -9,6 +9,9 @@ import {ICarModel} from '../step-model/step-model.interface';
   providedIn: 'root',
 })
 export class StepsStateService {
+  private _activeStep = new BehaviorSubject<number>(0);
+  public activeStep$ = this._activeStep.asObservable();
+
   private _stepsState = new BehaviorSubject<TStepsState>(STEPS_STATE_INITIAL);
   public stepsState$ = this._stepsState.asObservable();
 
@@ -19,6 +22,10 @@ export class StepsStateService {
   public carModel$ = this._carModel.asObservable();
 
   constructor() { }
+
+  public changeActiveStep(i: number) {
+    this._activeStep.next(i);
+  }
 
   private changeStepsState(i: number, isCompleted: boolean) {
     let newState: TStepsState = [...this.getStepsState()];
