@@ -1,6 +1,7 @@
 <div *ngIf="item">
-  <app-label [labelId]="item.id" [labelText]="item.name">
+  <app-label [labelId]="item.id">
     <input class="modern" type="checkbox" [id]="item.id">
     <span class="custom" [id]="item.id"></span>
+    <span class="label">{{item.name}}</span>
   </app-label>
 </div>

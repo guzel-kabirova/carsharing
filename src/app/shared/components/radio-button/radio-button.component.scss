@@ -29,3 +29,11 @@
 .modern:checked + .custom:after {
   display: block;
 }
+
+.label {
+  color: var(--color-gray);
+}
+
+.modern:checked ~ .label {
+  color: var(--color-black);
+}
