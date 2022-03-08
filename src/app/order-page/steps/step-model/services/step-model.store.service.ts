@@ -13,8 +13,8 @@ export class StepModelStoreService {
   private _filteredCars = new BehaviorSubject<CarModel[]>([]);
   public filteredCars$ = this._filteredCars.asObservable();
 
-  private categories = new BehaviorSubject<CategoryModel[]>([]);
-  public categories$ = this.categories.asObservable();
+  private _categories = new BehaviorSubject<CategoryModel[]>([]);
+  public categories$ = this._categories.asObservable();
 
   constructor() {}
 
@@ -23,7 +23,7 @@ export class StepModelStoreService {
   }
 
   setCategories(categories: CategoryModel[]) {
-    this.categories.next(categories);
+    this._categories.next(categories);
   }
 
   changeActiveCar(id: string) {

@@ -31,7 +31,7 @@ export class StepModelComponent implements OnInit {
   }
 
   public filter(id: string) {
-    if (id !== '0') {
+    if (id !== 'withoutCategory') {
       this._facade.store.filterCarsByCategories(id);
       this.cars$ = this._facade.store.filteredCars$;
     } else {

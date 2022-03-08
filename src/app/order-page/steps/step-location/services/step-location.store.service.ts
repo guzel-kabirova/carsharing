@@ -7,27 +7,27 @@ import {PointsOfIssueModel} from '../step-location.interface';
   providedIn: 'root',
 })
 export class StepLocationStoreService {
-  private cities = new BehaviorSubject<string[]>([]);
-  public cities$ = this.cities.asObservable();
+  private _cities = new BehaviorSubject<string[]>([]);
+  public cities$ = this._cities.asObservable();
 
-  private pointsOfIssue = new BehaviorSubject<PointsOfIssueModel[]>([]);
-  public pointsOfIssue$ = this.pointsOfIssue.asObservable();
+  private _pointsOfIssue = new BehaviorSubject<PointsOfIssueModel[]>([]);
+  public pointsOfIssue$ = this._pointsOfIssue.asObservable();
 
-  private filteredPointsOfIssue = new BehaviorSubject<PointsOfIssueModel[]>([]);
-  public filteredPointsOfIssue$ = this.filteredPointsOfIssue.asObservable();
+  private _filteredPointsOfIssue = new BehaviorSubject<PointsOfIssueModel[]>([]);
+  public filteredPointsOfIssue$ = this._filteredPointsOfIssue.asObservable();
 
   constructor() {}
 
   public setCities(cities: string[]) {
-    this.cities.next(cities);
+    this._cities.next(cities);
   }
 
   public setPointsOfIssue(points: PointsOfIssueModel[]) {
-    this.pointsOfIssue.next(points);
+    this._pointsOfIssue.next(points);
   }
 
   public filterPointsOfIssueByCity(city: string) {
-    const filteredPoints = this.pointsOfIssue.getValue()?.filter(point => point.city === city);
-    this.filteredPointsOfIssue.next(filteredPoints);
+    const filteredPoints = this._pointsOfIssue.getValue()?.filter(point => point.city === city);
+    this._filteredPointsOfIssue.next(filteredPoints);
   }
 }

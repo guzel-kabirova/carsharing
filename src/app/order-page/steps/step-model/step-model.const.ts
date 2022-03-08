@@ -1,4 +1,4 @@
 export const ALL_CATEGORIES = {
-  id: '0',
+  id: 'withoutCategory',
   name: 'Все модели',
 };
