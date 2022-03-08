@@ -20,12 +20,12 @@ export class OrderPageComponent implements OnInit {
     private _api: StepModelApiService,
   ) { }
 
+  ngOnInit(): void {
+    this._api.getCars().subscribe();
+  }
+
   public changeContent(step: number) {
     this._steps.changeActiveStep(step);
     this.activeStep = step;
-  }
-
-  ngOnInit(): void {
-    this._api.getCars().subscribe();
   }
 }

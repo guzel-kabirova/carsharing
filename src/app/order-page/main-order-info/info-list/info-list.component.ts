@@ -10,7 +10,7 @@ import {StepsStateService} from '../../steps/services/steps.state.service';
 })
 export class InfoListComponent {
   @Input()
-  itemList: string[] = [];
+  public itemList: string[] = [];
 
   public state$ = this._state.stepsState$;
   public location$ = this._state.location$;

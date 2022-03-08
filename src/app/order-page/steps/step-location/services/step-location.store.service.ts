@@ -11,7 +11,6 @@ export class StepLocationStoreService {
   public cities$ = this._cities.asObservable();
 
   private _pointsOfIssue = new BehaviorSubject<PointsOfIssueModel[]>([]);
-  public pointsOfIssue$ = this._pointsOfIssue.asObservable();
 
   private _filteredPointsOfIssue = new BehaviorSubject<PointsOfIssueModel[]>([]);
   public filteredPointsOfIssue$ = this._filteredPointsOfIssue.asObservable();

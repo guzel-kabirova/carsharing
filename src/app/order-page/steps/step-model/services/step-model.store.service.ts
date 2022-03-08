@@ -18,23 +18,23 @@ export class StepModelStoreService {
 
   constructor() {}
 
-  setCars(cars: CarModel[]) {
+  public setCars(cars: CarModel[]) {
     this._cars.next(cars);
   }
 
-  setCategories(categories: CategoryModel[]) {
+  public setCategories(categories: CategoryModel[]) {
     this._categories.next(categories);
   }
 
-  changeActiveCar(id: string) {
-    const newCars = this._cars.getValue().map(car => car.id === id ? {...car, isActive: true} : {
-      ...car,
-      isActive: false,
-    });
+  public changeActiveCar(id: string) {
+    const newCars = this._cars.getValue().map(car => car.id === id
+      ? {...car, isActive: true}
+      : {...car, isActive: false}
+    );
     this._cars.next(newCars);
   }
 
-  filterCarsByCategories(id: string) {
+  public filterCarsByCategories(id: string) {
     const filteredCars = this._cars.getValue().filter(car => car.categoryId.id === id);
     this._filteredCars.next(filteredCars);
   }

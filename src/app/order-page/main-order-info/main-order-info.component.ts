@@ -16,7 +16,7 @@ export class MainOrderInfoComponent {
   public carModel$ = this._state.carModel$;
 
   @Output()
-  changeStep = new EventEmitter<number>();
+  public changeStep = new EventEmitter<number>();
 
   constructor(private _state: StepsStateService) { }
 }

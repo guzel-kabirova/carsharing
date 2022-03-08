@@ -16,7 +16,7 @@ export class StepModelApiService {
     private _store: StepModelStoreService,
   ) {}
 
-  getCars(): Observable<CarModel[]> {
+  public getCars(): Observable<CarModel[]> {
     return this._http.get<IGetCarsResponse>(`${API_URL}db/car`)
       .pipe(
         map(response => response.data.map(car => new CarModel(car))),
@@ -24,7 +24,7 @@ export class StepModelApiService {
       );
   }
 
-  getCategories(): Observable<CategoryModel[]> {
+  public getCategories(): Observable<CategoryModel[]> {
     return this._http.get<IGetCategoriesResponse>(`${API_URL}db/category`)
       .pipe(
         map(response => response.data.map(category => new CategoryModel(category))),

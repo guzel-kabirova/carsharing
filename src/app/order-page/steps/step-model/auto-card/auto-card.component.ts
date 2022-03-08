@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+
 import {CarModel} from '../step-model.interface';
 
 @Component({
@@ -9,7 +10,7 @@ import {CarModel} from '../step-model.interface';
 })
 export class AutoCardComponent {
   @Input()
-  car?: CarModel;
+  public car?: CarModel;
 
   constructor() { }
 }

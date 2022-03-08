@@ -10,9 +10,7 @@ import {NAV_LINKS, NAV_SOCIAL_ICONS} from './landing-page/landing-page.const';
 })
 export class AppComponent {
   @ViewChild(RefDirective)
-  refDir?: RefDirective;
-
-  title = 'carsharing';
+  private refDir?: RefDirective;
 
   public openNav() {
     if (this.refDir) {

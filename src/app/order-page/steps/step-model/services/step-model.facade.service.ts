@@ -18,19 +18,19 @@ export class StepModelFacadeService {
     private _store: StepModelStoreService,
   ) {}
 
-  getCars(): Observable<CarModel[]> {
+  public getCars(): Observable<CarModel[]> {
     return this._api.getCars();
   }
 
-  getCategories(): Observable<CategoryModel[]> {
+  public getCategories(): Observable<CategoryModel[]> {
     return this._api.getCategories();
   }
 
-  changeCarModel(car: ICarModel) {
+  public changeCarModel(car: ICarModel) {
     this._state.changeCarModel(car);
   }
 
-  changeActiveCar(id: string) {
+  public changeActiveCar(id: string) {
     this._store.changeActiveCar(id);
   }
 }
