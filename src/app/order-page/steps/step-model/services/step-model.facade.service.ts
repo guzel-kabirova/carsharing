@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {StepModelApiService} from './step-model.api.service';
 import {StepModelStoreService} from './step-model.store.service';
 import {StepsStateService} from '../../services/steps.state.service';
-import {ICarModel} from '../step-model.interface';
+import {CarModel, CategoryModel, ICarModel} from '../step-model.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,11 +18,11 @@ export class StepModelFacadeService {
     private _store: StepModelStoreService,
   ) {}
 
-  getCars(): Observable<any> {
+  getCars(): Observable<CarModel[]> {
     return this._api.getCars();
   }
 
-  getCategories(): Observable<any> {
+  getCategories(): Observable<CategoryModel[]> {
     return this._api.getCategories();
   }
 
