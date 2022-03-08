@@ -30,9 +30,7 @@
 <div class="section">
   <app-label labelId="service" labelText="Доп услуги"></app-label>
   <div class="section__field vertical">
-    <app-label *ngFor="let service of services" [labelId]="service.id" [labelText]="service.name">
-      <input type="checkbox" [id]="service.id">
-    </app-label>
+    <app-checkbox *ngFor="let service of services" [item]="service"></app-checkbox>
   </div>
 </div>
 

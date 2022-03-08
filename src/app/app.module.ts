@@ -35,6 +35,7 @@ import {RadioButtonComponent} from './shared/components/radio-button/radio-butto
 import {AppInterceptor} from './shared/app.interceptor';
 import {ComboBoxComponent} from './shared/components/combo-box/combo-box.component';
 import {ResetComponent} from './shared/components/buttons/reset/reset.component';
+import {CheckboxComponent} from './shared/components/checkbox/checkbox.component';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -77,6 +78,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     RadioButtonComponent,
     ComboBoxComponent,
     ResetComponent,
+    CheckboxComponent,
   ],
   imports: [
     BrowserModule,
