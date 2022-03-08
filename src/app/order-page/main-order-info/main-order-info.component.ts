@@ -13,6 +13,7 @@ export class MainOrderInfoComponent {
   public state$ = this._state.stepsState$;
   public activeStep$ = this._state.activeStep$;
   public step = Step;
+  public carModel$ = this._state.carModel$;
 
   @Output()
   changeStep = new EventEmitter<number>();

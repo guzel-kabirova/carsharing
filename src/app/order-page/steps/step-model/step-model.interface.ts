@@ -2,6 +2,8 @@ export interface ICarModel {
   id: string;
   name: string;
   number: string;
+  priceMax: number;
+  priceMin: number;
 }
 
 export interface IGetCarsResponse {

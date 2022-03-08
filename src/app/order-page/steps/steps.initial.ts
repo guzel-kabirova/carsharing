@@ -12,4 +12,6 @@ export const NO_MODEL: ICarModel = {
   id: '',
   name: '',
   number: '',
+  priceMin: 0,
+  priceMax: 0,
 };
