@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  color: var(--color-black);
+
+  &__name {
+    font: var(--font-auto);
+    margin-bottom: 8px;
+  }
+
+  &__number {
+    display: inline-block;
+    font: var(--font-text);
+    border: 1px solid var(--color-gray);
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-bottom: 8px;
+  }
+
+  &__extra {
+    margin-bottom: 8px;
+  }
+
+  &__key {
+    font: var(--font-btn-second);
+  }
+
+  &__value {
+    font: var(--font-interactive-text);
+  }
+}
+
+.picture {
+  width: 256px;
+  height: 116px;
+  object-fit: cover;
+  background-color: var(--color-gray-light);
+}
