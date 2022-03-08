@@ -30,6 +30,15 @@ export class StepModelComponent implements OnInit {
 
   }
 
+  public filter(id: string) {
+    if (id !== '0') {
+      this._facade.store.filterCarsByCategories(id);
+      this.cars$ = this._facade.store.filteredCars$;
+    } else {
+      this.cars$ = this._facade.store.cars$;
+    }
+  }
+
   public selectCar(car: CarModel) {
     this._facade.changeActiveCar(car.id);
     this._facade.changeCarModel(car);

@@ -7,8 +7,11 @@ import {CarModel, CategoryModel} from '../step-model.interface';
   providedIn: 'root',
 })
 export class StepModelStoreService {
-  private cars = new BehaviorSubject<CarModel[]>([]);
-  public cars$ = this.cars.asObservable();
+  private _cars = new BehaviorSubject<CarModel[]>([]);
+  public cars$ = this._cars.asObservable();
+
+  private _filteredCars = new BehaviorSubject<CarModel[]>([]);
+  public filteredCars$ = this._filteredCars.asObservable();
 
   private categories = new BehaviorSubject<CategoryModel[]>([]);
   public categories$ = this.categories.asObservable();
@@ -16,7 +19,7 @@ export class StepModelStoreService {
   constructor() {}
 
   setCars(cars: CarModel[]) {
-    this.cars.next(cars);
+    this._cars.next(cars);
   }
 
   setCategories(categories: CategoryModel[]) {
@@ -24,7 +27,15 @@ export class StepModelStoreService {
   }
 
   changeActiveCar(id: string) {
-    const newCars = this.cars.getValue().map(car => car.id === id ? {...car, isActive: true} : {...car, isActive: false});
-    this.cars.next(newCars);
+    const newCars = this._cars.getValue().map(car => car.id === id ? {...car, isActive: true} : {
+      ...car,
+      isActive: false,
+    });
+    this._cars.next(newCars);
+  }
+
+  filterCarsByCategories(id: string) {
+    const filteredCars = this._cars.getValue().filter(car => car.categoryId.id === id);
+    this._filteredCars.next(filteredCars);
   }
 }

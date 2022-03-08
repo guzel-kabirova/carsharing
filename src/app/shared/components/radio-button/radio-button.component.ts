@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 
 interface IRadioButton {
   id: string;
@@ -14,6 +14,9 @@ interface IRadioButton {
 export class RadioButtonComponent {
   @Input()
   item?: IRadioButton;
+
+  @Output()
+  changeRadioBtn = new EventEmitter<string>();
 
   constructor() { }
 }
