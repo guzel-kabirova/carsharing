@@ -1,17 +1,17 @@
-<ng-container *ngIf="formFilter">
-  <form class="model" [formGroup]="formFilter">
+<ng-container *ngIf="form">
+  <form class="model" [formGroup]="form">
     <div class="type" *ngIf="categories$ | async as categories">
       <app-radio-button [item]="allCategories"></app-radio-button>
       <ng-container *ngFor="let category of categories">
         <app-radio-button [item]="category"></app-radio-button>
       </ng-container>
     </div>
-
-    <div class="auto" *ngIf="cars$ | async as cars; else noAuto">
-      <app-auto-card *ngFor="let car of cars" [car]="car" (click)="selectCar(car)"></app-auto-card>
-    </div>
-    <ng-template #noAuto>
-      <div class="auto">Загрузка...</div>
-    </ng-template>
   </form>
+
+  <div class="auto" *ngIf="cars$ | async as cars; else noAuto">
+    <app-auto-card *ngFor="let car of cars" [car]="car" (click)="selectCar(car)"></app-auto-card>
+  </div>
+  <ng-template #noAuto>
+    <div class="auto">Загрузка...</div>
+  </ng-template>
 </ng-container>
