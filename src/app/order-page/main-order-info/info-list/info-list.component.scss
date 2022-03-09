@@ -23,3 +23,17 @@
     text-align: end;
   }
 }
+
+.result {
+  margin: 32px 0;
+
+  &__subtitle {
+    font: var(--font-order-title);
+    color: var(--color-black);
+  }
+
+  &__text {
+    font: var(--font-order-text);
+    color: var(--color-black);
+  }
+}
