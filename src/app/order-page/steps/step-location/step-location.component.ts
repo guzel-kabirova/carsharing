@@ -1,14 +1,17 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {filter, map} from 'rxjs/operators';
+import {filter, map, takeUntil} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 import {StepLocationFacadeServices} from './services/step-location.facade.services';
+import {DestroyService} from '../../../shared/services/destroy.service';
 
 @Component({
   selector: 'app-step-location',
   templateUrl: './step-location.component.html',
   styleUrls: ['./step-location.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DestroyService],
 })
 export class StepLocationComponent implements OnInit {
   public form?: FormGroup;
@@ -19,19 +22,20 @@ export class StepLocationComponent implements OnInit {
     .pipe(filter(() => this.isPointsInputClicked), map(points => points.map(point => point.address)));
 
   constructor(
+    @Inject(DestroyService) private destroy$: Observable<void>,
     private _fb: FormBuilder,
     private _facade: StepLocationFacadeServices,
   ) { }
 
   ngOnInit(): void {
-    this._facade.getCities().subscribe();
+    this._facade.getCities().pipe(takeUntil(this.destroy$)).subscribe();
     this.form = this._fb.group({
       city: ['', Validators.required],
       pointOfIssue: ['', Validators.required],
     });
 
     this.form.setValue(this._facade.getLocation());
-    this._facade.getPointsOfIssue().subscribe();
+    this._facade.getPointsOfIssue().pipe(takeUntil(this.destroy$)).subscribe();
   }
 
   public changeLocation() {
