@@ -1,12 +1,27 @@
-<ul class="info" *ngIf="state$ | async as state">
-  <ng-container *ngIf="state[0]">
-    <li class="info__item" *ngIf="location$ | async as location">
-      Пункт выдачи:<span class="info__value">{{location.city}},<br> {{location.pointOfIssue}}</span>
-    </li>
-  </ng-container>
+<ng-container *ngIf="state$ | async as state">
+  <ul class="info">
+    <ng-container *ngIf="state[0]">
+      <li class="info__item" *ngIf="location$ | async as location">
+        Пункт выдачи:<span class="info__value">{{location.city}},<br> {{location.pointOfIssue}}</span>
+      </li>
+    </ng-container>
 
-  <ng-container *ngIf="state[1]">
-    <li class="info__item" *ngIf="carModel$ | async as carModel">Модель:<span
-      class="info__value">{{carModel.name}}, {{carModel.number}}</span></li>
+    <ng-container *ngIf="state[1]">
+      <li class="info__item" *ngIf="carModel$ | async as carModel">Модель:<span
+        class="info__value">{{carModel.name}}, {{carModel.number}}</span></li>
+    </ng-container>
+  </ul>
+
+  <ng-container *ngIf="carModel$ | async as carModel">
+    <div class="result" *ngIf="state[1]; else noPrice">
+      <span class="result__subtitle">Цена: </span><span class="result__text">от {{carModel.priceMin}}
+      до {{carModel.priceMax}} ₽</span>
+    </div>
+
+    <ng-template #noPrice>
+      <div class="result">
+        <span class="result__subtitle">Укажите параметры заказа в форме</span>
+      </div>
+    </ng-template>
   </ng-container>
-</ul>
+</ng-container>

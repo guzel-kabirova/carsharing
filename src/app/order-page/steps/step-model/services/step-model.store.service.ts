@@ -22,16 +22,24 @@ export class StepModelStoreService {
     this._cars.next(cars);
   }
 
+  private setFilteredCars(cars: CarModel[]) {
+    this._filteredCars.next(cars);
+  }
+
   public setCategories(categories: CategoryModel[]) {
     this._categories.next(categories);
   }
 
   public changeActiveCar(id: string) {
-    const newCars = this._cars.getValue().map(car => car.id === id
-      ? {...car, isActive: true}
-      : {...car, isActive: false}
-    );
-    this._cars.next(newCars);
+    const newCars = this.getCarsWithActive(this._cars.getValue(), id);
+    this.setCars(newCars);
+
+    const newFilteredCars = this.getCarsWithActive(this._filteredCars.getValue(), id);
+    this.setFilteredCars(newFilteredCars);
+  }
+
+  private getCarsWithActive(cars: CarModel[], id: string): CarModel[] {
+    return cars.map(car => ({...car, isActive: car.id === id}));
   }
 
   public filterCarsByCategories(id: string) {

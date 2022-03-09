@@ -2,18 +2,6 @@
   <h2 class="title">Ваш заказ:</h2>
   <app-info-list></app-info-list>
 
-  <ng-container *ngIf="carModel$ | async as carModel">
-    <div class="result" *ngIf="state[1]; else noPrice">
-      <span class="result__subtitle">Цена: </span><span class="result__text">от {{carModel.priceMin}} до {{carModel.priceMax}} ₽</span>
-    </div>
-
-    <ng-template #noPrice>
-      <div class="result">
-        <span class="result__subtitle">Укажите параметры заказа в форме</span>
-      </div>
-    </ng-template>
-  </ng-container>
-
   <ng-container *ngIf="activeStep$ | async as activeStep; else zero">
     <button class="btn" app-button [disabled]="!state[activeStep]" (click)="changeStep.emit(activeStep + 1)">
       <ng-container [ngSwitch]="activeStep">

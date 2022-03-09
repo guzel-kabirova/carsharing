@@ -8,9 +8,11 @@
     </div>
   </form>
 
-  <div class="auto" *ngIf="cars$ | async as cars; else noAuto">
-    <app-auto-card *ngFor="let car of cars" [car]="car" (click)="selectCar(car)"></app-auto-card>
-  </div>
+  <ng-container *ngIf="cars$ | async as cars;">
+    <div class="auto" *ngIf="cars.length > 0; else noAuto">
+      <app-auto-card *ngFor="let car of cars" [car]="car" (click)="selectCar(car)"></app-auto-card>
+    </div>
+  </ng-container>
   <ng-template #noAuto>
     <div class="auto">Загрузка...</div>
   </ng-template>
