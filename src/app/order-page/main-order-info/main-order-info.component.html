@@ -1,6 +1,22 @@
-<h2 class="title">Ваш заказ:</h2>
-<app-info-list [itemList]=itemList></app-info-list>
-<div class="result">
-  <span class="result__subtitle">Цена: </span><span class="result__text">от 8 000 до 12 000 ₽</span>
-</div>
-<button class="btn" app-button>Выбрать модель</button>
+<ng-container *ngIf="state$ | async as state">
+  <h2 class="title">Ваш заказ:</h2>
+  <app-info-list></app-info-list>
+
+  <ng-container *ngIf="activeStep$ | async as activeStep; else zero">
+    <button class="btn" app-button [disabled]="!state[activeStep]" (click)="changeStep.emit(activeStep + 1)">
+      <ng-container [ngSwitch]="activeStep">
+        <span *ngSwitchCase="step.Location">Выбрать модель</span>
+        <span *ngSwitchCase="step.Model">Дополнительно</span>
+        <span *ngSwitchCase="step.Extra">Итого</span>
+        <span *ngSwitchCase="step.Final">Заказать</span>
+        <span *ngSwitchDefault>Отменить</span>
+      </ng-container>
+    </button>
+  </ng-container>
+
+  <ng-template #zero>
+    <button class="btn" app-button [disabled]="!state[0]" (click)="changeStep.emit(1)">
+      <span>Выбрать модель</span>
+    </button>
+  </ng-template>
+</ng-container>

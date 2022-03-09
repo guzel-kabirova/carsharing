@@ -1,4 +1,4 @@
-export interface Slide {
+export interface ISlide {
   picture: Image;
   title: string;
   text: string;

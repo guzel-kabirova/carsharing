@@ -1,0 +1,39 @@
+.info {
+  margin: 26px 0 0;
+  font: var(--font-interactive-text);
+
+  &__item {
+    align-items: flex-end;
+    display: flex;
+    color: var(--color-black);
+    margin-bottom: 16px;
+
+    &:before {
+      content: '';
+      border-bottom: 1px dashed var(--color-gray);
+      order: 2;
+      flex-grow: 1;
+      margin: 0 12px;
+    }
+  }
+
+  &__value {
+    order: 3;
+    color: var(--color-gray);
+    text-align: end;
+  }
+}
+
+.result {
+  margin: 32px 0;
+
+  &__subtitle {
+    font: var(--font-order-title);
+    color: var(--color-black);
+  }
+
+  &__text {
+    font: var(--font-order-text);
+    color: var(--color-black);
+  }
+}

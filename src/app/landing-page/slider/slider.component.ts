@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
-import {Slide} from '../landing-page.interface';
+import {ISlide} from '../landing-page.interface';
 
 @Component({
   selector: 'app-slider',
@@ -10,7 +10,7 @@ import {Slide} from '../landing-page.interface';
 })
 export class SliderComponent {
   @Input()
-  slides: Slide[] = [];
+  public slides: ISlide[] = [];
 
   public currentSlide = 0;
 

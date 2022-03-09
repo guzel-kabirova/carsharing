@@ -8,7 +8,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StepExtraComponent implements OnInit {
-  form?: FormGroup;
+  public form?: FormGroup;
 
   constructor(private _fb: FormBuilder) { }
 

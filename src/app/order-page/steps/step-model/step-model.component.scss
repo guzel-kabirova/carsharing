@@ -1,0 +1,12 @@
+.type {
+  display: flex;
+  gap: 8px;
+}
+
+.auto {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font: var(--font-text);
+  color: var(--color-gray);
+}

@@ -1,14 +1,14 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'app-info-item',
-  templateUrl: './info-item.component.html',
-  styleUrls: ['./info-item.component.scss'],
+  selector: 'app-reset',
+  templateUrl: './reset.component.html',
+  styleUrls: ['./reset.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InfoItemComponent {
+export class ResetComponent {
   @Input()
-  key = '';
+  value = '';
 
   constructor() { }
 }

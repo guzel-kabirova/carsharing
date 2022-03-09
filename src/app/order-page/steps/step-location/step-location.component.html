@@ -1,16 +1,33 @@
 <ng-container *ngIf="form">
-  <form class="location" [formGroup]="form" (change)="changeLocation()">
+  <form class="location" [formGroup]="form">
     <div class="location__inputs">
-      <div>
+      <div class="wrapper__input" *ngIf="cities$ | async as cities">
         <app-label labelId="city" labelText="Город"></app-label>
-        <div class="location__input">
-          <input app-input id="city" placeholder="Введите город..." formControlName="city">
-          <svg icon="reset" class="location__icon" [ngStyle]="{display: form.get('city')?.value ? 'block' : 'none'}" (click)="reset()"></svg>
-        </div>
+        <app-combo-box [items]="cities" [open]="isCityInputClicked"
+                       (closeAutocomplete)="isCityInputClicked = false"
+                       (changeSelection)="changeLocation()"
+        >
+          <div class="location__input">
+            <input app-input id="city" placeholder="Введите город..." formControlName="city" autocomplete="off"
+                   (click)="isCityInputClicked = true"
+            >
+            <app-reset [value]="form.get('city')?.value" (click)="resetCity()"></app-reset>
+          </div>
+        </app-combo-box>
       </div>
-      <div>
+
+      <div class="wrapper__input">
         <app-label labelId="pointOfIssue" labelText="Пункт выдачи"></app-label>
-        <input app-input id="pointOfIssue" placeholder="Начните вводить пункт..." formControlName="pointOfIssue">
+        <app-combo-box [items]="$any(filteredPoints$ | async)" [open]="isPointsInputClicked"
+                       (closeAutocomplete)="isPointsInputClicked = false"
+                       (changeSelection)="changeLocation()"
+        >
+          <input app-input id="pointOfIssue" placeholder="Начните вводить пункт..." formControlName="pointOfIssue"
+                 autocomplete="off"
+                 (click)="showPoints()"
+          >
+          <app-reset [value]="form.get('pointOfIssue')?.value" (click)="resetPoints()"></app-reset>
+        </app-combo-box>
       </div>
     </div>
     <div class="location__map">

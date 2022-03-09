@@ -1,0 +1,19 @@
+<ng-content></ng-content>
+<div *ngIf="open" class="autocomplete">
+  <ng-container *ngIf="filteredItems.length !== 0; else noMatches">
+    <div class="autocomplete__text"
+         *ngFor="let item of filteredItems; let i = index"
+         [class.autocomplete__text_active]="isActive(i)"
+         (mouseenter)="onMouseEnter(i)"
+         (click)="onClick(item)"
+         (mousedown)="preventMouseEvent($event)"
+    >
+      {{item}}
+    </div>
+  </ng-container>
+  <ng-template #noMatches>
+    <div class="autocomplete__text">
+      Нет совпадений
+    </div>
+  </ng-template>
+</div>
