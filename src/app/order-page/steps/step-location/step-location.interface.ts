@@ -1,13 +1,5 @@
-export interface IGetCitiesResponse {
-  data: ICityDto[];
-}
-
 export interface ICityDto {
   name: string;
-}
-
-export interface IGetPointsOfIssueResponse {
-  data: IPointOfIssueDto[];
 }
 
 export interface IPointOfIssueDto {

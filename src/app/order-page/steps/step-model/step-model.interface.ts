@@ -6,10 +6,6 @@ export interface ICarModel {
   priceMin: number;
 }
 
-export interface IGetCarsResponse {
-  data: ICarsDto[];
-}
-
 export interface ICarsDto {
   categoryId: ICategory;
   colors: string[];
@@ -62,10 +58,6 @@ export class CarModel {
     this.tank = car.tank;
     this.isActive = false;
   }
-}
-
-export interface IGetCategoriesResponse {
-  data: ICategory[];
 }
 
 export class CategoryModel {

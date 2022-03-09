@@ -18,7 +18,7 @@
 
       <div class="wrapper__input">
         <app-label labelId="pointOfIssue" labelText="Пункт выдачи"></app-label>
-        <app-combo-box [items]="filteredPoints" [open]="isPointsInputClicked"
+        <app-combo-box [items]="$any(filteredPoints$ | async)" [open]="isPointsInputClicked"
                        (closeAutocomplete)="isPointsInputClicked = false"
                        (changeSelection)="changeLocation()"
         >
