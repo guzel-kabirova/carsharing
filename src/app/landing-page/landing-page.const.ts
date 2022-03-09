@@ -1,6 +1,6 @@
-import {Slide} from './landing-page.interface';
+import {ISlide} from './landing-page.interface';
 
-export const SLIDES: Slide[] = [
+export const SLIDES: ISlide[] = [
   {
     picture: {src: './assets/pictures/parking.jpg', alt: 'parking'},
     title: 'Бесплатная парковка',

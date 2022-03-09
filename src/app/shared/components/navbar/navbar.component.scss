@@ -6,7 +6,7 @@
   right: 0;
   background-color: var(--color-black-blue);
   opacity: 0.8;
-  z-index: 2;
+  z-index: 3;
 }
 
 .container {
@@ -16,7 +16,7 @@
   left: 0;
   width: calc(50% + 32px);
   padding: 32px 16px;
-  z-index: 2;
+  z-index: 3;
 
   @media (min-width: 1024px) and (max-width: 1439px) {
     width: calc(60% + 32px);

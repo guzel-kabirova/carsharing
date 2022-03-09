@@ -19,7 +19,7 @@
     filter: brightness(0.9);
   }
 
-  &:active {
+  &:not([disabled]):active {
     filter: brightness(0.8);
   }
 

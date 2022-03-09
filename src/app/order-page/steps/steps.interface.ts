@@ -4,3 +4,8 @@ export interface ILocation {
 }
 
 export type TStepsState = [boolean, boolean, boolean, boolean];
+
+export interface IModelType {
+  idName: string;
+  text: string;
+}

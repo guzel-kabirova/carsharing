@@ -12,13 +12,13 @@ import {STEPS_STATE_INITIAL} from '../steps/steps.initial';
 })
 export class StepperComponent {
   @Input()
-  activeStep = 0;
+  public activeStep = 0;
 
   @Input()
-  stepsState = STEPS_STATE_INITIAL;
+  public stepsState = STEPS_STATE_INITIAL;
 
   @Output()
-  changeStep = new EventEmitter<number>();
+  public changeStep = new EventEmitter<number>();
 
   public steps = STEPS;
 

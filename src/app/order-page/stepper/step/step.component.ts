@@ -8,22 +8,22 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@
 })
 export class StepComponent {
   @Input()
-  stepText = '';
+  public stepText = '';
 
   @Input()
-  isLast = false;
+  public isLast = false;
 
   @Input()
-  isActive = false;
+  public isActive = false;
 
   @Input()
-  isCompleted = false;
+  public isCompleted = false;
 
   @Input()
-  isDisabled = true;
+  public isDisabled = true;
 
   @Output()
-  change = new EventEmitter<void>();
+  public change = new EventEmitter<void>();
 
   constructor() { }
 }

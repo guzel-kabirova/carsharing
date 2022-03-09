@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   background-color: var(--color-white);
-  z-index: 1;
+  z-index: 2;
 
   &__header {
     padding: 32px 64px;
@@ -47,6 +47,7 @@
     padding-top: 32px;
     margin-right: 192px;
     width: 736px;
+    margin-bottom: 128px;
 
     @media (max-width: 1439px) {
       margin-right: 0;

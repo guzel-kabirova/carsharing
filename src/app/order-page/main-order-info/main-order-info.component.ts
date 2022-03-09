@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
 
-import {ORDER_INFO_LIST} from '../order-page.const';
-
+import {StepsStateService} from '../steps/services/steps.state.service';
+import {Step} from '../order-page.enum';
 
 @Component({
   selector: 'app-main-order-info',
@@ -10,7 +10,13 @@ import {ORDER_INFO_LIST} from '../order-page.const';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainOrderInfoComponent {
-  public itemList: string[] = ORDER_INFO_LIST;
+  public state$ = this._state.stepsState$;
+  public activeStep$ = this._state.activeStep$;
+  public step = Step;
+  public carModel$ = this._state.carModel$;
 
-  constructor() { }
+  @Output()
+  public changeStep = new EventEmitter<number>();
+
+  constructor(private _state: StepsStateService) { }
 }

@@ -8,9 +8,9 @@ import {Router} from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingInfoComponent {
-  constructor(private router: Router) { }
+  constructor(private _router: Router) { }
 
   public navigateToOrderPage() {
-    this.router.navigate(['/order']);
+    this._router.navigate(['/order']);
   }
 }

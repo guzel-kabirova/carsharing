@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 
-import {Slide} from './landing-page.interface';
+import {ISlide} from './landing-page.interface';
 import {SLIDES} from './landing-page.const';
 
 
@@ -11,7 +11,7 @@ import {SLIDES} from './landing-page.const';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingPageComponent {
-  slides: Slide[] = SLIDES;
+  public slides: ISlide[] = SLIDES;
 
   constructor() { }
 }
