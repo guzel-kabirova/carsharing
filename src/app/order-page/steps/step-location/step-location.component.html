@@ -32,7 +32,11 @@
     </div>
     <div class="location__map">
       <app-label labelText="Выбрать на карте:"></app-label>
-      <img class="map" alt="map" src="./assets/pictures/map.jpg">
+      <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="changePin($event)">
+        <agm-marker [latitude]="latitude" [longitude]="longitude" iconUrl="assets/icons/map-pin.svg">
+          <agm-info-window>hello</agm-info-window>
+        </agm-marker>
+      </agm-map>
     </div>
   </form>
 </ng-container>

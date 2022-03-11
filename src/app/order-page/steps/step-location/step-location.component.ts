@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 
 import {StepLocationFacadeServices} from './services/step-location.facade.services';
 import {DestroyService} from '../../../shared/services/destroy.service';
+import {MapEvent} from './step-location.interface';
 
 @Component({
   selector: 'app-step-location',
@@ -20,6 +21,9 @@ export class StepLocationComponent implements OnInit {
   public isPointsInputClicked = false;
   public filteredPoints$ = this._facade.store.filteredPointsOfIssue$
     .pipe(filter(() => this.isPointsInputClicked), map(points => points.map(point => point.address)));
+
+  public latitude = 54.32032936339767;
+  public longitude = 48.43014761715198;
 
   constructor(
     @Inject(DestroyService) private destroy$: Observable<void>,
@@ -53,6 +57,11 @@ export class StepLocationComponent implements OnInit {
     this.isPointsInputClicked = true;
     const city = this.form?.get('city')?.value;
     this._facade.store.filterPointsOfIssueByCity(city);
+  }
+
+  public changePin(event: MapEvent) {
+    this.latitude = event.coords.lat;
+    this.longitude = event.coords.lng;
   }
 
   public resetPoints() {

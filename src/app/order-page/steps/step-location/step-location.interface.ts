@@ -25,3 +25,7 @@ export class PointsOfIssueModel {
     this.name = data.name;
   }
 }
+
+export interface MapEvent {
+  coords: { lat: number, lng: number };
+}
