@@ -7,6 +7,7 @@
   --font-nav-link: 500 32px var(--font-family);
   --font-logo: 700 30px var(--font-family);
   --font-landing-text: 300 26px var(--font-family);
+  --font-dialog-title: 400 24px var(--font-family);
   --font-slider-text: 300 24px var(--font-family);
   --font-btn: 500 18px var(--font-family);
   --font-auto: 400 18px var(--font-family);
@@ -30,6 +31,7 @@
   --color-gray-light: #EEEEEE;
 
   --color-gradient-btn-green: linear-gradient(to right, #0EC261, #039F67);
+  --color-gradient-btn-red: linear-gradient(to right, #493013, #7B0C3B);
   --color-gradient-btn-green-landing: linear-gradient(to right, #13493F, #0C7B1B);
   --color-text-btn: var(--color-white);
 }
