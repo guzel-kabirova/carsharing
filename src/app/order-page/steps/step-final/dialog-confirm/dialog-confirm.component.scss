@@ -1,0 +1,43 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: var(--color-white);
+  opacity: 0.9;
+  z-index: 3;
+  height: 100vh;
+}
+
+.dialog {
+  text-align: center;
+  width: 405px;
+  height: 157px;
+  background-color: var(--color-white);
+  position: absolute;
+  left: calc(50% - 202px);
+  top: 290px;
+  padding: 24px;
+  z-index: 3;
+
+  &__title {
+    font: var(--font-dialog-title);
+    margin-bottom: 32px;
+  }
+}
+
+.action {
+  display: flex;
+  justify-content: space-between;
+
+  &__confirm {
+    --btn-width: 177px;
+    --btn-color: var(--color-gradient-btn-green);
+  }
+
+  &__cancel {
+    --btn-width: 164px;
+    --btn-color: var(--color-gradient-btn-red);
+  }
+}

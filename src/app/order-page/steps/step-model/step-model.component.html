@@ -1,9 +1,9 @@
 <ng-container *ngIf="form">
   <form class="model" [formGroup]="form">
     <div class="type" *ngIf="categories$ | async as categories">
-      <app-radio-button [item]="allCategories" (changeRadioBtn)="filter($event)"></app-radio-button>
+      <app-radio-button [item]="allCategories" groupName="models" (changeRadioBtn)="filter($event)"></app-radio-button>
       <ng-container *ngFor="let category of categories">
-        <app-radio-button [item]="category" (changeRadioBtn)="filter($event)"></app-radio-button>
+        <app-radio-button [item]="category" groupName="models" (changeRadioBtn)="filter($event)"></app-radio-button>
       </ng-container>
     </div>
   </form>
