@@ -30,12 +30,18 @@
         </app-combo-box>
       </div>
     </div>
+
     <div class="location__map">
       <app-label labelText="Выбрать на карте:"></app-label>
       <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="changePin($event)">
-        <agm-marker [latitude]="latitude" [longitude]="longitude" iconUrl="assets/icons/map-pin.svg">
-          <agm-info-window>hello</agm-info-window>
-        </agm-marker>
+        <ng-container *ngIf="pointsWithCoordinates?.length">
+          <agm-marker *ngFor="let point of pointsWithCoordinates"
+                      [latitude]="point.lat"
+                      [longitude]="point.lng"
+                      iconUrl="assets/icons/map-pin.svg">
+            <agm-info-window>{{point.address}}</agm-info-window>
+          </agm-marker>
+        </ng-container>
       </agm-map>
     </div>
   </form>

@@ -5,7 +5,8 @@ import {Observable} from 'rxjs';
 
 import {StepLocationFacadeServices} from './services/step-location.facade.services';
 import {DestroyService} from '../../../shared/services/destroy.service';
-import {MapEvent} from './step-location.interface';
+import {MapEvent, PointCoordinates} from './step-location.interface';
+import {COORDINATES, DEFAULT_COORDINATES} from './step-location.const';
 
 @Component({
   selector: 'app-step-location',
@@ -22,8 +23,10 @@ export class StepLocationComponent implements OnInit {
   public filteredPoints$ = this._facade.store.filteredPointsOfIssue$
     .pipe(filter(() => this.isPointsInputClicked), map(points => points.map(point => point.address)));
 
-  public latitude = 54.32032936339767;
-  public longitude = 48.43014761715198;
+  private coordinates = COORDINATES;
+  public pointsWithCoordinates?: PointCoordinates[];
+  public latitude = DEFAULT_COORDINATES.lat;
+  public longitude = DEFAULT_COORDINATES.lng;
 
   constructor(
     @Inject(DestroyService) private destroy$: Observable<void>,
@@ -51,12 +54,30 @@ export class StepLocationComponent implements OnInit {
       city: '',
     });
     this.changeLocation();
+    this.resetCoordinates();
+  }
+
+  private resetCoordinates() {
+    this.latitude = DEFAULT_COORDINATES.lat;
+    this.longitude = DEFAULT_COORDINATES.lng;
   }
 
   public showPoints() {
     this.isPointsInputClicked = true;
     const city = this.form?.get('city')?.value;
     this._facade.store.filterPointsOfIssueByCity(city);
+    if (city) {
+      this.findPointsCoordinates(city);
+    }
+  }
+
+  private findPointsCoordinates(city: string) {
+    this.pointsWithCoordinates = this.coordinates.filter(coordinate => coordinate.cityName === city).map(city => city.points)[0];
+    if (this.pointsWithCoordinates) {
+      const firstPoint = this.pointsWithCoordinates[0];
+      this.latitude = firstPoint?.lat;
+      this.longitude = firstPoint?.lng;
+    }
   }
 
   public changePin(event: MapEvent) {
@@ -69,5 +90,6 @@ export class StepLocationComponent implements OnInit {
       pointOfIssue: '',
     });
     this.changeLocation();
+    this.resetCoordinates();
   }
 }
