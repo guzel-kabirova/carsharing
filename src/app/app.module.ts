@@ -2,6 +2,7 @@ import {NgModule, Provider} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AgmCoreModule} from '@agm/core';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -37,6 +38,7 @@ import {ComboBoxComponent} from './shared/components/combo-box/combo-box.compone
 import {ResetComponent} from './shared/components/buttons/reset/reset.component';
 import {CheckboxComponent} from './shared/components/checkbox/checkbox.component';
 import {DialogConfirmComponent} from './order-page/steps/step-final/dialog-confirm/dialog-confirm.component';
+import {environment} from '../environments/environment';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -84,6 +86,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.apiKeyMap,
+    }),
     AppRoutingModule,
     IconModule,
     ReactiveFormsModule,
