@@ -54,6 +54,7 @@ export class StepLocationComponent implements OnInit {
       city: '',
     });
     this.changeLocation();
+    this.resetPoints();
     this.resetCoordinates();
   }
 
