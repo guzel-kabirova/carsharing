@@ -3,7 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 
 import {ILocation, TStepsState} from '../steps.interface';
 import {NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL} from '../steps.initial';
-import {ICarModel} from '../step-model/step-model.interface';
+import {CarModel} from '../step-model/step-model.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ export class StepsStateService {
   private _location = new BehaviorSubject<ILocation>(NO_LOCATION);
   public location$ = this._location.asObservable();
 
-  private _carModel = new BehaviorSubject<ICarModel>(NO_MODEL);
+  private _carModel = new BehaviorSubject<CarModel>(NO_MODEL);
   public carModel$ = this._carModel.asObservable();
 
   constructor() { }
@@ -42,7 +42,7 @@ export class StepsStateService {
     this.changeStepsState(0, this.isLocationFull());
   }
 
-  public changeCarModel(car: ICarModel) {
+  public changeCarModel(car: CarModel) {
     this._carModel.next(car);
     this.changeStepsState(1, this.isCarModelFull());
   }
@@ -61,7 +61,7 @@ export class StepsStateService {
     return this._location.getValue();
   }
 
-  public getCarModel(): ICarModel {
+  public getCarModel(): CarModel {
     return this._carModel.getValue();
   }
 }

@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 
 import {StepLocationFacadeServices} from './services/step-location.facade.services';
 import {DestroyService} from '../../../shared/services/destroy.service';
-import {MapEvent, PointCoordinates} from './step-location.interface';
+import {PointCoordinates} from './step-location.interface';
 import {COORDINATES, DEFAULT_COORDINATES} from './step-location.const';
 
 @Component({
@@ -79,11 +79,6 @@ export class StepLocationComponent implements OnInit {
       this.latitude = firstPoint?.lat;
       this.longitude = firstPoint?.lng;
     }
-  }
-
-  public changePin(event: MapEvent) {
-    this.latitude = event.coords.lat;
-    this.longitude = event.coords.lng;
   }
 
   public resetPoints() {

@@ -33,7 +33,7 @@
 
     <div class="location__map">
       <app-label labelText="Выбрать на карте:"></app-label>
-      <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="changePin($event)">
+      <agm-map [latitude]="latitude" [longitude]="longitude">
         <ng-container *ngIf="pointsWithCoordinates?.length">
           <agm-marker *ngFor="let point of pointsWithCoordinates"
                       [latitude]="point.lat"
