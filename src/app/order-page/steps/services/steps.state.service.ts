@@ -5,6 +5,7 @@ import {ILocation, TStepsState} from '../steps.interface';
 import {NO_EXTRA, NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL} from '../steps.initial';
 import {CarModel} from '../step-model/step-model.interface';
 import {IExtraFields} from '../step-extra/step-extra.interface';
+import {unique} from '../../../shared/utility/unique';
 
 @Injectable({
   providedIn: 'root',
@@ -47,7 +48,11 @@ export class StepsStateService {
   }
 
   public changeCarModel(car: CarModel) {
-    this._carModel.next(car);
+    let newCar = car;
+    if (car.colors) {
+      newCar = {...car, colors: unique(car.colors)};
+    }
+    this._carModel.next(newCar);
     this.changeStepsState(1, this.isCarModelFull());
   }
 
