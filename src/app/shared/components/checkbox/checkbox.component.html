@@ -1,6 +1,6 @@
 <div *ngIf="item">
   <app-label [labelId]="item.id">
-    <input class="modern" type="checkbox" [id]="item.id">
+    <input class="modern" type="checkbox" [id]="item.id" (change)="changeCheckbox.emit(item.id)">
     <span class="custom" [id]="item.id">
       <svg icon="checkbox" class="custom__icon"></svg>
     </span>

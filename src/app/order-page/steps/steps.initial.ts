@@ -1,5 +1,6 @@
 import {ILocation, TStepsState} from './steps.interface';
 import {CarModel} from './step-model/step-model.interface';
+import {IExtraFields} from './step-extra/step-extra.interface';
 
 export const NO_LOCATION: ILocation = {
   city: '',
@@ -15,4 +16,11 @@ export const NO_MODEL: CarModel = {
   priceMin: 0,
   priceMax: 0,
   isActive: false,
+};
+
+export const NO_EXTRA: IExtraFields = {
+  color: '',
+  dateFrom: '',
+  dateTo: '',
+  tariff: '',
 };

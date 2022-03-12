@@ -1,10 +1,12 @@
-<ng-container *ngIf="carModel$ | async as carModel">
-  <form *ngIf="form" [formGroup]="form">
+<ng-container *ngIf="carModel">
+  <form *ngIf="form" [formGroup]="form" (change)="changeExtraField()">
     <div class="section" *ngIf="carModel.colors">
       <app-label labelId="color" labelText="Цвет"></app-label>
       <div class="section__field horizontal">
         <app-radio-button *ngFor="let color of carModel.colors" [item]="{id: color, name: color}"
-                          groupName="colors"></app-radio-button>
+                          groupName="colors"
+                          (changeRadioBtn)="setColor($event)"
+        ></app-radio-button>
       </div>
     </div>
 
@@ -18,7 +20,7 @@
 
         <div>
           <app-label labelId="dateTo" labelText="По"></app-label>
-          <input app-input placeholder="Введите дату и время" type="datetime" id="dateTo" formControlName="dateFrom">
+          <input app-input placeholder="Введите дату и время" type="datetime" id="dateTo" formControlName="dateTo">
         </div>
       </div>
     </div>
@@ -26,14 +28,16 @@
     <div class="section">
       <app-label labelId="tariff" labelText="Тариф"></app-label>
       <div class="section__field vertical">
-        <app-radio-button *ngFor="let tariff of tariffs" [item]="tariff" groupName="tariffs"></app-radio-button>
+        <app-radio-button *ngFor="let tariff of tariffs" [item]="tariff" groupName="tariffs"
+                          (changeRadioBtn)="setTariff($event)"></app-radio-button>
       </div>
     </div>
 
     <div class="section">
       <app-label labelId="service" labelText="Доп услуги"></app-label>
       <div class="section__field vertical">
-        <app-checkbox *ngFor="let service of services" [item]="service"></app-checkbox>
+        <app-checkbox *ngFor="let service of services" [item]="service"
+                      (changeCheckbox)="setExtra($event)"></app-checkbox>
       </div>
     </div>
   </form>

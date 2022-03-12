@@ -2,8 +2,9 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 import {ILocation, TStepsState} from '../steps.interface';
-import {NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL} from '../steps.initial';
+import {NO_EXTRA, NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL} from '../steps.initial';
 import {CarModel} from '../step-model/step-model.interface';
+import {IExtraFields} from '../step-extra/step-extra.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,9 @@ export class StepsStateService {
 
   private _carModel = new BehaviorSubject<CarModel>(NO_MODEL);
   public carModel$ = this._carModel.asObservable();
+
+  private _extraFields = new BehaviorSubject<IExtraFields>(NO_EXTRA);
+  public extraFields$ = this._extraFields.asObservable();
 
   constructor() { }
 
@@ -63,5 +67,19 @@ export class StepsStateService {
 
   public getCarModel(): CarModel {
     return this._carModel.getValue();
+  }
+
+  public changeExtraField(value: IExtraFields) {
+    this._extraFields.next(value);
+    this.changeStepsState(2, this.isExtraFieldFull());
+  }
+
+  private isExtraFieldFull(): boolean {
+    const extraFields = this.getExtraFields();
+    return !!extraFields.color && !!extraFields.dateFrom && !!extraFields.dateTo && !!extraFields.tariff;
+  }
+
+  public getExtraFields(): IExtraFields {
+    return this._extraFields.getValue();
   }
 }

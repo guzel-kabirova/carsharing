@@ -2,13 +2,37 @@
   <ul class="info">
     <ng-container *ngIf="state[0]">
       <li class="info__item" *ngIf="location$ | async as location">
-        Пункт выдачи:<span class="info__value">{{location.city}},<br> {{location.pointOfIssue}}</span>
+        Пункт выдачи<span class="info__value">{{location.city}},<br> {{location.pointOfIssue}}</span>
       </li>
     </ng-container>
 
     <ng-container *ngIf="state[1]">
-      <li class="info__item" *ngIf="carModel$ | async as carModel">Модель:<span
+      <li class="info__item" *ngIf="carModel$ | async as carModel">Модель<span
         class="info__value">{{carModel.name}}, {{carModel.number}}</span></li>
+    </ng-container>
+
+    <ng-container *ngIf="extraFields$ | async as extraFields">
+      <li class="info__item" *ngIf="extraFields.color">Цвет<span
+        class="info__value">{{extraFields.color}}</span></li>
+
+      <li class="info__item" *ngIf="extraFields.dateFrom && extraFields.dateTo">Длительность аренды<span
+        class="info__value">{{extraFields.dateFrom}} - {{extraFields.dateTo}}</span></li>
+
+      <li class="info__item" *ngIf="extraFields.tariff">Тариф
+        <ng-container [ngSwitch]="extraFields.tariff">
+          <span class="info__value" *ngSwitchCase="tariff.Minute">Поминутно</span>
+          <span class="info__value" *ngSwitchCase="tariff.Day">На сутки</span>
+        </ng-container>
+      </li>
+
+      <li class="info__item" *ngIf="extraFields.fullTank">Полный бак<span
+        class="info__value">Да</span></li>
+
+      <li class="info__item" *ngIf="extraFields.babyChair">Детское кресло<span
+        class="info__value">Да</span></li>
+
+      <li class="info__item" *ngIf="extraFields.rightHand">Правый руль<span
+        class="info__value">Да</span></li>
     </ng-container>
   </ul>
 
