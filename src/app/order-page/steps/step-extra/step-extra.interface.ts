@@ -7,3 +7,5 @@ export interface IExtraFields {
   babyChair?: boolean,
   rightHand?: boolean,
 }
+
+export type TDateFieldName = 'dateFrom' | 'dateTo'

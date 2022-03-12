@@ -19,6 +19,7 @@
                                 (closeCalendar)="isDateFromOpen = false">
             <input app-input placeholder="Введите дату и время" type="datetime" id="dateFrom"
                    formControlName="dateFrom" autocomplete="off" (click)="isDateFromOpen = !isDateFromOpen">
+            <app-reset [value]="form.get('dateFrom')?.value" (click)="resetDate('dateFrom')"></app-reset>
           </app-date-time-picker>
         </div>
 
@@ -28,6 +29,7 @@
                                 (closeCalendar)="isDateToOpen = false">
             <input app-input placeholder="Введите дату и время" type="datetime" id="dateTo"
                    formControlName="dateTo" autocomplete="off" (click)="isDateToOpen = !isDateToOpen">
+            <app-reset [value]="form.get('dateTo')?.value" (click)="resetDate('dateTo')"></app-reset>
           </app-date-time-picker>
         </div>
       </div>

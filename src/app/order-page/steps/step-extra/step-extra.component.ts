@@ -5,6 +5,7 @@ import {COLORS, SERVICES, TARIFFS} from './step-extra.const';
 import {StepExtraFacadeService} from './services/step-extra.facade.service';
 import {Extra} from './step-extra.enum';
 import {format} from 'date-fns';
+import {TDateFieldName} from './step-extra.interface';
 
 @Component({
   selector: 'app-step-extra',
@@ -78,5 +79,13 @@ export class StepExtraComponent implements OnInit {
 
   public changeExtraField() {
     this._facade.changeExtraField(this.form?.value);
+  }
+
+  public resetDate(dateName: TDateFieldName) {
+    if(dateName === 'dateFrom') {
+      this.form?.patchValue({dateFrom: ''});
+    } else {
+      this.form?.patchValue({dateTo: ''});
+    }
   }
 }
