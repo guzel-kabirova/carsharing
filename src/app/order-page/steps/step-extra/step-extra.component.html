@@ -13,14 +13,22 @@
     <div class="section">
       <app-label labelId="date" labelText="Дата аренды"></app-label>
       <div class="section__field vertical inputs">
-        <div>
+        <div class="wrapper">
           <app-label labelId="dateFrom" labelText="С"></app-label>
-          <input app-input placeholder="Введите дату и время" type="datetime" id="dateFrom" formControlName="dateFrom">
+          <app-date-time-picker (selectDate)="setDateFrom($event)" [isOpen]="isDateFromOpen"
+                                (closeCalendar)="isDateFromOpen = false">
+            <input app-input placeholder="Введите дату и время" type="datetime" id="dateFrom"
+                   formControlName="dateFrom" autocomplete="off" (click)="isDateFromOpen = !isDateFromOpen">
+          </app-date-time-picker>
         </div>
 
-        <div>
+        <div class="wrapper">
           <app-label labelId="dateTo" labelText="По"></app-label>
-          <input app-input placeholder="Введите дату и время" type="datetime" id="dateTo" formControlName="dateTo">
+          <app-date-time-picker (selectDate)="setDateTo($event)" [isOpen]="isDateToOpen"
+                                (closeCalendar)="isDateToOpen = false">
+            <input app-input placeholder="Введите дату и время" type="datetime" id="dateTo"
+                   formControlName="dateTo" autocomplete="off" (click)="isDateToOpen = !isDateToOpen">
+          </app-date-time-picker>
         </div>
       </div>
     </div>

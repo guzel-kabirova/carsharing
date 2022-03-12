@@ -40,6 +40,7 @@ import {CheckboxComponent} from './shared/components/checkbox/checkbox.component
 import {DialogConfirmComponent} from './order-page/steps/step-final/dialog-confirm/dialog-confirm.component';
 import {environment} from '../environments/environment';
 import {PreloaderComponent} from './shared/components/preloader/preloader.component';
+import {DateTimePickerComponent} from './shared/components/date-time-picker/date-time-picker.component';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -85,6 +86,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     CheckboxComponent,
     DialogConfirmComponent,
     PreloaderComponent,
+    DateTimePickerComponent,
   ],
   imports: [
     BrowserModule,

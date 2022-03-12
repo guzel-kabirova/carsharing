@@ -1,0 +1,76 @@
+.calendar {
+  font: var(--font-interactive-text);
+  color: var(--color-gray);
+  border: 1px solid var(--color-gray-light);
+  background-color: var(--color-white);
+  width: 224px;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 1;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-main-accent);
+  }
+
+  &__btn {
+    width: 31px;
+    height: 31px;
+  }
+
+  &__month {
+    color: var(--color-gray-light);
+    text-transform: capitalize;
+  }
+
+  &__week {
+    background-color: var(--color-gray-light);
+  }
+
+  &__day-name {
+    color: var(--color-main-accent);
+  }
+}
+
+.week {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__day {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-black);
+    }
+
+    &_today {
+      color: var(--color-main-accent);
+      font: var(--font-text);
+    }
+
+    &_weekend {
+      color: var(--color-danger);
+    }
+
+    &_untouchable {
+      cursor: default;
+    }
+  }
+}
+
+.icon {
+  width: 8px;
+  height: 8px;
+  color: var(--color-gray-light);
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 31px;
+  width: 31px;
+}

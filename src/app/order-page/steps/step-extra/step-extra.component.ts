@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {COLORS, SERVICES, TARIFFS} from './step-extra.const';
 import {StepExtraFacadeService} from './services/step-extra.facade.service';
 import {Extra} from './step-extra.enum';
+import {format} from 'date-fns';
 
 @Component({
   selector: 'app-step-extra',
@@ -17,6 +18,8 @@ export class StepExtraComponent implements OnInit {
   public tariffs = TARIFFS;
   public services = SERVICES;
   public carModel = this._facade.state.getCarModel();
+  public isDateFromOpen = false;
+  public isDateToOpen = false;
 
   constructor(
     private _fb: FormBuilder,
@@ -35,15 +38,25 @@ export class StepExtraComponent implements OnInit {
     });
   }
 
-  setColor(color: string) {
+  public setColor(color: string) {
     this.form?.patchValue({color});
   }
 
-  setTariff(tariff: string) {
+  public setDateFrom(date: Date) {
+    const dateFrom = format(date, 'dd.MM.yyyy');
+    this.form?.patchValue({dateFrom});
+  }
+
+  public setDateTo(date: Date) {
+    const dateTo = format(date, 'dd.MM.yyyy');
+    this.form?.patchValue({dateTo});
+  }
+
+  public setTariff(tariff: string) {
     this.form?.patchValue({tariff});
   }
 
-  setExtra(value: string) {
+  public setExtra(value: string) {
     if (StepExtraComponent.isExtra(value)) {
       switch (value) {
         case Extra.FullTank:

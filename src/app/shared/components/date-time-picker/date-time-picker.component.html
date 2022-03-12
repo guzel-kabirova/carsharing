@@ -1,0 +1,34 @@
+<ng-content></ng-content>
+<div class="calendar" *ngIf="isOpen">
+  <div class="calendar__header">
+    <button class="calendar__btn" (mousedown)="preventMouseDown($event)" (click)="previousMonth()">
+      <svg class="icon" icon="arrow-left"></svg>
+    </button>
+
+    <span class="calendar__month">{{getCalendarHeader()}}</span>
+
+    <button class="calendar__btn" (mousedown)="preventMouseDown($event)" (click)="nextMonth()">
+      <svg class="icon" icon="arrow-right"></svg>
+    </button>
+  </div>
+
+  <div class="calendar__week week">
+    <div *ngFor="let day of daysOfWeek" class="calendar__day-name day">{{day}}</div>
+  </div>
+
+  <div class="week">
+    <ng-container *ngFor="let day of daysArr">
+      <div class="week__day day"
+           [ngClass]="{
+         'week__day_today': isToday(day),
+         'week__day_weekend': !isToday(day) && isWeekend(day),
+         'week__day_untouchable': !isAvailable(day)
+         }"
+           (mousedown)="preventMouseDown($event)"
+           (click)="onDateClick(day)"
+      >
+        {{isAvailable(day) ? day.getDate() : ''}}
+      </div>
+    </ng-container>
+  </div>
+</div>

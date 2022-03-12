@@ -29,9 +29,10 @@
   --color-blue: #007BFF;
   --color-gray: #999999;
   --color-gray-light: #EEEEEE;
+  --color-danger: #7B0C3B;
 
-  --color-gradient-btn-green: linear-gradient(to right, #0EC261, #039F67);
-  --color-gradient-btn-red: linear-gradient(to right, #493013, #7B0C3B);
+  --color-gradient-btn-green: linear-gradient(to right, var(--color-main-accent), #039F67);
+  --color-gradient-btn-red: linear-gradient(to right, #493013, var(--color-danger));
   --color-gradient-btn-green-landing: linear-gradient(to right, #13493F, #0C7B1B);
   --color-text-btn: var(--color-white);
 }
