@@ -6,6 +6,7 @@ import {NO_EXTRA, NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL} from '../steps.ini
 import {CarModel} from '../step-model/step-model.interface';
 import {IExtraFields} from '../step-extra/step-extra.interface';
 import {unique} from '../../../shared/utility/unique';
+import {StepModelStoreService} from '../step-model/services/step-model.store.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +27,7 @@ export class StepsStateService {
   private _extraFields = new BehaviorSubject<IExtraFields>(NO_EXTRA);
   public extraFields$ = this._extraFields.asObservable();
 
-  constructor() { }
+  constructor(private _modelStore: StepModelStoreService) { }
 
   public changeActiveStep(i: number) {
     this._activeStep.next(i);
@@ -45,6 +46,8 @@ export class StepsStateService {
   public changeLocation(value: ILocation) {
     this._location.next(value);
     this.changeStepsState(0, this.isLocationFull());
+    this.resetCarModel();
+    this.resetExtraField();
   }
 
   public changeCarModel(car: CarModel) {
@@ -54,6 +57,12 @@ export class StepsStateService {
     }
     this._carModel.next(newCar);
     this.changeStepsState(1, this.isCarModelFull());
+    this.resetExtraField();
+  }
+
+  public changeExtraField(value: IExtraFields) {
+    this._extraFields.next(value);
+    this.changeStepsState(2, this.isExtraFieldFull());
   }
 
   private isLocationFull(): boolean {
@@ -66,6 +75,11 @@ export class StepsStateService {
     return !!currentData.id && !!currentData.name;
   }
 
+  private isExtraFieldFull(): boolean {
+    const extraFields = this.getExtraFields();
+    return !!extraFields.color && !!extraFields.dateFrom && !!extraFields.dateTo && !!extraFields.tariff;
+  }
+
   public getLocation(): ILocation {
     return this._location.getValue();
   }
@@ -74,17 +88,16 @@ export class StepsStateService {
     return this._carModel.getValue();
   }
 
-  public changeExtraField(value: IExtraFields) {
-    this._extraFields.next(value);
-    this.changeStepsState(2, this.isExtraFieldFull());
-  }
-
-  private isExtraFieldFull(): boolean {
-    const extraFields = this.getExtraFields();
-    return !!extraFields.color && !!extraFields.dateFrom && !!extraFields.dateTo && !!extraFields.tariff;
-  }
-
   public getExtraFields(): IExtraFields {
     return this._extraFields.getValue();
+  }
+
+  private resetCarModel() {
+    this.changeCarModel(NO_MODEL);
+    this._modelStore.changeActiveCar('');
+  }
+
+  private resetExtraField() {
+    this.changeExtraField(NO_EXTRA);
   }
 }
