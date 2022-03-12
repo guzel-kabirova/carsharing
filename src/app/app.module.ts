@@ -39,6 +39,7 @@ import {ResetComponent} from './shared/components/buttons/reset/reset.component'
 import {CheckboxComponent} from './shared/components/checkbox/checkbox.component';
 import {DialogConfirmComponent} from './order-page/steps/step-final/dialog-confirm/dialog-confirm.component';
 import {environment} from '../environments/environment';
+import {PreloaderComponent} from './shared/components/preloader/preloader.component';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -83,6 +84,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ResetComponent,
     CheckboxComponent,
     DialogConfirmComponent,
+    PreloaderComponent,
   ],
   imports: [
     BrowserModule,
