@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import {COLORS, SERVICES, TARIFFS} from './step-extra.const';
+import {COLORS, DATE_REGEX, SERVICES, TARIFFS} from './step-extra.const';
 import {StepExtraFacadeService} from './services/step-extra.facade.service';
 import {Extra} from './step-extra.enum';
 import {format} from 'date-fns';
@@ -30,8 +30,8 @@ export class StepExtraComponent implements OnInit {
   ngOnInit(): void {
     this.form = this._fb.group({
       color: ['', Validators.required],
-      dateFrom: ['', Validators.required],
-      dateTo: ['', Validators.required],
+      dateFrom: ['', [Validators.required, Validators.pattern(DATE_REGEX)]],
+      dateTo: ['', [Validators.required, Validators.pattern(DATE_REGEX)]],
       tariff: ['', Validators.required],
       fullTank: [false],
       babyChair: [false],

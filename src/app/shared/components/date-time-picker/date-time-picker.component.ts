@@ -60,7 +60,7 @@ export class DateTimePickerComponent implements OnInit {
   }
 
   public isToday(day: Date): boolean {
-    if (this.isAvailable(day)) {
+    if (this.isThisMonth(day)) {
       return format(new Date(), 'd.MM.yyyy') === format(day, 'd.MM.yyyy');
     }
     return false;
@@ -72,6 +72,14 @@ export class DateTimePickerComponent implements OnInit {
   }
 
   public isAvailable(day: Date): boolean {
+    return this.isThisMonth(day) && (DateTimePickerComponent.isBiggerToday(day) || this.isToday(day));
+  }
+
+  private static isBiggerToday(day: Date): boolean {
+    return day.getTime() > new Date().getTime();
+  }
+
+  public isThisMonth(day: Date): boolean {
     return day.getFullYear() !== 1970;
   }
 

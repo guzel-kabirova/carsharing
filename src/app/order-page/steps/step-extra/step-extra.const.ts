@@ -14,3 +14,5 @@ export const SERVICES = [
   {id: 'babyChair', name: 'Детское кресло, 200р'},
   {id: 'rightHand', name: 'Правый руль, 1600р'},
 ];
+
+export const DATE_REGEX = new RegExp('^(\\d{2}).(\\d{2}).(\\d{4}) (\\d{2}):(\\d{2})$')

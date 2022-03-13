@@ -27,7 +27,7 @@
            (mousedown)="preventMouseDown($event)"
            (click)="onDateClick(day)"
       >
-        {{isAvailable(day) ? day.getDate() : ''}}
+        {{isThisMonth(day) ? day.getDate() : ''}}
       </div>
     </ng-container>
   </div>

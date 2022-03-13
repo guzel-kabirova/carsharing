@@ -11,7 +11,14 @@
     </div>
 
     <div class="section">
-      <app-label labelId="date" labelText="Дата аренды"></app-label>
+      <div class="header">
+        <app-label labelId="date" labelText="Дата аренды"></app-label>
+
+        <div class="header__error" *ngIf="form.get('dateFrom')?.hasError('pattern') || form.get('dateTo')?.hasError('pattern')">
+          Введите дату в формате дд.мм.гггг чч:мм
+        </div>
+      </div>
+
       <div class="section__field vertical inputs">
         <div class="wrapper">
           <app-label labelId="dateFrom" labelText="С"></app-label>

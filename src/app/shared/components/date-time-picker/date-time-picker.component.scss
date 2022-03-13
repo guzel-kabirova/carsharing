@@ -1,6 +1,6 @@
 .calendar {
   font: var(--font-interactive-text);
-  color: var(--color-gray);
+  color: var(--color-black);
   border: 1px solid var(--color-gray-light);
   background-color: var(--color-white);
   width: 224px;
@@ -42,7 +42,7 @@
   &__day {
     cursor: pointer;
 
-    &:hover {
+    &:not(.week__day_untouchable):hover {
       color: var(--color-black);
     }
 
@@ -57,6 +57,7 @@
 
     &_untouchable {
       cursor: default;
+      color: var(--color-gray-light);
     }
   }
 }
