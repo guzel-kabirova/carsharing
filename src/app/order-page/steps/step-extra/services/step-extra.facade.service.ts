@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
+
 import {StepsStateService} from '../../services/steps.state.service';
-import {IExtraFields} from '../step-extra.interface';
+import {IDuration, IExtraFields} from '../step-extra.interface';
 
 @Injectable({providedIn: 'root'})
 export class StepExtraFacadeService {
@@ -10,5 +11,9 @@ export class StepExtraFacadeService {
 
   changeExtraField(value: IExtraFields) {
     this._state.changeExtraField(value);
+  }
+
+  changeDuration(duration: IDuration) {
+    this._state.changeDuration(duration);
   }
 }

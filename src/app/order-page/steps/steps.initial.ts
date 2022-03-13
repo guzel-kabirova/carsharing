@@ -1,6 +1,6 @@
 import {ILocation, TStepsState} from './steps.interface';
 import {CarModel} from './step-model/step-model.interface';
-import {IExtraFields} from './step-extra/step-extra.interface';
+import {IDuration, IExtraFields} from './step-extra/step-extra.interface';
 
 export const NO_LOCATION: ILocation = {
   city: '',
@@ -23,4 +23,13 @@ export const NO_EXTRA: IExtraFields = {
   dateFrom: '',
   dateTo: '',
   tariff: '',
+};
+
+export const ZERO_DURATION: IDuration = {
+  days: 0,
+  hours: 0,
+  minutes: 0,
+  months: 0,
+  seconds: 0,
+  years: 0,
 };

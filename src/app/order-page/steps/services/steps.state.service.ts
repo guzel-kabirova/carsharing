@@ -2,10 +2,10 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 import {ILocation, TStepsState} from '../steps.interface';
-import {NO_EXTRA, NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL} from '../steps.initial';
+import {NO_EXTRA, NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL, ZERO_DURATION} from '../steps.initial';
 import {CarModel} from '../step-model/step-model.interface';
-import {IExtraFields} from '../step-extra/step-extra.interface';
-import {unique} from '../../../shared/utility/unique';
+import {IDuration, IExtraFields} from '../step-extra/step-extra.interface';
+import {uniqArray} from '../../../shared/utility/uniq-array';
 import {StepModelStoreService} from '../step-model/services/step-model.store.service';
 
 @Injectable({
@@ -26,6 +26,9 @@ export class StepsStateService {
 
   private _extraFields = new BehaviorSubject<IExtraFields>(NO_EXTRA);
   public extraFields$ = this._extraFields.asObservable();
+
+  private _duration = new BehaviorSubject<IDuration>(ZERO_DURATION);
+  public duration$ = this._duration.asObservable();
 
   constructor(private _modelStore: StepModelStoreService) { }
 
@@ -53,7 +56,7 @@ export class StepsStateService {
   public changeCarModel(car: CarModel) {
     let newCar = car;
     if (car.colors) {
-      newCar = {...car, colors: unique(car.colors)};
+      newCar = {...car, colors: uniqArray(car.colors)};
     }
     this._carModel.next(newCar);
     this.changeStepsState(1, this.isCarModelFull());
@@ -63,6 +66,10 @@ export class StepsStateService {
   public changeExtraField(value: IExtraFields) {
     this._extraFields.next(value);
     this.changeStepsState(2, this.isExtraFieldFull());
+  }
+
+  public changeDuration(duration: IDuration) {
+    this._duration.next(duration);
   }
 
   private isLocationFull(): boolean {

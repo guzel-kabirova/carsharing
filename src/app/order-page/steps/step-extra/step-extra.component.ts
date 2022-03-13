@@ -4,8 +4,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {COLORS, DATE_REGEX, SERVICES, TARIFFS} from './step-extra.const';
 import {StepExtraFacadeService} from './services/step-extra.facade.service';
 import {Extra} from './step-extra.enum';
-import {format} from 'date-fns';
-import {TDateFieldName} from './step-extra.interface';
+import {format, intervalToDuration} from 'date-fns';
+import {IDuration, TDateFieldName} from './step-extra.interface';
+import {ZERO_DURATION} from '../steps.initial';
 
 @Component({
   selector: 'app-step-extra',
@@ -21,6 +22,7 @@ export class StepExtraComponent implements OnInit {
   public carModel = this._facade.state.getCarModel();
   public isDateFromOpen = false;
   public isDateToOpen = false;
+  public isDatesIntervalOk = true;
 
   constructor(
     private _fb: FormBuilder,
@@ -53,6 +55,21 @@ export class StepExtraComponent implements OnInit {
     this.form?.patchValue({dateTo});
   }
 
+  setTime(dateName: TDateFieldName) {
+    const dateFrom = this.form?.get('dateFrom')?.value;
+    const dateTo = this.form?.get('dateTo')?.value;
+
+    if (dateName === 'dateFrom') {
+      this.form?.patchValue({dateFrom});
+    } else {
+      this.form?.patchValue({dateTo});
+    }
+
+    if (!(this.form?.get('dateFrom')?.hasError('pattern') || this.form?.get('dateTo')?.hasError('pattern'))) {
+      this.checkDates(dateFrom, dateTo);
+    }
+  }
+
   public setTariff(tariff: string) {
     this.form?.patchValue({tariff});
   }
@@ -82,10 +99,31 @@ export class StepExtraComponent implements OnInit {
   }
 
   public resetDate(dateName: TDateFieldName) {
-    if(dateName === 'dateFrom') {
+    if (dateName === 'dateFrom') {
       this.form?.patchValue({dateFrom: ''});
     } else {
       this.form?.patchValue({dateTo: ''});
     }
+    this._facade.changeDuration(ZERO_DURATION);
+  }
+
+  private checkDates(dateFrom: string, dateTo: string) {
+    if (dateFrom && dateTo) {
+      const dateFromUnix = StepExtraComponent.getUnixTime(dateFrom);
+      const dateToUnix = StepExtraComponent.getUnixTime(dateTo);
+      this.isDatesIntervalOk = dateFromUnix < dateToUnix;
+      const duration = intervalToDuration({start: dateFromUnix, end: dateToUnix}) as IDuration;
+      this.setDuration(duration);
+    }
+  }
+
+  private setDuration(duration: IDuration) {
+    this.isDatesIntervalOk && this._facade.changeDuration(duration);
+  }
+
+  private static getUnixTime(date: string): number {
+    const [year, month, day] = date.split(' ')[0].split('.').reverse().map(Number);
+    const [hour, minute] = date.split(' ')[1].split(':').map(Number);
+    return new Date(year, month - 1, day, hour, minute).getTime();
   }
 }

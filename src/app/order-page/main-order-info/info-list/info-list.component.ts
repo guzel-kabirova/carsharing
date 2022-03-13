@@ -14,6 +14,7 @@ export class InfoListComponent {
   public location$ = this._state.location$;
   public carModel$ = this._state.carModel$;
   public extraFields$ = this._state.extraFields$;
+  public duration$ = this._state.duration$;
   public tariff = Tariff;
 
   constructor(private _state: StepsStateService) { }
