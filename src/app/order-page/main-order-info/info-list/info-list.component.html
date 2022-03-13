@@ -7,15 +7,15 @@
     </ng-container>
 
     <ng-container *ngIf="state[1]">
-      <li class="info__item" *ngIf="carModel$ | async as carModel">Модель<span
+      <li class="info__item" *ngIf="carModel">Модель<span
         class="info__value">{{carModel.name}}, {{carModel.number}}</span></li>
     </ng-container>
 
-    <ng-container *ngIf="extraFields$ | async as extraFields">
+    <ng-container *ngIf="extraFields">
       <li class="info__item" *ngIf="extraFields.color">Цвет<span
         class="info__value">{{extraFields.color}}</span></li>
 
-      <ng-container *ngIf="duration$ | async as duration">
+      <ng-container *ngIf="duration">
         <li class="info__item"
             *ngIf="duration.years || duration.months || duration.days || duration.hours || duration.minutes">
           Длительность аренды
@@ -47,10 +47,11 @@
     </ng-container>
   </ul>
 
-  <ng-container *ngIf="carModel$ | async as carModel">
+  <ng-container *ngIf="carModel">
     <div class="result" *ngIf="state[1]; else noPrice">
-      <span class="result__subtitle">Цена: </span><span class="result__text">от {{carModel.priceMin}}
-      до {{carModel.priceMax}} ₽</span>
+      <span class="result__subtitle">Цена: </span>
+      <span class="result__text" *ngIf="!state[2]">от {{carModel.priceMin}} до {{carModel.priceMax}} ₽</span>
+      <span class="result__text" *ngIf="state[2]">{{price}} ₽</span>
     </div>
 
     <ng-template #noPrice>
