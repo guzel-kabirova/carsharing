@@ -15,4 +15,3 @@ export const SERVICES = [
   {id: 'rightHand', name: 'Правый руль, 1600р'},
 ];
 
-export const DATE_REGEX = new RegExp('^(\\d{2}).(\\d{2}).(\\d{4}) (\\d{2}):(\\d{2})$')

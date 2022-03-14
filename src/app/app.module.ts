@@ -3,9 +3,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TUI_SANITIZER, TuiDialogModule, TuiNotificationsModule, TuiRootModule} from '@taiga-ui/core';
 import {NgModule, Provider} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AgmCoreModule} from '@agm/core';
+import {TuiInputDateTimeModule} from '@taiga-ui/kit';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -43,7 +44,6 @@ import {CheckboxComponent} from './shared/components/checkbox/checkbox.component
 import {DialogConfirmComponent} from './order-page/steps/step-final/dialog-confirm/dialog-confirm.component';
 import {environment} from '../environments/environment';
 import {PreloaderComponent} from './shared/components/preloader/preloader.component';
-import {DateTimePickerComponent} from './shared/components/date-time-picker/date-time-picker.component';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -89,7 +89,6 @@ const INTERCEPTOR_PROVIDER: Provider = {
     CheckboxComponent,
     DialogConfirmComponent,
     PreloaderComponent,
-    DateTimePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,12 +98,15 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AppRoutingModule,
     IconModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
 
     TuiRootModule,
     BrowserAnimationsModule,
     TuiDialogModule,
     TuiNotificationsModule,
+
+    TuiInputDateTimeModule,
   ],
   providers: [
     ICONS_PROVIDER,

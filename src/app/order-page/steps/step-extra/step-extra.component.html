@@ -14,40 +14,26 @@
       <div class="header">
         <app-label labelId="date" labelText="Дата аренды"></app-label>
 
-        <div class="header__error"
-             *ngIf="form.get('dateFrom')?.hasError('pattern') || form.get('dateTo')?.hasError('pattern')">
-          Введите дату в формате дд.мм.гггг чч:мм
-        </div>
         <div class="header__error" *ngIf="!isDatesIntervalOk">
           Начало даты аренды должно быть раньше окончания даты аренды
         </div>
       </div>
 
       <div class="section__field vertical inputs">
-        <div class="wrapper">
+        <div>
           <app-label labelId="dateFrom" labelText="С"></app-label>
-          <app-date-time-picker (selectDate)="setDateFrom($event)" [isOpen]="isDateFromOpen"
-                                (closeCalendar)="isDateFromOpen = false">
-            <input app-input placeholder="Введите дату и время" type="datetime" id="dateFrom"
-                   formControlName="dateFrom" autocomplete="off"
-                   (click)="isDateFromOpen = !isDateFromOpen"
-                   (change)="setTime('dateFrom')"
-            >
-            <app-reset [value]="form.get('dateFrom')?.value" (click)="resetDate('dateFrom')"></app-reset>
-          </app-date-time-picker>
+          <tui-input-date-time formControlName="dateFrom" class="date-picker-input">
+            Введите дату и время
+          </tui-input-date-time>
+          <app-reset [value]="form.get('dateFrom')?.value" (click)="resetDate('dateFrom')"></app-reset>
         </div>
 
-        <div class="wrapper">
+        <div>
           <app-label labelId="dateTo" labelText="По"></app-label>
-          <app-date-time-picker (selectDate)="setDateTo($event)" [isOpen]="isDateToOpen"
-                                (closeCalendar)="isDateToOpen = false">
-            <input app-input placeholder="Введите дату и время" type="datetime" id="dateTo"
-                   formControlName="dateTo" autocomplete="off"
-                   (click)="isDateToOpen = !isDateToOpen"
-                   (change)="setTime('dateTo')"
-            >
-            <app-reset [value]="form.get('dateTo')?.value" (click)="resetDate('dateTo')"></app-reset>
-          </app-date-time-picker>
+          <tui-input-date-time formControlName="dateTo" class="date-picker-input">
+            Введите дату и время
+          </tui-input-date-time>
+          <app-reset [value]="form.get('dateFrom')?.value" (click)="resetDate('dateFrom')"></app-reset>
         </div>
       </div>
     </div>

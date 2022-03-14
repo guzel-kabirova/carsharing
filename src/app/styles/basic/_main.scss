@@ -45,3 +45,64 @@ img {
 hr {
   margin: 0;
 }
+
+tui-wrapper.tui-autofill {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  color: var(--color-black);
+  font: var(--font-interactive-text);
+  background: var(--color-white);
+  position: relative;
+
+  &:after {
+    display: none;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 15%;
+    width: 100%;
+    border-bottom: 1px solid var(--color-gray);
+  }
+
+  &[data-state='hovered'] {
+    background: none;
+    box-shadow: none;
+  }
+
+  &[data-state='pressed'] {
+    background: none;
+    box-shadow: none;
+  }
+
+  &._focused {
+    background: none;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  &._invalid {
+    label {
+      color: var(--color-danger) !important;
+    }
+
+    &:after {
+      display: none;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 15%;
+      width: 100%;
+      border-bottom: 1px solid var(--color-danger);
+    }
+  }
+}
+
+.t-icon {
+  display: none !important;
+}

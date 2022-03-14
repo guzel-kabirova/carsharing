@@ -26,6 +26,7 @@
   --color-black: #121212;
   --color-black-blue: #151B1F;
   --color-main-accent: #0EC261;
+  --color-main-accent-hover: #BAEDD2;
   --color-blue: #007BFF;
   --color-gray: #999999;
   --color-gray-light: #EEEEEE;
@@ -35,4 +36,10 @@
   --color-gradient-btn-red: linear-gradient(to right, #493013, var(--color-danger));
   --color-gradient-btn-green-landing: linear-gradient(to right, #13493F, #0C7B1B);
   --color-text-btn: var(--color-white);
+
+  --tui-link: var(--color-main-accent);
+  --tui-primary: var(--color-main-accent);
+  --tui-primary-hover: var(--color-main-accent-hover);
+  --tui-link-hover: var(--color-main-accent-hover);
+  --tui-secondary-hover: var(--color-main-accent-hover);
 }
