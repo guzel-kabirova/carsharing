@@ -1,3 +1,6 @@
+import {NgDompurifySanitizer} from '@tinkoff/ng-dompurify';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TUI_SANITIZER, TuiDialogModule, TuiNotificationsModule, TuiRootModule} from '@taiga-ui/core';
 import {NgModule, Provider} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -97,10 +100,16 @@ const INTERCEPTOR_PROVIDER: Provider = {
     IconModule,
     ReactiveFormsModule,
     HttpClientModule,
+
+    TuiRootModule,
+    BrowserAnimationsModule,
+    TuiDialogModule,
+    TuiNotificationsModule,
   ],
   providers: [
     ICONS_PROVIDER,
     INTERCEPTOR_PROVIDER,
+    {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer},
   ],
   bootstrap: [AppComponent],
 })
