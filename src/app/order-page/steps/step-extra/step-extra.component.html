@@ -3,8 +3,10 @@
     <div class="section" *ngIf="carModel.colors">
       <app-label labelId="color" labelText="Цвет"></app-label>
       <div class="section__field horizontal">
-        <app-radio-button *ngFor="let color of carModel.colors" [item]="{id: color, name: color}"
-                          groupName="colors"
+        <app-radio-button groupName="colors"
+                          *ngFor="let color of carModel.colors"
+                          [item]="{id: color, name: color}"
+                          [checked]="color === form.get('color')?.value"
                           (changeRadioBtn)="setColor($event)"
         ></app-radio-button>
       </div>
@@ -42,14 +44,17 @@
       <app-label labelId="tariff" labelText="Тариф"></app-label>
       <div class="section__field vertical">
         <app-radio-button *ngFor="let tariff of tariffs" [item]="tariff" groupName="tariffs"
-                          (changeRadioBtn)="setTariff($event)"></app-radio-button>
+                          (changeRadioBtn)="setTariff($event)"
+                          [checked]="tariff.id === form.get('tariff')?.value"
+        ></app-radio-button>
       </div>
     </div>
 
     <div class="section">
       <app-label labelId="service" labelText="Доп услуги"></app-label>
       <div class="section__field vertical">
-        <app-checkbox *ngFor="let service of services" [item]="service"
+        <app-checkbox *ngFor="let service of services; let i = index" [item]="service"
+                      [checked]="form.get(extra[i])?.value"
                       (changeCheckbox)="setExtra($event)"></app-checkbox>
       </div>
     </div>

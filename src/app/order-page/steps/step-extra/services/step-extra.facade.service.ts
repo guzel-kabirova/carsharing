@@ -16,4 +16,8 @@ export class StepExtraFacadeService {
   changeDuration(duration: IDuration) {
     this._state.changeDuration(duration);
   }
+
+  getExtraField(): IExtraFields {
+    return this._state.getExtraFields();
+  }
 }

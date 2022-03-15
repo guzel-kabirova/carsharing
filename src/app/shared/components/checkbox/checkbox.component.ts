@@ -15,6 +15,9 @@ export class CheckboxComponent {
   @Input()
   public item?: ICheckbox;
 
+  @Input()
+  public checked = false;
+
   @Output()
   changeCheckbox = new EventEmitter<string>();
 

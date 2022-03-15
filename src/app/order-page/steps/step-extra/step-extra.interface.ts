@@ -1,7 +1,9 @@
+import {TuiDay, TuiTime} from '@taiga-ui/cdk';
+
 export interface IExtraFields {
   color: string;
-  dateFrom: string;
-  dateTo: string;
+  dateFrom: [TuiDay, TuiTime] | null;
+  dateTo: [TuiDay, TuiTime] | null;
   tariff: string;
   fullTank?: boolean;
   babyChair?: boolean;
