@@ -37,9 +37,11 @@
   --color-gradient-btn-green-landing: linear-gradient(to right, #13493F, #0C7B1B);
   --color-text-btn: var(--color-white);
 
+  --tui-error-fill: var(--color-danger);
   --tui-link: var(--color-main-accent);
   --tui-primary: var(--color-main-accent);
   --tui-primary-hover: var(--color-main-accent-hover);
   --tui-link-hover: var(--color-main-accent-hover);
   --tui-secondary-hover: var(--color-main-accent-hover);
+  --tui-secondary-active: var(--color-main-accent-hover);
 }

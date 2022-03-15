@@ -7,6 +7,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AgmCoreModule} from '@agm/core';
 import {TuiInputDateTimeModule} from '@taiga-ui/kit';
+import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n';
+import {of} from 'rxjs';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -112,6 +114,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     ICONS_PROVIDER,
     INTERCEPTOR_PROVIDER,
     {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer},
+    {provide: TUI_LANGUAGE, useValue: of(TUI_RUSSIAN_LANGUAGE)},
   ],
   bootstrap: [AppComponent],
 })
