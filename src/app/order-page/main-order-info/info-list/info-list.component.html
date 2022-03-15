@@ -15,19 +15,17 @@
       <li class="info__item" *ngIf="extraFields.color">Цвет<span
         class="info__value">{{extraFields.color}}</span></li>
 
-      <ng-container *ngIf="duration">
-        <li class="info__item"
-            *ngIf="duration.years || duration.months || duration.days || duration.hours || duration.minutes">
-          Длительность аренды
-          <span class="info__value">
-            {{duration.years ? duration.years + 'г' : ''}}
-            {{duration.months ? duration.months + 'мес' : ''}}
-            {{duration.days ? duration.days + 'д' : ''}}
-            {{duration.hours ? duration.hours + 'ч' : ''}}
-            {{duration.minutes ? duration.minutes + 'мин' : ''}}
-          </span>
-        </li>
-      </ng-container>
+      <li class="info__item"
+          *ngIf="isDuration">
+        Длительность аренды
+        <span class="info__value">
+          {{years}}
+          {{months}}
+          {{days}}
+          {{hours}}
+          {{minutes}}
+        </span>
+      </li>
 
       <li class="info__item" *ngIf="extraFields.tariff">Тариф
         <ng-container [ngSwitch]="extraFields.tariff">

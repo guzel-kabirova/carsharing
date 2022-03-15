@@ -25,6 +25,30 @@ export class InfoListComponent implements OnInit {
 
   public price = 0;
 
+  get isDuration(): boolean {
+    return !!(this.duration && (this.duration.years || this.duration.months || this.duration.days || this.duration.hours || this.duration.minutes));
+  }
+
+  get years(): string {
+    return this.duration && this.duration.years ? this.duration.years + 'г' : '';
+  }
+
+  get months(): string {
+    return this.duration && this.duration.months ? this.duration.months + 'мес' : '';
+  }
+
+  get days(): string {
+    return this.duration && this.duration.days ? this.duration.days + 'д' : '';
+  }
+
+  get hours(): string {
+    return this.duration && this.duration.hours ? this.duration.hours + 'ч' : '';
+  }
+
+  get minutes(): string {
+    return this.duration && this.duration.minutes ? this.duration.minutes + 'мин' : '';
+  }
+
   constructor(
     @Inject(DestroyService) private destroy$: Observable<void>,
     private _state: StepsStateService,

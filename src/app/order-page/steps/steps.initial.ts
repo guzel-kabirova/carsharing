@@ -23,6 +23,9 @@ export const NO_EXTRA: IExtraFields = {
   dateFrom: null,
   dateTo: null,
   tariff: '',
+  fullTank: false,
+  babyChair: false,
+  rightHand: false,
 };
 
 export const ZERO_DURATION: IDuration = {

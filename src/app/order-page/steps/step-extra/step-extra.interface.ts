@@ -5,9 +5,9 @@ export interface IExtraFields {
   dateFrom: [TuiDay, TuiTime] | null;
   dateTo: [TuiDay, TuiTime] | null;
   tariff: string;
-  fullTank?: boolean;
-  babyChair?: boolean;
-  rightHand?: boolean;
+  fullTank: boolean;
+  babyChair: boolean;
+  rightHand: boolean;
 }
 
 export type TDateFieldName = 'dateFrom' | 'dateTo'
