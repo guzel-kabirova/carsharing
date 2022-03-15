@@ -1,11 +1,12 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {intervalToDuration} from 'date-fns';
+import {TuiDay, TuiTime} from '@taiga-ui/cdk';
 
 import {COLORS, SERVICES, TARIFFS} from './step-extra.const';
 import {StepExtraFacadeService} from './services/step-extra.facade.service';
 import {Extra} from './step-extra.enum';
-import {IDuration, TDateFieldName} from './step-extra.interface';
-import {ZERO_DURATION} from '../steps.initial';
+import {IDuration} from './step-extra.interface';
 
 @Component({
   selector: 'app-step-extra',
@@ -28,6 +29,11 @@ export class StepExtraComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+   this.createForm();
+    this.form?.patchValue(this._facade.getExtraField());
+  }
+
+  private createForm() {
     this.form = this._fb.group({
       color: ['', Validators.required],
       dateFrom: [null, Validators.required],
@@ -37,8 +43,6 @@ export class StepExtraComponent implements OnInit {
       babyChair: [false],
       rightHand: [false],
     });
-
-    this.form.patchValue(this._facade.getExtraField());
   }
 
   public setColor(color: string) {
@@ -70,16 +74,40 @@ export class StepExtraComponent implements OnInit {
   }
 
   public changeExtraField() {
+    this.checkDates();
     this._facade.changeExtraField(this.form?.value);
+  }
+
+  private checkDates() {
+    const valueFrom = this.form?.get('dateFrom')?.value;
+    const valueTo = this.form?.get('dateTo')?.value;
+
+    if (valueFrom && valueTo) {
+      const dayFrom = valueFrom[0];
+      const dayTo = valueTo[0];
+      const timeFrom = valueFrom[1];
+      const timeTo = valueTo[1];
+
+      if(dayFrom && dayTo && timeFrom && timeTo) {
+        const dateFrom = this.dayTimeToUnix(dayFrom, timeFrom);
+        const dateTo = this.dayTimeToUnix(dayTo, timeTo);
+        this.setIsDatesIntervalOk(dateFrom, dateTo);
+
+        const duration = intervalToDuration({start: dateFrom, end: dateTo}) as IDuration;
+        this.setDuration(duration);
+      }
+    }
+  }
+
+  private dayTimeToUnix(day: TuiDay, time: TuiTime): number {
+    return day.toLocalNativeDate().getTime() + time.toAbsoluteMilliseconds();
+  }
+
+  private setIsDatesIntervalOk(dateFrom: number, dateTo: number) {
+    this.isDatesIntervalOk = dateFrom <= dateTo;
   }
 
   private setDuration(duration: IDuration) {
     this.isDatesIntervalOk && this._facade.changeDuration(duration);
-  }
-
-  private static getUnixTime(date: string): number {
-    const [year, month, day] = date.split(' ')[0].split('.').reverse().map(Number);
-    const [hour, minute] = date.split(' ')[1].split(':').map(Number);
-    return new Date(year, month - 1, day, hour, minute).getTime();
   }
 }
