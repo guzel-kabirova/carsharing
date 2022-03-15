@@ -55,23 +55,14 @@ export class InfoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._state.carModel$
-      .pipe(takeUntil(this.destroy$), tap(carModel => {
-        this.carModel = carModel;
-        this.setCarPrice();
-      }))
-      .subscribe();
-    this._state.extraFields$
-      .pipe(takeUntil(this.destroy$), tap(extraFields => {
-        this.extraFields = extraFields;
-        this.setCarPrice();
-      }))
-      .subscribe();
-    this._state.duration$
-      .pipe(takeUntil(this.destroy$), tap(duration => {
-        this.duration = duration;
-        this.setCarPrice();
-      }))
+    this._state.view$
+      .pipe(takeUntil(this.destroy$),
+        tap(view => {
+          this.carModel = view.carModel;
+          this.extraFields = view.extraFields;
+          this.duration = view.duration;
+          this.setCarPrice();
+        }))
       .subscribe();
   }
 
