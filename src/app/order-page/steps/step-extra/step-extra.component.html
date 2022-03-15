@@ -22,20 +22,18 @@
       </div>
 
       <div class="section__field vertical inputs">
-        <div>
+        <div class="wrapper-input">
           <app-label labelId="dateFrom" labelText="С"></app-label>
-          <tui-input-date-time formControlName="dateFrom" class="date-picker-input">
+          <tui-input-date-time formControlName="dateFrom" class="date-picker-input" [tuiTextfieldCleaner]="true">
             Введите дату и время
           </tui-input-date-time>
-          <app-reset [value]="form.get('dateFrom')?.value" (click)="resetDate('dateFrom')"></app-reset>
         </div>
 
-        <div>
+        <div class="wrapper-input">
           <app-label labelId="dateTo" labelText="По"></app-label>
-          <tui-input-date-time formControlName="dateTo" class="date-picker-input">
+          <tui-input-date-time formControlName="dateTo" class="date-picker-input" [tuiTextfieldCleaner]="true">
             Введите дату и время
           </tui-input-date-time>
-          <app-reset [value]="form.get('dateFrom')?.value" (click)="resetDate('dateFrom')"></app-reset>
         </div>
       </div>
     </div>

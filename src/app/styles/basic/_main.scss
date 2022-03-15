@@ -106,3 +106,13 @@ tui-wrapper.tui-autofill {
 .t-icon {
   display: none !important;
 }
+
+.t-input {
+  border-right: 0 !important;
+}
+
+tui-svg {
+  svg {
+    color: var(--color-black);
+  }
+}

@@ -73,15 +73,6 @@ export class StepExtraComponent implements OnInit {
     this._facade.changeExtraField(this.form?.value);
   }
 
-  public resetDate(dateName: TDateFieldName) {
-    if (dateName === 'dateFrom') {
-      this.form?.patchValue({dateFrom: ''});
-    } else {
-      this.form?.patchValue({dateTo: ''});
-    }
-    this._facade.changeDuration(ZERO_DURATION);
-  }
-
   private setDuration(duration: IDuration) {
     this.isDatesIntervalOk && this._facade.changeDuration(duration);
   }
