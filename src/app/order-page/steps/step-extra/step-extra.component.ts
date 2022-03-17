@@ -21,6 +21,7 @@ export class StepExtraComponent implements OnInit {
   public carModel = this._facade.state.getCarModel();
   public isDatesIntervalOk = true;
   public extra = [Extra.FullTank, Extra.BabyChair, Extra.RightHand];
+  public now!: TuiDay;
 
   constructor(
     private _fb: FormBuilder,
@@ -28,8 +29,17 @@ export class StepExtraComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.setStartDate();
     this.createForm();
     this.form?.patchValue(this._facade.getExtraField());
+  }
+
+  private setStartDate() {
+    const today = new Date();
+    const todayYear = today.getFullYear();
+    const todayMonth = today.getMonth();
+    const todayDay = today.getDate();
+    this.now = new TuiDay(todayYear, todayMonth, todayDay);
   }
 
   private createForm() {
