@@ -7,6 +7,7 @@ import {Step} from './order-page.enum';
 import {StepModelApiService} from './steps/step-model/services/step-model.api.service';
 import {DestroyService} from '../shared/services/destroy.service';
 import {PreloaderService} from '../shared/components/preloader/preloader.service';
+import {StepExtraApiService} from './steps/step-extra/services/step-extra.api.service';
 
 @Component({
   selector: 'app-order-page',
@@ -23,14 +24,18 @@ export class OrderPageComponent implements OnInit {
   constructor(
     @Inject(DestroyService) private destroy$: Observable<void>,
     private _steps: StepsStateService,
-    private _api: StepModelApiService,
+    private _apiModel: StepModelApiService,
     private _preloader: PreloaderService,
+    private _apiExtra: StepExtraApiService,
   ) { }
 
   ngOnInit(): void {
     this._preloader.loadingOn();
-    this._api.getCars()
+    this._apiModel.getCars()
       .pipe(takeUntil(this.destroy$), tap(() => this._preloader.loadingOff()))
+      .subscribe();
+    this._apiExtra.getTariffs()
+      .pipe(takeUntil(this.destroy$))
       .subscribe();
   }
 

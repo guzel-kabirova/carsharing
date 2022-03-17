@@ -29,8 +29,10 @@
 
       <li class="info__item" *ngIf="extraFields.tariff">Тариф
         <ng-container [ngSwitch]="extraFields.tariff">
-          <span class="info__value" *ngSwitchCase="tariff.Minute">Поминутно</span>
           <span class="info__value" *ngSwitchCase="tariff.Day">На сутки</span>
+          <span class="info__value" *ngSwitchCase="tariff.Week">На неделю</span>
+          <span class="info__value" *ngSwitchCase="tariff.Month">На месяц</span>
+          <span class="info__value" *ngSwitchCase="tariff.Minute">Поминутно</span>
         </ng-container>
       </li>
 

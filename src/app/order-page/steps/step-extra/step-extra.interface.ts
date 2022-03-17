@@ -28,3 +28,14 @@ export interface IView {
   extraFields: IExtraFields,
   duration: IDuration,
 }
+
+export interface ITariff {
+  id: string;
+  price: number;
+  rateTypeId: IRateType;
+}
+
+export interface IRateType {
+  name: string;
+  unit: string;
+}

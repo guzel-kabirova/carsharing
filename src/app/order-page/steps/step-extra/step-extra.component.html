@@ -41,7 +41,9 @@
     <div class="section">
       <app-label labelId="tariff" labelText="Тариф"></app-label>
       <div class="section__field vertical">
-        <app-radio-button *ngFor="let tariff of tariffs" [item]="tariff" groupName="tariffs"
+        <app-radio-button groupName="tariffs"
+                          *ngFor="let tariff of tariffs"
+                          [item]="{id: tariff.id, name: tariff.rateTypeId.name + ', ' + tariff.price + '₽/' + tariff.rateTypeId.unit}"
                           (changeRadioBtn)="setTariff($event)"
                           [checked]="tariff.id === form.get('tariff')?.value"
         ></app-radio-button>

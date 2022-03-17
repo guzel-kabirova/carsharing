@@ -6,7 +6,8 @@ import {StepsStateService} from '../../steps/services/steps.state.service';
 import {Tariff} from '../../steps/step-extra/step-extra.enum';
 import {CarModel} from '../../steps/step-model/step-model.interface';
 import {DestroyService} from '../../../shared/services/destroy.service';
-import {IDuration, IExtraFields} from '../../steps/step-extra/step-extra.interface';
+import {IDuration, IExtraFields, ITariff} from '../../steps/step-extra/step-extra.interface';
+import {StepExtraFacadeService} from '../../steps/step-extra/services/step-extra.facade.service';
 
 @Component({
   selector: 'app-info-list',
@@ -22,6 +23,7 @@ export class InfoListComponent implements OnInit {
   public extraFields?: IExtraFields;
   public duration?: IDuration;
   public tariff = Tariff;
+  private tariffs: ITariff[] = [];
 
   public price = 0;
 
@@ -52,6 +54,7 @@ export class InfoListComponent implements OnInit {
   constructor(
     @Inject(DestroyService) private destroy$: Observable<void>,
     private _state: StepsStateService,
+    private _facade: StepExtraFacadeService,
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +67,10 @@ export class InfoListComponent implements OnInit {
           this.setCarPrice();
         }))
       .subscribe();
+
+    this._facade.getTariffsStream()
+      .pipe(tap(tariffs => this.tariffs = tariffs), takeUntil(this.destroy$))
+      .subscribe();
   }
 
   private setCarPrice() {
@@ -71,7 +78,7 @@ export class InfoListComponent implements OnInit {
   }
 
   private calculatedPrice(): number {
-    return this.getCarPriceMin() + this.getTariffPrice() + this.getExtraPrice();
+    return this.getCarPriceMin() + this.getTotalTariffPrice() + this.getExtraPrice();
   }
 
   private getCarPriceMin(): number {
@@ -82,12 +89,24 @@ export class InfoListComponent implements OnInit {
     return this.carModel?.priceMax ?? 0;
   }
 
-  private getTariffPrice(): number {
-    if (this.extraFields?.tariff === this.tariff.Minute) {
-      return 7 * ((this.duration?.minutes ?? 0) + (this.duration?.days ?? 0) * 24 * 60) + ((this.duration?.hours ?? 0) * 60);
-    } else {
-      return 1999 * (this.duration?.days ?? 0);
+  private getTotalTariffPrice(): number {
+    switch (this.extraFields?.tariff) {
+      case this.tariff.Minute:
+        return this.getTariffPrice(this.tariff.Minute) * ((this.duration?.minutes ?? 0) + (this.duration?.hours ?? 0) * 60 + (this.duration?.days ?? 0) * 24 * 60);
+      case this.tariff.Month:
+        return this.getTariffPrice(this.tariff.Month) * ((this.duration?.months ?? 0) + (this.duration?.years ?? 0) * 12);
+      case this.tariff.Week:
+        return this.getTariffPrice(this.tariff.Week) * ((this.duration?.days ?? 0) / 7 + (this.duration?.months ?? 0) * 4 + (this.duration?.years ?? 0) * 52);
+      case this.tariff.Day:
+        return this.getTariffPrice(this.tariff.Day) * ((this.duration?.days ?? 0) + (this.duration?.months ?? 0) * 30);
+      default:
+        return 0;
     }
+  }
+
+  private getTariffPrice(tariffId: Tariff): number {
+    const index = this.tariffs.map(tariff => tariff.id).indexOf(tariffId);
+    return this.tariffs[index].price;
   }
 
   private getExtraPrice(): number {

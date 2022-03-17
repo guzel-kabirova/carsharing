@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {intervalToDuration} from 'date-fns';
 import {TuiDay, TuiTime} from '@taiga-ui/cdk';
 
-import {COLORS, SERVICES, TARIFFS} from './step-extra.const';
+import {SERVICES} from './step-extra.const';
 import {StepExtraFacadeService} from './services/step-extra.facade.service';
 import {Extra} from './step-extra.enum';
 import {IDuration} from './step-extra.interface';
@@ -16,8 +16,7 @@ import {IDuration} from './step-extra.interface';
 })
 export class StepExtraComponent implements OnInit {
   public form?: FormGroup;
-  public colors = COLORS;
-  public tariffs = TARIFFS;
+  public tariffs = this._facade.getTariffs();
   public services = SERVICES;
   public carModel = this._facade.state.getCarModel();
   public isDatesIntervalOk = true;
@@ -29,7 +28,7 @@ export class StepExtraComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   this.createForm();
+    this.createForm();
     this.form?.patchValue(this._facade.getExtraField());
   }
 
@@ -88,7 +87,7 @@ export class StepExtraComponent implements OnInit {
       const timeFrom = valueFrom[1];
       const timeTo = valueTo[1];
 
-      if(dayFrom && dayTo && timeFrom && timeTo) {
+      if (dayFrom && dayTo && timeFrom && timeTo) {
         const dateFrom = this.dayTimeToUnix(dayFrom, timeFrom);
         const dateTo = this.dayTimeToUnix(dayTo, timeTo);
         this.setIsDatesIntervalOk(dateFrom, dateTo);
