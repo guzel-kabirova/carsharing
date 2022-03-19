@@ -79,11 +79,25 @@ export class InfoListComponent implements OnInit {
   }
 
   private setCarPrice() {
-    this.price = this.calculatedPrice() < this.getCarPriceMax() ? this.calculatedPrice() : this.getCarPriceMax();
+    const min = this.getCarPriceMin();
+    const max = this.getCarPriceMax();
+    const current = this.calculatedPrice();
+
+    switch (true) {
+      case min > current:
+        this.price = min;
+        break;
+      case current > max:
+        this.price = max;
+        break;
+      default:
+        this.price = current;
+        break;
+    }
   }
 
   private calculatedPrice(): number {
-    return this.getCarPriceMin() + this.getTotalTariffPrice() + this.getExtraPrice();
+    return this.getTotalTariffPrice() + this.getExtraPrice();
   }
 
   private getCarPriceMin(): number {
