@@ -1,6 +1,6 @@
-import {CityPointsCoordinates} from './step-location.interface';
+import {ICityPointsCoordinates} from './step-location.interface';
 
-export const COORDINATES: CityPointsCoordinates[] = [
+export const COORDINATES: ICityPointsCoordinates[] = [
   {
     cityName: 'Уфа',
     points: [{id: '60bb074b2aed9a0b9b82fc71', address: 'ул. Чернышевского, д. 88', lat: 54.820480, lng: 56.122720}],

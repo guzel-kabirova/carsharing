@@ -8,6 +8,7 @@ import {CarModel} from '../../steps/step-model/step-model.interface';
 import {DestroyService} from '../../../shared/services/destroy.service';
 import {IDuration, IExtraFields, ITariff} from '../../steps/step-extra/step-extra.interface';
 import {StepExtraFacadeService} from '../../steps/step-extra/services/step-extra.facade.service';
+import {ExtraServicePrice} from './info-list.const';
 
 @Component({
   selector: 'app-info-list',
@@ -32,23 +33,27 @@ export class InfoListComponent implements OnInit {
   }
 
   get years(): string {
-    return this.duration && this.duration.years ? this.duration.years + 'г' : '';
+    return this.duration?.years ? `${this.duration?.years}г` : '';
   }
 
   get months(): string {
-    return this.duration && this.duration.months ? this.duration.months + 'мес' : '';
+    return this.duration?.months ? `${this.duration?.months}мес` : '';
   }
 
   get days(): string {
-    return this.duration && this.duration.days ? this.duration.days + 'д' : '';
+    return this.duration?.days ? `${this.duration?.days}д` : '';
   }
 
   get hours(): string {
-    return this.duration && this.duration.hours ? this.duration.hours + 'ч' : '';
+    return this.duration?.hours ? `${this.duration?.hours}ч` : '';
   }
 
   get minutes(): string {
-    return this.duration && this.duration.minutes ? this.duration.minutes + 'мин' : '';
+    return this.duration?.minutes ? `${this.duration?.minutes}мин` : '';
+  }
+
+  get durationValue(): string {
+    return this.years + ' ' + this.months + ' ' + this.days + ' ' + this.hours + ' ' + this.minutes;
   }
 
   constructor(
@@ -114,14 +119,14 @@ export class InfoListComponent implements OnInit {
   }
 
   private getFullTankPrice(): number {
-    return this.extraFields?.fullTank ? 500 : 0;
+    return this.extraFields?.fullTank ? ExtraServicePrice.FullTank : 0;
   }
 
   private getBabyChairPrice(): number {
-    return this.extraFields?.babyChair ? 200 : 0;
+    return this.extraFields?.babyChair ? ExtraServicePrice.BabyChair : 0;
   }
 
   private getRightHandPrice(): number {
-    return this.extraFields?.rightHand ? 1600 : 0;
+    return this.extraFields?.rightHand ? ExtraServicePrice.RightHand : 0;
   }
 }

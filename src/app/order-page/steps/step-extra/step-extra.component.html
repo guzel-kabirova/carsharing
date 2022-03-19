@@ -24,7 +24,9 @@
       <div class="section__field vertical inputs">
         <div class="wrapper-input">
           <app-label labelId="dateFrom" labelText="С"></app-label>
-          <tui-input-date-time formControlName="dateFrom" class="date-picker-input" [tuiTextfieldCleaner]="true"
+          <tui-input-date-time formControlName="dateFrom"
+                               class="date-picker-input" tuiTextfieldSize="s"
+                               [tuiTextfieldCleaner]="true"
                                [min]="now">
             Введите дату и время
           </tui-input-date-time>
@@ -32,7 +34,9 @@
 
         <div class="wrapper-input">
           <app-label labelId="dateTo" labelText="По"></app-label>
-          <tui-input-date-time formControlName="dateTo" class="date-picker-input" [tuiTextfieldCleaner]="true"
+          <tui-input-date-time formControlName="dateTo"
+                               class="date-picker-input" tuiTextfieldSize="s"
+                               [tuiTextfieldCleaner]="true"
                                [min]="now">
             Введите дату и время
           </tui-input-date-time>

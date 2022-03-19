@@ -28,21 +28,17 @@ export class PointsOfIssueModel {
   }
 }
 
-export interface MapEvent {
-  coords: Coordinates;
+export interface ICoordinates {
+  lat: number;
+  lng: number;
 }
 
-export interface Coordinates {
-  lat: number,
-  lng: number
-}
-
-export interface CityPointsCoordinates {
+export interface ICityPointsCoordinates {
   cityName: string;
-  points: PointCoordinates[];
+  points: IPointCoordinates[];
 }
 
-export interface PointCoordinates extends Coordinates {
+export interface IPointCoordinates extends ICoordinates {
   id: string;
   address: string;
 }

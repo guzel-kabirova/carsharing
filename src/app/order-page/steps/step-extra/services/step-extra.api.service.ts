@@ -19,7 +19,8 @@ export class StepExtraApiService {
 
   getTariffs(): Observable<ITariff[]> {
     return this._http.get<IResponse<ITariff>>(`${API_URL}db/rate`)
-      .pipe(map(response => response.data),
+      .pipe(
+        map(response => response.data.filter(tariff => tariff.rateTypeId)),
         tap(tariff => this._store.setTariffs(tariff)),
       );
   }

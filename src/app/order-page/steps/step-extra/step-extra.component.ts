@@ -92,10 +92,8 @@ export class StepExtraComponent implements OnInit {
     const valueTo = this.form?.get('dateTo')?.value;
 
     if (valueFrom && valueTo) {
-      const dayFrom = valueFrom[0];
-      const dayTo = valueTo[0];
-      const timeFrom = valueFrom[1];
-      const timeTo = valueTo[1];
+      const [dayFrom, timeFrom] = valueFrom;
+      const [dayTo, timeTo] = valueTo;
 
       if (dayFrom && dayTo && timeFrom && timeTo) {
         const dateFrom = this.dayTimeToUnix(dayFrom, timeFrom);

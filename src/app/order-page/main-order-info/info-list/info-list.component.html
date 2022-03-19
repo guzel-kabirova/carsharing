@@ -18,13 +18,7 @@
       <li class="info__item"
           *ngIf="isDuration">
         Длительность аренды
-        <span class="info__value">
-          {{years}}
-          {{months}}
-          {{days}}
-          {{hours}}
-          {{minutes}}
-        </span>
+        <span class="info__value">{{durationValue}}</span>
       </li>
 
       <li class="info__item" *ngIf="extraFields.tariff">Тариф

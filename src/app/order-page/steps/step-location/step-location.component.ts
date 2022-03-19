@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 
 import {StepLocationFacadeServices} from './services/step-location.facade.services';
 import {DestroyService} from '../../../shared/services/destroy.service';
-import {PointCoordinates} from './step-location.interface';
+import {IPointCoordinates} from './step-location.interface';
 import {COORDINATES, DEFAULT_COORDINATES} from './step-location.const';
 
 @Component({
@@ -24,7 +24,7 @@ export class StepLocationComponent implements OnInit {
     .pipe(filter(() => this.isPointsInputClicked), map(points => points.map(point => point.address)));
 
   private coordinates = COORDINATES;
-  public pointsWithCoordinates?: PointCoordinates[];
+  public pointsWithCoordinates?: IPointCoordinates[];
   public latitude = DEFAULT_COORDINATES.lat;
   public longitude = DEFAULT_COORDINATES.lng;
 
