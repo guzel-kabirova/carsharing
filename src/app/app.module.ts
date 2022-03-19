@@ -11,10 +11,10 @@ import {NgModule, Provider} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {AgmCoreModule} from '@agm/core';
 import {TuiInputDateTimeModule} from '@taiga-ui/kit';
 import {TUI_LANGUAGE, TUI_RUSSIAN_LANGUAGE} from '@taiga-ui/i18n';
 import {of} from 'rxjs';
+import {AngularYandexMapsModule, YaConfig} from 'angular8-yandex-maps';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -64,6 +64,11 @@ const INTERCEPTOR_PROVIDER: Provider = {
   multi: true,
 };
 
+const mapConfig: YaConfig = {
+  apikey: environment.apiKeyMap,
+  lang: 'ru_RU',
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,9 +105,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
   ],
   imports: [
     BrowserModule,
-    AgmCoreModule.forRoot({
-      apiKey: environment.apiKeyMap,
-    }),
+    AngularYandexMapsModule.forRoot(mapConfig),
     AppRoutingModule,
     IconModule,
     ReactiveFormsModule,

@@ -33,16 +33,23 @@
 
     <div class="location__map">
       <app-label labelText="Выбрать на карте:"></app-label>
-      <agm-map [latitude]="latitude" [longitude]="longitude">
-        <ng-container *ngIf="pointsWithCoordinates?.length">
-          <agm-marker *ngFor="let point of pointsWithCoordinates"
-                      [latitude]="point.lat"
-                      [longitude]="point.lng"
-                      iconUrl="assets/icons/map-pin.svg">
-            <agm-info-window>{{point.address}}</agm-info-window>
-          </agm-marker>
-        </ng-container>
-      </agm-map>
+
+      <div class="container">
+        <ya-map [center]="[latitude, longitude]" [zoom]="12">
+          <ng-container *ngIf="pointsWithCoordinates?.length">
+            <ya-placemark class="pin"
+                          *ngFor="let point of pointsWithCoordinates"
+                          [geometry]="[point.lat, point.lng]"
+                          [properties]="{balloonContent: point.address}"
+                          [options]="{
+                          iconLayout: 'default#image',
+                          iconImageHref: './assets/icons/map-pin.svg',
+                          iconImageSize: [18, 18]
+                          }"
+            ></ya-placemark>
+          </ng-container>
+        </ya-map>
+      </div>
     </div>
   </form>
 </ng-container>

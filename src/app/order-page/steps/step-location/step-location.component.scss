@@ -18,7 +18,11 @@
   }
 }
 
-agm-map {
+.wrapper__input {
+  position: relative;
+}
+
+.container {
   outline: none;
   margin: 16px 0;
   width: 736px;
@@ -28,8 +32,4 @@ agm-map {
     width: 100%;
     height: 352px;
   }
-}
-
-.wrapper__input {
-  position: relative;
 }
