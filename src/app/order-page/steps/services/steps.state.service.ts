@@ -70,6 +70,7 @@ export class StepsStateService {
   public changeExtraField(value: IExtraFields) {
     this._extraFields.next(value);
     this.changeStepsState(2, this.isExtraFieldFull());
+    this.changeStepsState(3, this.isEverythingFull());
   }
 
   public changeDuration(duration: IDuration) {
@@ -88,7 +89,11 @@ export class StepsStateService {
 
   private isExtraFieldFull(): boolean {
     const extraFields = this.getExtraFields();
-    return !!extraFields.color && !!extraFields.dateFrom && !!extraFields.dateTo && !!extraFields.tariff;
+    return !!extraFields.color && !!extraFields.dateFrom[1] && !!extraFields.dateTo[1] && !!extraFields.tariff;
+  }
+
+  private isEverythingFull(): boolean {
+    return this.getStepsState()[0] && this.getStepsState()[1] && this.getStepsState()[2];
   }
 
   public getLocation(): ILocation {

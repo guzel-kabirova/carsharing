@@ -3,8 +3,8 @@ import {CarModel} from '../step-model/step-model.interface';
 
 export interface IExtraFields {
   color: string;
-  dateFrom: [TuiDay, TuiTime] | null;
-  dateTo: [TuiDay, TuiTime] | null;
+  dateFrom: [TuiDay | null, TuiTime | null];
+  dateTo: [TuiDay | null, TuiTime | null];
   tariff: string;
   fullTank: boolean;
   babyChair: boolean;

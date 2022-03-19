@@ -20,8 +20,8 @@ export const NO_MODEL: CarModel = {
 
 export const NO_EXTRA: IExtraFields = {
   color: '',
-  dateFrom: null,
-  dateTo: null,
+  dateFrom: [null, null],
+  dateTo: [null, null],
   tariff: '',
   fullTank: false,
   babyChair: false,

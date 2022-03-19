@@ -40,7 +40,10 @@ export class OrderPageComponent implements OnInit {
   }
 
   public changeContent(step: number) {
-    this._steps.changeActiveStep(step);
-    this.activeStep = step;
+    if (step < 4) {
+      this._steps.changeActiveStep(step);
+      this.activeStep = step;
+      return;
+    }
   }
 }
