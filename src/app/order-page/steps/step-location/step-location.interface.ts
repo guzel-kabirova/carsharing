@@ -28,17 +28,31 @@ export class PointsOfIssueModel {
   }
 }
 
+export interface IPointWithCoordinate {
+  id: string;
+  address: string;
+  city: string;
+  name: string;
+  coordinate: ICoordinates;
+}
+
 export interface ICoordinates {
   lat: number;
   lng: number;
 }
 
-export interface ICityPointsCoordinates {
-  cityName: string;
-  points: IPointCoordinates[];
+export interface IGeocoderResponse {
+  response: {
+    GeoObjectCollection: {
+      featureMember: IGeoObject[];
+    };
+  };
 }
 
-export interface IPointCoordinates extends ICoordinates {
-  id: string;
-  address: string;
+export interface IGeoObject {
+  GeoObject: {
+    Point: {
+      pos: string;
+    };
+  };
 }

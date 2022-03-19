@@ -5,6 +5,7 @@ import {StepsStateService} from '../../services/steps.state.service';
 import {StepLocationStoreService} from './step-location.store.service';
 import {ILocation} from '../../steps.interface';
 import {StepLocationApiService} from './step-location.api.service';
+import {PointsOfIssueModel} from '../step-location.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,7 @@ export class StepLocationFacadeServices {
     private _store: StepLocationStoreService,
   ) {}
 
-  public getCities(): Observable<any> {
+  public getCities(): Observable<string[]> {
     return this._api.getCities();
   }
 
@@ -31,7 +32,7 @@ export class StepLocationFacadeServices {
     this._state.changeLocation(value);
   }
 
-  public getPointsOfIssue(): Observable<any> {
-    return this._api.getPointsOfIssue();
+  public getPointsOfIssue(): Observable<PointsOfIssueModel[]> {
+    return this._api.getPointsWithCoordinates();
   }
 }

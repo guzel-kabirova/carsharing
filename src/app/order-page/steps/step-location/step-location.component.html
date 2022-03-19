@@ -35,11 +35,10 @@
       <app-label labelText="Выбрать на карте:"></app-label>
 
       <div class="container">
-        <ya-map [center]="[latitude, longitude]" [zoom]="12">
+        <ya-map [center]="[latitude, longitude]">
           <ng-container *ngIf="pointsWithCoordinates?.length">
-            <ya-placemark class="pin"
-                          *ngFor="let point of pointsWithCoordinates"
-                          [geometry]="[point.lat, point.lng]"
+            <ya-placemark *ngFor="let point of pointsWithCoordinates"
+                          [geometry]="[point.coordinate.lat, point.coordinate.lng]"
                           [properties]="{balloonContent: point.address}"
                           [options]="{
                           iconLayout: 'default#image',
@@ -50,6 +49,7 @@
           </ng-container>
         </ya-map>
       </div>
+
     </div>
   </form>
 </ng-container>
