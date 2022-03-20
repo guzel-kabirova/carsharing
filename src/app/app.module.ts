@@ -53,6 +53,7 @@ import {DialogConfirmComponent} from './order-page/steps/step-final/dialog-confi
 import {environment} from '../environments/environment';
 import {PreloaderComponent} from './shared/components/preloader/preloader.component';
 import {RefDialogDirective} from './shared/directives/ref-dialog.directive';
+import {ConfirmedOrderPageComponent} from './confirmed-order-page/confirmed-order-page.component';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -104,6 +105,7 @@ const mapConfig: YaConfig = {
     DialogConfirmComponent,
     PreloaderComponent,
     RefDialogDirective,
+    ConfirmedOrderPageComponent,
   ],
   imports: [
     BrowserModule,
