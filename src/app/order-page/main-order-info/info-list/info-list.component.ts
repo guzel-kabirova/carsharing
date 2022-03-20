@@ -94,6 +94,8 @@ export class InfoListComponent implements OnInit {
         this.price = current;
         break;
     }
+
+    this._state.changePrice(this.price);
   }
 
   private calculatedPrice(): number {

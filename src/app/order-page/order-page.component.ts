@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {Observable} from 'rxjs';
-import {takeUntil, tap} from 'rxjs/operators';
+import {switchMap, takeUntil, tap} from 'rxjs/operators';
 
 import {StepsStateService} from './steps/services/steps.state.service';
 import {Step} from './order-page.enum';
@@ -59,6 +59,10 @@ export class OrderPageComponent implements OnInit {
     this.appRefDialog.viewContainerRef.clear();
     const dialog = this.appRefDialog.createComponent();
     dialog.instance.cancelEvent.subscribe(() => this.appRefDialog.viewContainerRef.clear());
-    dialog.instance.confirmEvent.subscribe(() => console.log(this._steps.getOrderInfo()));
+    dialog.instance.confirmEvent
+      .pipe(
+        switchMap(() => this._apiFinal.sendOrderInfo(this._steps.getOrderInfo()))
+      )
+      .subscribe();
   }
 }

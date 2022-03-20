@@ -37,6 +37,9 @@ export class StepsStateService {
   private _duration = new BehaviorSubject<IDuration>(ZERO_DURATION);
   public duration$ = this._duration.asObservable();
 
+  private _price = new BehaviorSubject<number>(0);
+  public price$ = this._price.asObservable();
+
   public view$: Observable<IView> = combineLatest([this.carModel$, this.extraFields$, this.duration$])
     .pipe(map(([carModel, extraFields, duration]) => ({carModel, extraFields, duration})));
 
@@ -88,6 +91,10 @@ export class StepsStateService {
     this._duration.next(duration);
   }
 
+  public changePrice(price: number) {
+    this._price.next(price);
+  }
+
   private isLocationFull(): boolean {
     const currentData = this.getLocation();
     return !!currentData.city && !!currentData.pointOfIssue;
@@ -116,7 +123,7 @@ export class StepsStateService {
       dateFrom: this.toUnix(this.getExtraFields().dateFrom),
       dateTo: this.toUnix(this.getExtraFields().dateTo),
       rateId: this.getRate(),
-      price: 0,
+      price: this.getPrice(),
       isFullTank: this.getExtraFields().fullTank,
       isNeedChildChair: this.getExtraFields().babyChair,
       isRightWheel: this.getExtraFields().rightHand,
@@ -175,6 +182,10 @@ export class StepsStateService {
     const statuses = this._orderStatusesStore.getOrderStatuses();
     const index = statuses.map(status => status.id).indexOf(id);
     return statuses[index];
+  }
+
+  private getPrice(): number {
+    return this._price.getValue();
   }
 
   private resetCarModel() {

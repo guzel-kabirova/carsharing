@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
-import {INameWithId, IResponse} from '../../../order-page.interface';
+import {INameWithId, IOrderRequest, IResponse} from '../../../order-page.interface';
 import {API_URL} from '../../../../shared/app.const';
 import {StepFinalStoreService} from './step-final.store.service';
 
@@ -22,5 +22,13 @@ export class StepFinalApiService {
         map(response => response.data),
         tap(statuses => this._store.setOrderStatuses(statuses)),
       );
+  }
+
+  public sendOrderInfo(orderInfo: IOrderRequest): Observable<any> {
+    return this._http.post(`${API_URL}db/order`, orderInfo);
+  }
+
+  public getOrderInfo(id: string): Observable<IOrderRequest> {
+    return this._http.get<IOrderRequest>(`${API_URL}db/order/${id}`);
   }
 }
