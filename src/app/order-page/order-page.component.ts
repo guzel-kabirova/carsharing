@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {Observable} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
 
@@ -8,6 +8,8 @@ import {StepModelApiService} from './steps/step-model/services/step-model.api.se
 import {DestroyService} from '../shared/services/destroy.service';
 import {PreloaderService} from '../shared/components/preloader/preloader.service';
 import {StepExtraApiService} from './steps/step-extra/services/step-extra.api.service';
+import {RefDialogDirective} from '../shared/directives/ref-dialog.directive';
+import {StepFinalApiService} from './steps/step-final/services/step-final.api.service';
 
 @Component({
   selector: 'app-order-page',
@@ -17,6 +19,9 @@ import {StepExtraApiService} from './steps/step-extra/services/step-extra.api.se
   providers: [DestroyService],
 })
 export class OrderPageComponent implements OnInit {
+  @ViewChild(RefDialogDirective)
+  public appRefDialog!: RefDialogDirective;
+
   public step = Step;
   public activeStep = this.step.Location;
   public stepsState = this._steps.stepsState$;
@@ -27,6 +32,7 @@ export class OrderPageComponent implements OnInit {
     private _apiModel: StepModelApiService,
     private _preloader: PreloaderService,
     private _apiExtra: StepExtraApiService,
+    private _apiFinal: StepFinalApiService,
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +43,10 @@ export class OrderPageComponent implements OnInit {
     this._apiExtra.getTariffs()
       .pipe(takeUntil(this.destroy$))
       .subscribe();
+
+    this._apiFinal.getOrderStatuses()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
   }
 
   public changeContent(step: number) {
@@ -45,5 +55,10 @@ export class OrderPageComponent implements OnInit {
       this.activeStep = step;
       return;
     }
+
+    this.appRefDialog.viewContainerRef.clear();
+    const dialog = this.appRefDialog.createComponent();
+    dialog.instance.cancelEvent.subscribe(() => this.appRefDialog.viewContainerRef.clear());
+    dialog.instance.confirmEvent.subscribe(() => console.log(this._steps.getOrderInfo()));
   }
 }

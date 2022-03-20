@@ -26,7 +26,11 @@ export class StepLocationStoreService {
   }
 
   public filterPointsOfIssueByCity(city: string) {
-    const filteredPoints = this._pointsOfIssue.getValue()?.filter(point => point.city === city);
+    const filteredPoints = this._pointsOfIssue.getValue()?.filter(point => point.cityId.name === city);
     this._filteredPointsOfIssue.next(filteredPoints);
+  }
+
+  public getPoints(): IPointWithCoordinate[] {
+    return this._pointsOfIssue.getValue();
   }
 }

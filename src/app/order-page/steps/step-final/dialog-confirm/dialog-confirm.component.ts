@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-dialog-confirm',
@@ -7,5 +7,10 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogConfirmComponent {
+  @Output()
+  public cancelEvent = new EventEmitter();
+  @Output()
+  public confirmEvent = new EventEmitter();
+
   constructor() { }
 }

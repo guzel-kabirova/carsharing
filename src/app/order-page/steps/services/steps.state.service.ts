@@ -8,6 +8,12 @@ import {CarModel} from '../step-model/step-model.interface';
 import {IDuration, IExtraFields, IView} from '../step-extra/step-extra.interface';
 import {uniqArray} from '../../../shared/utility/uniq-array';
 import {StepModelStoreService} from '../step-model/services/step-model.store.service';
+import {INameWithId, IOrderRequest} from '../../order-page.interface';
+import {TuiDay, TuiTime} from '@taiga-ui/cdk';
+import {StepFinalStoreService} from '../step-final/services/step-final.store.service';
+import {StepLocationStoreService} from '../step-location/services/step-location.store.service';
+import {OrderStatus} from '../step-final/step-final.enum';
+import {StepExtraStoreService} from '../step-extra/services/step-extra.store.service';
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +40,12 @@ export class StepsStateService {
   public view$: Observable<IView> = combineLatest([this.carModel$, this.extraFields$, this.duration$])
     .pipe(map(([carModel, extraFields, duration]) => ({carModel, extraFields, duration})));
 
-  constructor(private _modelStore: StepModelStoreService) { }
+  constructor(
+    private _modelStore: StepModelStoreService,
+    private _orderStatusesStore: StepFinalStoreService,
+    private _locationStore: StepLocationStoreService,
+    private _extraStore: StepExtraStoreService,
+  ) { }
 
   public changeActiveStep(i: number) {
     this._activeStep.next(i);
@@ -96,6 +107,58 @@ export class StepsStateService {
     return this.getStepsState()[0] && this.getStepsState()[1] && this.getStepsState()[2];
   }
 
+  public getOrderInfo(): IOrderRequest {
+    return {
+      orderStatusId: this.getOrderStatus(OrderStatus.New),
+      ...this.getCityAndPoints(),
+      carId: this.getCarWithId(),
+      color: this.getExtraFields().color,
+      dateFrom: this.toUnix(this.getExtraFields().dateFrom),
+      dateTo: this.toUnix(this.getExtraFields().dateTo),
+      rateId: this.getRate(),
+      price: 0,
+      isFullTank: this.getExtraFields().fullTank,
+      isNeedChildChair: this.getExtraFields().babyChair,
+      isRightWheel: this.getExtraFields().rightHand,
+    };
+  }
+
+  private toUnix(date: [TuiDay | null, TuiTime | null]): number {
+    const [day, time] = date;
+    if (day && time) {
+      return day.toLocalNativeDate().getTime() + time.toAbsoluteMilliseconds();
+    }
+    return 0;
+  }
+
+  private getCityAndPoints(): { cityId: INameWithId, pointId: INameWithId } {
+    const point = this.getLocation();
+    const points = this._locationStore.getPoints();
+    const index = points.map(point => point.address).indexOf(point.pointOfIssue ?? '');
+    return {
+      cityId: points[index].cityId,
+      pointId: {
+        id: points[index].id,
+        name: points[index].address,
+      },
+    };
+  }
+
+  private getCarWithId(): INameWithId {
+    const car = this.getCarModel();
+    return {
+      id: car.id,
+      name: car.name,
+    };
+  }
+
+  private getRate(): INameWithId {
+    const tariffs = this._extraStore.getTariffs();
+    const tariff = this.getExtraFields().tariff;
+    const index = tariffs.map(tariff => tariff.id).indexOf(tariff);
+    return tariffs[index].rateTypeId;
+  }
+
   public getLocation(): ILocation {
     return this._location.getValue();
   }
@@ -106,6 +169,12 @@ export class StepsStateService {
 
   public getExtraFields(): IExtraFields {
     return this._extraFields.getValue();
+  }
+
+  public getOrderStatus(id: string): INameWithId {
+    const statuses = this._orderStatusesStore.getOrderStatuses();
+    const index = statuses.map(status => status.id).indexOf(id);
+    return statuses[index];
   }
 
   private resetCarModel() {

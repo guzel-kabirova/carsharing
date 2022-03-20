@@ -1,5 +1,7 @@
 import {TuiDay, TuiTime} from '@taiga-ui/cdk';
+
 import {CarModel} from '../step-model/step-model.interface';
+import {INameWithId} from '../../order-page.interface';
 
 export interface IExtraFields {
   color: string;
@@ -35,7 +37,6 @@ export interface ITariff {
   rateTypeId: IRateType;
 }
 
-export interface IRateType {
-  name: string;
+export interface IRateType extends INameWithId {
   unit: string;
 }

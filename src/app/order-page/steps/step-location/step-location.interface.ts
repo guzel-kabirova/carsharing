@@ -1,37 +1,20 @@
+import {INameWithId} from '../../order-page.interface';
+
 export interface ICityDto {
   name: string;
 }
 
-export interface IPointOfIssueDto {
+export interface IPointOfIssue {
   address: string;
-  cityId: ICity;
+  cityId: INameWithId;
   id: string;
   name: string;
-}
-
-export interface ICity {
-  id: string;
-  name: string;
-}
-
-export class PointsOfIssueModel {
-  id = '';
-  address = '';
-  city = '';
-  name = '';
-
-  constructor(data: IPointOfIssueDto) {
-    this.id = data.id;
-    this.address = data.address;
-    this.city = data.cityId.name;
-    this.name = data.name;
-  }
 }
 
 export interface IPointWithCoordinate {
   id: string;
   address: string;
-  city: string;
+  cityId: INameWithId;
   name: string;
   coordinate: ICoordinates;
 }
