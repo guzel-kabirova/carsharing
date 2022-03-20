@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {Observable} from 'rxjs';
 import {switchMap, takeUntil, tap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 import {StepsStateService} from './steps/services/steps.state.service';
 import {Step} from './order-page.enum';
@@ -33,6 +34,7 @@ export class OrderPageComponent implements OnInit {
     private _preloader: PreloaderService,
     private _apiExtra: StepExtraApiService,
     private _apiFinal: StepFinalApiService,
+    private _router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -61,7 +63,10 @@ export class OrderPageComponent implements OnInit {
     dialog.instance.cancelEvent.subscribe(() => this.appRefDialog.viewContainerRef.clear());
     dialog.instance.confirmEvent
       .pipe(
-        switchMap(() => this._apiFinal.sendOrderInfo(this._steps.getOrderInfo()))
+        switchMap(() => this._apiFinal.sendOrderInfo(this._steps.getOrderInfo())),
+        tap(orderInfo => {
+          this._router.navigate(['/order', orderInfo.id]);
+        }),
       )
       .subscribe();
   }

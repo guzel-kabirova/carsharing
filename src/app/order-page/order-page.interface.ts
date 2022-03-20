@@ -21,3 +21,7 @@ export interface INameWithId {
   name: string;
   id: string;
 }
+
+export interface IOrderRequestWithId extends IOrderRequest {
+  id: string;
+}
