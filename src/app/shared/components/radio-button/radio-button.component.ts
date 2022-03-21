@@ -21,5 +21,8 @@ export class RadioButtonComponent {
   @Input()
   groupName = '';
 
+  @Input()
+  checked = false;
+
   constructor() { }
 }

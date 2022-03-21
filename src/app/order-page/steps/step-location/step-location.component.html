@@ -30,9 +30,26 @@
         </app-combo-box>
       </div>
     </div>
+
     <div class="location__map">
       <app-label labelText="Выбрать на карте:"></app-label>
-      <img class="map" alt="map" src="./assets/pictures/map.jpg">
+
+      <div class="container">
+        <ya-map [center]="[latitude, longitude]">
+          <ng-container *ngIf="pointsWithCoordinates?.length">
+            <ya-placemark *ngFor="let point of pointsWithCoordinates"
+                          [geometry]="[point.coordinate.lat, point.coordinate.lng]"
+                          [properties]="{balloonContent: point.address}"
+                          [options]="{
+                          iconLayout: 'default#image',
+                          iconImageHref: './assets/icons/map-pin.svg',
+                          iconImageSize: [18, 18]
+                          }"
+            ></ya-placemark>
+          </ng-container>
+        </ya-map>
+      </div>
+
     </div>
   </form>
 </ng-container>
