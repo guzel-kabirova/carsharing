@@ -1,9 +1,13 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 import {ILocation, TStepsState} from '../steps.interface';
-import {NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL} from '../steps.initial';
-import {ICarModel} from '../step-model/step-model.interface';
+import {NO_EXTRA, NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL, ZERO_DURATION} from '../steps.initial';
+import {CarModel} from '../step-model/step-model.interface';
+import {IDuration, IExtraFields, IView} from '../step-extra/step-extra.interface';
+import {uniqArray} from '../../../shared/utility/uniq-array';
+import {StepModelStoreService} from '../step-model/services/step-model.store.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,10 +22,19 @@ export class StepsStateService {
   private _location = new BehaviorSubject<ILocation>(NO_LOCATION);
   public location$ = this._location.asObservable();
 
-  private _carModel = new BehaviorSubject<ICarModel>(NO_MODEL);
+  private _carModel = new BehaviorSubject<CarModel>(NO_MODEL);
   public carModel$ = this._carModel.asObservable();
 
-  constructor() { }
+  private _extraFields = new BehaviorSubject<IExtraFields>(NO_EXTRA);
+  public extraFields$ = this._extraFields.asObservable();
+
+  private _duration = new BehaviorSubject<IDuration>(ZERO_DURATION);
+  public duration$ = this._duration.asObservable();
+
+  public view$: Observable<IView> = combineLatest([this.carModel$, this.extraFields$, this.duration$])
+    .pipe(map(([carModel, extraFields, duration]) => ({carModel, extraFields, duration})));
+
+  constructor(private _modelStore: StepModelStoreService) { }
 
   public changeActiveStep(i: number) {
     this._activeStep.next(i);
@@ -40,11 +53,27 @@ export class StepsStateService {
   public changeLocation(value: ILocation) {
     this._location.next(value);
     this.changeStepsState(0, this.isLocationFull());
+    this.resetCarModel();
+    this.resetExtraField();
   }
 
-  public changeCarModel(car: ICarModel) {
-    this._carModel.next(car);
+  public changeCarModel(car: CarModel) {
+    let newCar = car;
+    if (car.colors) {
+      newCar = {...car, colors: uniqArray(car.colors)};
+    }
+    this._carModel.next(newCar);
     this.changeStepsState(1, this.isCarModelFull());
+    this.resetExtraField();
+  }
+
+  public changeExtraField(value: IExtraFields) {
+    this._extraFields.next(value);
+    this.changeStepsState(2, this.isExtraFieldFull());
+  }
+
+  public changeDuration(duration: IDuration) {
+    this._duration.next(duration);
   }
 
   private isLocationFull(): boolean {
@@ -57,11 +86,29 @@ export class StepsStateService {
     return !!currentData.id && !!currentData.name;
   }
 
+  private isExtraFieldFull(): boolean {
+    const extraFields = this.getExtraFields();
+    return !!extraFields.color && !!extraFields.dateFrom && !!extraFields.dateTo && !!extraFields.tariff;
+  }
+
   public getLocation(): ILocation {
     return this._location.getValue();
   }
 
-  public getCarModel(): ICarModel {
+  public getCarModel(): CarModel {
     return this._carModel.getValue();
+  }
+
+  public getExtraFields(): IExtraFields {
+    return this._extraFields.getValue();
+  }
+
+  private resetCarModel() {
+    this.changeCarModel(NO_MODEL);
+    this._modelStore.changeActiveCar('');
+  }
+
+  private resetExtraField() {
+    this.changeExtraField(NO_EXTRA);
   }
 }

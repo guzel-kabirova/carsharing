@@ -43,7 +43,7 @@ export class StepModelStoreService {
   }
 
   public filterCarsByCategories(id: string) {
-    const filteredCars = this._cars.getValue().filter(car => car.categoryId.id === id);
+    const filteredCars = this._cars.getValue().filter(car => car.categoryId?.id === id);
     this._filteredCars.next(filteredCars);
   }
 }

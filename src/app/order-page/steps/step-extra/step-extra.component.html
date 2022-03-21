@@ -1,36 +1,68 @@
-<div class="section">
-  <app-label labelId="color" labelText="Цвет"></app-label>
-  <div class="section__field horizontal">
-    <app-radio-button *ngFor="let color of colors" [item]="color" groupName="colors"></app-radio-button>
-  </div>
-</div>
-
-<div class="section">
-  <app-label labelId="date" labelText="Дата аренды"></app-label>
-  <div class="section__field vertical inputs">
-    <div>
-      <app-label labelId="dateFrom" labelText="С"></app-label>
-      <input app-input placeholder="Введите дату и время" type="datetime" id="dateFrom">
+<ng-container *ngIf="carModel">
+  <form *ngIf="form" [formGroup]="form" (change)="changeExtraField()">
+    <div class="section" *ngIf="carModel.colors">
+      <app-label labelId="color" labelText="Цвет"></app-label>
+      <div class="section__field horizontal">
+        <app-radio-button groupName="colors"
+                          *ngFor="let color of carModel.colors"
+                          [item]="{id: color, name: color}"
+                          [checked]="color === form.get('color')?.value"
+                          (changeRadioBtn)="setColor($event)"
+        ></app-radio-button>
+      </div>
     </div>
 
-    <div>
-      <app-label labelId="dateTo" labelText="По"></app-label>
-      <input app-input placeholder="Введите дату и время" type="datetime" id="dateTo">
+    <div class="section">
+      <div class="header">
+        <app-label labelId="date" labelText="Дата аренды"></app-label>
+
+        <div class="header__error" *ngIf="!isDatesIntervalOk">
+          Начало даты аренды должно быть раньше окончания даты аренды
+        </div>
+      </div>
+
+      <div class="section__field vertical inputs">
+        <div class="wrapper-input">
+          <app-label labelId="dateFrom" labelText="С"></app-label>
+          <tui-input-date-time formControlName="dateFrom"
+                               class="date-picker-input" tuiTextfieldSize="s"
+                               [tuiTextfieldCleaner]="true"
+                               [min]="now">
+            Введите дату и время
+          </tui-input-date-time>
+        </div>
+
+        <div class="wrapper-input">
+          <app-label labelId="dateTo" labelText="По"></app-label>
+          <tui-input-date-time formControlName="dateTo"
+                               class="date-picker-input" tuiTextfieldSize="s"
+                               [tuiTextfieldCleaner]="true"
+                               [min]="now">
+            Введите дату и время
+          </tui-input-date-time>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<div class="section">
-  <app-label labelId="tariff" labelText="Тариф"></app-label>
-  <div class="section__field vertical">
-    <app-radio-button *ngFor="let tariff of tariffs" [item]="tariff" groupName="tariffs"></app-radio-button>
-  </div>
-</div>
+    <div class="section">
+      <app-label labelId="tariff" labelText="Тариф"></app-label>
+      <div class="section__field vertical">
+        <app-radio-button groupName="tariffs"
+                          *ngFor="let tariff of tariffs"
+                          [item]="{id: tariff.id, name: tariff.rateTypeId.name + ', ' + tariff.price + '₽/' + tariff.rateTypeId.unit}"
+                          (changeRadioBtn)="setTariff($event)"
+                          [checked]="tariff.id === form.get('tariff')?.value"
+        ></app-radio-button>
+      </div>
+    </div>
 
-<div class="section">
-  <app-label labelId="service" labelText="Доп услуги"></app-label>
-  <div class="section__field vertical">
-    <app-checkbox *ngFor="let service of services" [item]="service"></app-checkbox>
-  </div>
-</div>
-
+    <div class="section">
+      <app-label labelId="service" labelText="Доп услуги"></app-label>
+      <div class="section__field vertical">
+        <app-checkbox *ngFor="let service of services; let i = index" [item]="service"
+                      [checked]="form.get(extra[i])?.value"
+                      (changeCheckbox)="setExtra($event)"></app-checkbox>
+      </div>
+    </div>
+  </form>
+</ng-container>

@@ -1,11 +1,3 @@
-export interface ICarModel {
-  id: string;
-  name: string;
-  number: string;
-  priceMax: number;
-  priceMin: number;
-}
-
 export interface ICarsDto {
   categoryId: ICategory;
   colors: string[];
@@ -40,11 +32,11 @@ export class CarModel {
   number: string;
   priceMax: number;
   priceMin: number;
-  thumbnailUrl: string;
+  thumbnailUrl?: string;
   isActive: boolean;
-  categoryId: ICategory;
-  colors: string[] = [];
-  tank: number;
+  categoryId?: ICategory;
+  colors?: string[] = [];
+  tank?: number;
 
   constructor(car: ICarsDto) {
     this.id = car.id;
@@ -52,7 +44,7 @@ export class CarModel {
     this.number = car.number;
     this.priceMax = car.priceMax;
     this.priceMin = car.priceMin;
-    this.thumbnailUrl = car.thumbnail.path;
+    this.thumbnailUrl = car.thumbnail ? car.thumbnail.path : '';
     this.categoryId = car.categoryId;
     this.colors = car.colors;
     this.tank = car.tank;

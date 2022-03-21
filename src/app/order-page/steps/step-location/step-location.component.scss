@@ -18,17 +18,18 @@
   }
 }
 
-.map {
-  display: block;
+.wrapper__input {
+  position: relative;
+}
+
+.container {
+  outline: none;
   margin: 16px 0;
-  max-width: 736px;
-  height: auto;
+  width: 736px;
+  height: 352px;
 
   @media (max-width: 1023px) {
     width: 100%;
+    height: 352px;
   }
-}
-
-.wrapper__input {
-  position: relative;
 }

@@ -18,6 +18,8 @@ export class StepModelComponent implements OnInit {
   public allCategories = ALL_CATEGORIES;
   public categories$ = this._facade.getCategories();
 
+  public isLoading$ = this._facade.preloader.isLoading$;
+
   constructor(
     private _fb: FormBuilder,
     private _facade: StepModelFacadeService,
@@ -27,7 +29,6 @@ export class StepModelComponent implements OnInit {
     this.form = this._fb.group({
       model: [''],
     });
-
   }
 
   public filter(id: string) {

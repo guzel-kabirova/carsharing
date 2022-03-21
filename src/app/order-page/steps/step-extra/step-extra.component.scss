@@ -23,3 +23,24 @@
   flex-direction: column;
   align-items: flex-end;
 }
+
+.wrapper-input {
+  display: flex;
+  align-items: center;
+}
+
+
+.header {
+  display: flex;
+
+  &__error {
+    font: var(--font-interactive-text);
+    color: var(--color-danger);
+  }
+}
+
+.date-picker-input {
+  width: 224px;
+  display: inline-block;
+  border: none;
+}
