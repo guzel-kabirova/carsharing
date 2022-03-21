@@ -54,6 +54,7 @@ import {environment} from '../environments/environment';
 import {PreloaderComponent} from './shared/components/preloader/preloader.component';
 import {RefDialogDirective} from './shared/directives/ref-dialog.directive';
 import {ConfirmedOrderPageComponent} from './confirmed-order-page/confirmed-order-page.component';
+import {NoCommaPipe} from './shared/pipes/no-comma.pipe';
 
 const ICONS_PROVIDER: Provider = {
   provide: ICONS_PATH,
@@ -106,6 +107,7 @@ const mapConfig: YaConfig = {
     PreloaderComponent,
     RefDialogDirective,
     ConfirmedOrderPageComponent,
+    NoCommaPipe,
   ],
   imports: [
     BrowserModule,

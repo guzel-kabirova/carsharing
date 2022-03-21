@@ -44,8 +44,9 @@
   <ng-container *ngIf="carModel">
     <div class="result" *ngIf="state[1]; else noPrice">
       <span class="result__subtitle">Цена: </span>
-      <span class="result__text" *ngIf="!state[2]">от {{carModel.priceMin}} до {{carModel.priceMax}} ₽</span>
-      <span class="result__text" *ngIf="state[2]">{{price$ | async | number: '.2'}} ₽</span>
+      <span class="result__text" *ngIf="!state[2]">от {{carModel.priceMin | number: '.0-2' | noComma}}
+        до {{carModel.priceMax | number: '.0-2' | noComma}} ₽</span>
+      <span class="result__text" *ngIf="state[2]">{{price$ | async | number: '.0-2' | noComma}} ₽</span>
     </div>
 
     <ng-template #noPrice>
