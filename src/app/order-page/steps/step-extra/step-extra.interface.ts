@@ -1,6 +1,5 @@
 import {TuiDay, TuiTime} from '@taiga-ui/cdk';
 
-import {CarModel} from '../step-model/step-model.interface';
 import {INameWithId} from '../../order-page.interface';
 
 export interface IExtraFields {
@@ -22,13 +21,6 @@ export interface IDuration {
   months: number;
   seconds: number;
   years: number;
-}
-
-
-export interface IView {
-  carModel: CarModel,
-  extraFields: IExtraFields,
-  duration: IDuration,
 }
 
 export interface ITariff {

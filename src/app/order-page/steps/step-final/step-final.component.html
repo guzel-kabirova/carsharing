@@ -1,7 +1,11 @@
-<div class="info">
-  <div class="info__name">{{name}}</div>
-  <div class="info__number">{{number}}</div>
-  <div class="info__extra"><span class="info__key">Топливо</span><span class="info__value"> {{tank}}</span></div>
-  <div class="info__extra"><span class="info__key">Доступна с</span><span class="info__value"> {{time}}</span></div>
-</div>
-<img class="picture" [src]="pictureUrl" alt="{{name}}">
+<ng-container *ngIf="view$ | async as view">
+  <div class="info">
+    <div class="info__name">{{view.carModel.name}}</div>
+    <div class="info__number">{{view.carModel.number}}</div>
+    <div class="info__extra"><span class="info__key">Топливо</span><span
+      class="info__value"> {{view.carModel.tank}}%</span></div>
+    <div class="info__extra"><span class="info__key">Доступна с</span><span
+      class="info__value"> {{view.extraFields.dateFrom[0]}} {{view.extraFields.dateFrom[1]}}</span></div>
+  </div>
+  <img class="picture" [src]="view.carModel.thumbnailUrl" alt="{{view.carModel.name}}">
+</ng-container>

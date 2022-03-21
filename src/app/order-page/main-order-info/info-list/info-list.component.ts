@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {takeUntil, tap} from 'rxjs/operators';
+import {combineLatest, Observable} from 'rxjs';
+import {map, takeUntil, tap} from 'rxjs/operators';
 
 import {StepsStateService} from '../../steps/services/steps.state.service';
 import {Tariff} from '../../steps/step-extra/step-extra.enum';
@@ -9,6 +9,7 @@ import {DestroyService} from '../../../shared/services/destroy.service';
 import {IDuration, IExtraFields, ITariff} from '../../steps/step-extra/step-extra.interface';
 import {StepExtraFacadeService} from '../../steps/step-extra/services/step-extra.facade.service';
 import {ExtraServicePrice} from './info-list.const';
+import {IViewInfoList} from '../../steps/steps.interface';
 
 @Component({
   selector: 'app-info-list',
@@ -25,8 +26,11 @@ export class InfoListComponent implements OnInit {
   public duration?: IDuration;
   public tariff = Tariff;
   private tariffs: ITariff[] = [];
+  private view$: Observable<IViewInfoList> = combineLatest([this._state.carModel$, this._state.extraFields$, this._state.duration$])
+    .pipe(map(([carModel, extraFields, duration]) => ({carModel, extraFields, duration})));
 
-  public price = 0;
+  private _price = 0;
+  public price$ = this._state.price$;
 
   get isDuration(): boolean {
     return !!(this.duration && (this.duration.years || this.duration.months || this.duration.days || this.duration.hours || this.duration.minutes));
@@ -63,7 +67,7 @@ export class InfoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._state.view$
+    this.view$
       .pipe(takeUntil(this.destroy$),
         tap(view => {
           this.carModel = view.carModel;
@@ -85,17 +89,17 @@ export class InfoListComponent implements OnInit {
 
     switch (true) {
       case min > current:
-        this.price = min;
+        this._price = min;
         break;
       case current > max:
-        this.price = max;
+        this._price = max;
         break;
       default:
-        this.price = current;
+        this._price = current;
         break;
     }
 
-    this._state.changePrice(this.price);
+    this._state.changePrice(this._price);
   }
 
   private calculatedPrice(): number {

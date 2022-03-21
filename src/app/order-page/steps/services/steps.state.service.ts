@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {BehaviorSubject} from 'rxjs';
 
 import {ILocation, TStepsState} from '../steps.interface';
 import {NO_EXTRA, NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL, ZERO_DURATION} from '../steps.initial';
 import {CarModel} from '../step-model/step-model.interface';
-import {IDuration, IExtraFields, IView} from '../step-extra/step-extra.interface';
+import {IDuration, IExtraFields} from '../step-extra/step-extra.interface';
 import {uniqArray} from '../../../shared/utility/uniq-array';
 import {StepModelStoreService} from '../step-model/services/step-model.store.service';
 import {INameWithId, IOrderRequest} from '../../order-page.interface';
@@ -39,9 +38,6 @@ export class StepsStateService {
 
   private _price = new BehaviorSubject<number>(0);
   public price$ = this._price.asObservable();
-
-  public view$: Observable<IView> = combineLatest([this.carModel$, this.extraFields$, this.duration$])
-    .pipe(map(([carModel, extraFields, duration]) => ({carModel, extraFields, duration})));
 
   constructor(
     private _modelStore: StepModelStoreService,
