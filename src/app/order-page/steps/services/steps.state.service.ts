@@ -9,11 +9,11 @@ import {IDuration, IExtraFields, IView} from '../step-extra/step-extra.interface
 import {uniqArray} from '../../../shared/utility/uniq-array';
 import {StepModelStoreService} from '../step-model/services/step-model.store.service';
 import {INameWithId, IOrderRequest} from '../../order-page.interface';
-import {TuiDay, TuiTime} from '@taiga-ui/cdk';
 import {StepFinalStoreService} from '../step-final/services/step-final.store.service';
 import {StepLocationStoreService} from '../step-location/services/step-location.store.service';
 import {OrderStatus} from '../step-final/step-final.enum';
 import {StepExtraStoreService} from '../step-extra/services/step-extra.store.service';
+import {toUnix} from '../../../shared/utility/taiga-date-time-to-unix';
 
 @Injectable({
   providedIn: 'root',
@@ -58,6 +58,10 @@ export class StepsStateService {
     let newState: TStepsState = [...this.getStepsState()];
     newState[i] = isCompleted;
     this._stepsState.next(newState);
+  }
+
+  public setAllStepsToTrue() {
+    this._stepsState.next([true, true, true, true, true]);
   }
 
   private getStepsState(): TStepsState {
@@ -120,22 +124,14 @@ export class StepsStateService {
       ...this.getCityAndPoints(),
       carId: this.getCarWithId(),
       color: this.getExtraFields().color,
-      dateFrom: this.toUnix(this.getExtraFields().dateFrom),
-      dateTo: this.toUnix(this.getExtraFields().dateTo),
+      dateFrom: toUnix(this.getExtraFields().dateFrom),
+      dateTo: toUnix(this.getExtraFields().dateTo),
       rateId: this.getRate(),
       price: this.getPrice(),
       isFullTank: this.getExtraFields().fullTank,
       isNeedChildChair: this.getExtraFields().babyChair,
       isRightWheel: this.getExtraFields().rightHand,
     };
-  }
-
-  private toUnix(date: [TuiDay | null, TuiTime | null]): number {
-    const [day, time] = date;
-    if (day && time) {
-      return day.toLocalNativeDate().getTime() + time.toAbsoluteMilliseconds();
-    }
-    return 0;
   }
 
   private getCityAndPoints(): { cityId: INameWithId, pointId: INameWithId } {
@@ -163,7 +159,10 @@ export class StepsStateService {
     const tariffs = this._extraStore.getTariffs();
     const tariff = this.getExtraFields().tariff;
     const index = tariffs.map(tariff => tariff.id).indexOf(tariff);
-    return tariffs[index].rateTypeId;
+    return {
+      id: tariffs[index].rateTypeId.id,
+      name: tariffs[index].rateTypeId.name,
+    };
   }
 
   public getLocation(): ILocation {

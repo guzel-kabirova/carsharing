@@ -3,7 +3,8 @@
   <app-info-list></app-info-list>
 
   <ng-container *ngIf="activeStep$ | async as activeStep; else zero">
-    <button class="btn" app-button [disabled]="!state[activeStep]" (click)="changeStep.emit(activeStep + 1)">
+    <button class="btn" [class.btn_cancel]="activeStep === confirmedStepNumber" app-button
+            [disabled]="!state[activeStep]" (click)="changeStep.emit(activeStep + 1)">
       <ng-container [ngSwitch]="activeStep">
         <span *ngSwitchCase="step.Location">Выбрать модель</span>
         <span *ngSwitchCase="step.Model">Дополнительно</span>

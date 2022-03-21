@@ -7,7 +7,7 @@ export const NO_LOCATION: ILocation = {
   pointOfIssue: '',
 };
 
-export const STEPS_STATE_INITIAL: TStepsState = [false, false, false, false];
+export const STEPS_STATE_INITIAL: TStepsState = [false, false, false, false, true];
 
 export const NO_MODEL: CarModel = {
   id: '',

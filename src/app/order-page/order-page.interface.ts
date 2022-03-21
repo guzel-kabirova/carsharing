@@ -1,3 +1,6 @@
+import {ICarsDto} from './steps/step-model/step-model.interface';
+import {IPointOfIssue} from './steps/step-location/step-location.interface';
+
 export interface IResponse<T> {
   data: T[];
 }
@@ -24,4 +27,20 @@ export interface INameWithId {
 
 export interface IOrderRequestWithId extends IOrderRequest {
   id: string;
+}
+
+export interface IOrderResponse {
+  carId: ICarsDto;
+  cityId: INameWithId;
+  color: string;
+  dateFrom: number;
+  dateTo: number;
+  id: string;
+  isFullTank: boolean;
+  isNeedChildChair: boolean;
+  isRightWheel: boolean;
+  orderStatusId: INameWithId;
+  pointId: Omit<IPointOfIssue, 'cityId'>;
+  price: number;
+  rateId: INameWithId;
 }

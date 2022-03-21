@@ -1,12 +1,13 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {intervalToDuration} from 'date-fns';
-import {TuiDay, TuiTime} from '@taiga-ui/cdk';
+import {TuiDay} from '@taiga-ui/cdk';
 
 import {SERVICES} from './step-extra.const';
 import {StepExtraFacadeService} from './services/step-extra.facade.service';
 import {Extra} from './step-extra.enum';
 import {IDuration} from './step-extra.interface';
+import {toUnix} from '../../../shared/utility/taiga-date-time-to-unix';
 
 @Component({
   selector: 'app-step-extra',
@@ -96,18 +97,14 @@ export class StepExtraComponent implements OnInit {
       const [dayTo, timeTo] = valueTo;
 
       if (dayFrom && dayTo && timeFrom && timeTo) {
-        const dateFrom = this.dayTimeToUnix(dayFrom, timeFrom);
-        const dateTo = this.dayTimeToUnix(dayTo, timeTo);
+        const dateFrom = toUnix(valueFrom);
+        const dateTo = toUnix(valueTo);
         this.setIsDatesIntervalOk(dateFrom, dateTo);
 
         const duration = intervalToDuration({start: dateFrom, end: dateTo}) as IDuration;
         this.setDuration(duration);
       }
     }
-  }
-
-  private dayTimeToUnix(day: TuiDay, time: TuiTime): number {
-    return day.toLocalNativeDate().getTime() + time.toAbsoluteMilliseconds();
   }
 
   private setIsDatesIntervalOk(dateFrom: number, dateTo: number) {

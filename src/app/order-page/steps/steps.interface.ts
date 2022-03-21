@@ -3,7 +3,7 @@ export interface ILocation {
   pointOfIssue: string | null;
 }
 
-export type TStepsState = [boolean, boolean, boolean, boolean];
+export type TStepsState = [boolean, boolean, boolean, boolean, boolean];
 
 export interface IModelType {
   idName: string;
