@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {switchMap, takeUntil, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 
@@ -31,6 +31,7 @@ export class ConfirmedOrderPageComponent implements OnInit {
     private _service: ConfirmedOrderPageService,
     private _state: StepsStateService,
     private _locationStore: StepLocationStoreService,
+    private _router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -60,5 +61,13 @@ export class ConfirmedOrderPageComponent implements OnInit {
     this._state.changeDuration(intervalToDuration({start: info.dateFrom, end: info.dateTo}) as IDuration);
     this._state.changePrice(info.price);
     this._state.setAllStepsToTrue();
+  }
+
+  public cancelOrder() {
+    this._state.resetEverything();
+    this._router.navigate(['/order']);
+    this._service.cancelOrder(this.id, this._state.getOrderInfo())
+      .pipe(takeUntil(this.destroy$))
+      .subscribe();
   }
 }

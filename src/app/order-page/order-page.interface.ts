@@ -1,5 +1,6 @@
 import {ICarsDto} from './steps/step-model/step-model.interface';
 import {IPointOfIssue} from './steps/step-location/step-location.interface';
+import {ITariff} from './steps/step-extra/step-extra.interface';
 
 export interface IResponse<T> {
   data: T[];
@@ -13,7 +14,7 @@ export interface IOrderRequest {
   color: string;
   dateFrom: number;
   dateTo: number;
-  rateId: INameWithId;
+  rateId: ITariff;
   price: number;
   isFullTank: boolean;
   isNeedChildChair: boolean;

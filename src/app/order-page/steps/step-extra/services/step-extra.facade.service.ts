@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {StepsStateService} from '../../services/steps.state.service';
 import {IDuration, IExtraFields, ITariff} from '../step-extra.interface';
 import {StepExtraStoreService} from './step-extra.store.service';
+import {StepExtraApiService} from './step-extra.api.service';
 
 @Injectable({providedIn: 'root'})
 export class StepExtraFacadeService {
@@ -12,6 +13,7 @@ export class StepExtraFacadeService {
   constructor(
     private _state: StepsStateService,
     private _store: StepExtraStoreService,
+    private _api: StepExtraApiService,
   ) {}
 
   changeExtraField(value: IExtraFields) {
@@ -27,7 +29,7 @@ export class StepExtraFacadeService {
   }
 
   getTariffsStream(): Observable<ITariff[]> {
-    return this._store.tariffs$;
+    return this._api.getTariffs();
   }
 
   getTariffs(): ITariff[] {

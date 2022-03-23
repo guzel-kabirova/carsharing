@@ -73,9 +73,17 @@ export class InfoListComponent implements OnInit {
           this.carModel = view.carModel;
           this.extraFields = view.extraFields;
           this.duration = view.duration;
+          this.setTariffs();
           this.setCarPrice();
         }))
       .subscribe();
+  }
+
+  private setTariffs() {
+    if(this._facade.getTariffs().length) {
+      this.tariffs = this._facade.getTariffs();
+      return;
+    }
 
     this._facade.getTariffsStream()
       .pipe(tap(tariffs => this.tariffs = tariffs), takeUntil(this.destroy$))

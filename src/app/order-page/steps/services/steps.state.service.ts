@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 
 import {ILocation, TStepsState} from '../steps.interface';
-import {NO_EXTRA, NO_LOCATION, NO_MODEL, STEPS_STATE_INITIAL, ZERO_DURATION} from '../steps.initial';
+import {NO_EXTRA, NO_LOCATION, NO_MODEL, STEPS_STATE_END, STEPS_STATE_INITIAL, ZERO_DURATION} from '../steps.initial';
 import {CarModel} from '../step-model/step-model.interface';
-import {IDuration, IExtraFields} from '../step-extra/step-extra.interface';
+import {IDuration, IExtraFields, ITariff} from '../step-extra/step-extra.interface';
 import {uniqArray} from '../../../shared/utility/uniq-array';
 import {StepModelStoreService} from '../step-model/services/step-model.store.service';
 import {INameWithId, IOrderRequest} from '../../order-page.interface';
@@ -58,7 +58,7 @@ export class StepsStateService {
   }
 
   public setAllStepsToTrue() {
-    this._stepsState.next([true, true, true, true, true]);
+    this._stepsState.next(STEPS_STATE_END);
   }
 
   private getStepsState(): TStepsState {
@@ -136,10 +136,10 @@ export class StepsStateService {
     const points = this._locationStore.getPoints();
     const index = points.map(point => point.address).indexOf(point.pointOfIssue ?? '');
     return {
-      cityId: points[index].cityId,
+      cityId: points[index]?.cityId,
       pointId: {
-        id: points[index].id,
-        name: points[index].address,
+        id: points[index]?.id,
+        name: points[index]?.address,
       },
     };
   }
@@ -152,14 +152,11 @@ export class StepsStateService {
     };
   }
 
-  private getRate(): INameWithId {
+  private getRate(): ITariff {
     const tariffs = this._extraStore.getTariffs();
     const tariff = this.getExtraFields().tariff;
     const index = tariffs.map(tariff => tariff.id).indexOf(tariff);
-    return {
-      id: tariffs[index].rateTypeId.id,
-      name: tariffs[index].rateTypeId.name,
-    };
+    return tariffs[index];
   }
 
   public getLocation(): ILocation {
@@ -184,6 +181,12 @@ export class StepsStateService {
     return this._price.getValue();
   }
 
+  private resetLocation() {
+    this.changeActiveStep(Step.Location);
+    this.changeLocation(NO_LOCATION);
+    this.resetStepsState();
+  }
+
   private resetCarModel() {
     this.changeCarModel(NO_MODEL);
     this._modelStore.changeActiveCar('');
@@ -191,5 +194,23 @@ export class StepsStateService {
 
   private resetExtraField() {
     this.changeExtraField(NO_EXTRA);
+    this.resetDuration();
+    this.resetPrice();
+  }
+
+  private resetDuration() {
+    this._duration.next(ZERO_DURATION);
+  }
+
+  private resetPrice() {
+    this._price.next(0);
+  }
+
+  private resetStepsState() {
+    this._stepsState.next(STEPS_STATE_INITIAL);
+  }
+
+  public resetEverything() {
+    this.resetLocation();
   }
 }
