@@ -1,0 +1,19 @@
+.top__order {
+  padding: 8px 64px 7px;
+  font: var(--font-step);
+
+  @media (min-width: 1440px) {
+    padding: 8px 0 7px;
+    width: 1248px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 767px) {
+    padding: 8px 16px 7px;
+  }
+}
+
+.main__confirmed {
+  font: var(--font-dialog-title);
+  margin-bottom: 16px;
+}

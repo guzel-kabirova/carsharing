@@ -1,0 +1,18 @@
+<div class="top">
+  <div class="top__header">
+    <app-header></app-header>
+  </div>
+  <div class="top__stepper">
+    <div class="top__order">Заказ номер {{id}}</div>
+  </div>
+</div>
+
+<main class="main">
+  <div class="main__step">
+    <h2 class="main__confirmed">Ваш заказ подтверждён</h2>
+    <app-step-final></app-step-final>
+  </div>
+  <div class="main__info">
+    <app-main-order-info (changeStep)="cancelOrder()"></app-main-order-info>
+  </div>
+</main>

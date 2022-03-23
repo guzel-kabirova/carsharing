@@ -8,9 +8,8 @@ import {
   ICityDto,
   ICoordinates,
   IGeocoderResponse,
-  IPointOfIssueDto,
+  IPointOfIssue,
   IPointWithCoordinate,
-  PointsOfIssueModel,
 } from '../step-location.interface';
 import {API_URL} from '../../../../shared/app.const';
 import {IResponse} from '../../../order-page.interface';
@@ -36,7 +35,7 @@ export class StepLocationApiService {
   public getPointsWithCoordinates(): Observable<IPointWithCoordinate[]> {
     return this.getPointsOfIssue().pipe(
       switchMap(points => {
-        const requests = points.map(point => this.getCoordinates(`г.${point.city}` + ` ${point.address}`));
+        const requests = points.map(point => this.getCoordinates(`г.${point.cityId.name}` + ` ${point.address}`));
 
         return forkJoin(requests).pipe(
           map(coordinates => points.map((point, i) => ({...point, coordinate: coordinates[i]}))),
@@ -47,10 +46,10 @@ export class StepLocationApiService {
     );
   }
 
-  private getPointsOfIssue(): Observable<PointsOfIssueModel[]> {
-    return this._http.get<IResponse<IPointOfIssueDto>>(`${API_URL}db/point`)
+  private getPointsOfIssue(): Observable<IPointOfIssue[]> {
+    return this._http.get<IResponse<IPointOfIssue>>(`${API_URL}db/point`)
       .pipe(
-        map(response => response.data.filter(point => point.cityId).map(point => new PointsOfIssueModel(point)))
+        map(response => response.data.filter(point => point.cityId)),
       );
   }
 

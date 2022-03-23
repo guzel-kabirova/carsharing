@@ -7,7 +7,8 @@ export const NO_LOCATION: ILocation = {
   pointOfIssue: '',
 };
 
-export const STEPS_STATE_INITIAL: TStepsState = [false, false, false, false];
+export const STEPS_STATE_INITIAL: TStepsState = [false, false, false, false, false];
+export const STEPS_STATE_END: TStepsState = [true, true, true, true, true];
 
 export const NO_MODEL: CarModel = {
   id: '',
@@ -20,8 +21,8 @@ export const NO_MODEL: CarModel = {
 
 export const NO_EXTRA: IExtraFields = {
   color: '',
-  dateFrom: null,
-  dateTo: null,
+  dateFrom: [null, null],
+  dateTo: [null, null],
   tariff: '',
   fullTank: false,
   babyChair: false,

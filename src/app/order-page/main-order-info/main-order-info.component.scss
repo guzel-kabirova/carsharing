@@ -28,4 +28,8 @@
 
 .btn {
   width: 287px;
+
+  &_cancel {
+    --btn-color: var(--color-gradient-btn-red);
+  }
 }

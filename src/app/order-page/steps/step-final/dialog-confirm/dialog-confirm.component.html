@@ -2,7 +2,7 @@
 <div class="dialog">
   <h2 class="dialog__title">Подтвердить заказ</h2>
   <div class="action">
-    <button app-button class="action__confirm">Подтвердить</button>
-    <button app-button class="action__cancel">Вернуться</button>
+    <button app-button class="action__confirm" (click)="confirmEvent.emit()">Подтвердить</button>
+    <button app-button class="action__cancel" (click)="cancelEvent.emit()">Вернуться</button>
   </div>
 </div>
