@@ -13,12 +13,13 @@ import {StepLocationStoreService} from '../step-location/services/step-location.
 import {OrderStatus} from '../step-final/step-final.enum';
 import {StepExtraStoreService} from '../step-extra/services/step-extra.store.service';
 import {toUnix} from '../../../shared/utility/taiga-date-time-to-unix';
+import {Step} from '../../order-page.enum';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StepsStateService {
-  private _activeStep = new BehaviorSubject<number>(0);
+  private _activeStep = new BehaviorSubject<number>(Step.Location);
   public activeStep$ = this._activeStep.asObservable();
 
   private _stepsState = new BehaviorSubject<TStepsState>(STEPS_STATE_INITIAL);
@@ -66,7 +67,7 @@ export class StepsStateService {
 
   public changeLocation(value: ILocation) {
     this._location.next(value);
-    this.changeStepsState(0, this.isLocationFull());
+    this.changeStepsState(Step.Location, this.isLocationFull());
     this.resetCarModel();
     this.resetExtraField();
   }
@@ -77,14 +78,14 @@ export class StepsStateService {
       newCar = {...car, colors: uniqArray(car.colors)};
     }
     this._carModel.next(newCar);
-    this.changeStepsState(1, this.isCarModelFull());
+    this.changeStepsState(Step.Model, this.isCarModelFull());
     this.resetExtraField();
   }
 
   public changeExtraField(value: IExtraFields) {
     this._extraFields.next(value);
-    this.changeStepsState(2, this.isExtraFieldFull());
-    this.changeStepsState(3, this.isEverythingFull());
+    this.changeStepsState(Step.Extra, this.isExtraFieldFull());
+    this.changeStepsState(Step.Final, this.isEverythingFull());
   }
 
   public changeDuration(duration: IDuration) {
@@ -111,7 +112,7 @@ export class StepsStateService {
   }
 
   private isEverythingFull(): boolean {
-    return this.getStepsState()[0] && this.getStepsState()[1] && this.getStepsState()[2];
+    return this.getStepsState()[Step.Location] && this.getStepsState()[Step.Model] && this.getStepsState()[Step.Extra];
   }
 
   public getOrderInfo(): IOrderRequest {

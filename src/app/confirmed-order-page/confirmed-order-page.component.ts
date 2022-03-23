@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {switchMap, tap} from 'rxjs/operators';
+import {switchMap, takeUntil, tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 import {ConfirmedOrderPageService} from './services/confirmed-order-page.service';
 import {StepsStateService} from '../order-page/steps/services/steps.state.service';
@@ -11,18 +12,21 @@ import {intervalToDuration} from 'date-fns';
 import {IDuration} from '../order-page/steps/step-extra/step-extra.interface';
 import {CONFIRMED_STEP_NUMBER} from './confirmed-order-page.const';
 import {StepLocationStoreService} from '../order-page/steps/step-location/services/step-location.store.service';
+import {DestroyService} from '../shared/services/destroy.service';
 
 @Component({
   selector: 'app-confirmed-order-page',
   templateUrl: './confirmed-order-page.component.html',
   styleUrls: ['./confirmed-order-page.component.scss', '../order-page/order-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DestroyService],
 })
 export class ConfirmedOrderPageComponent implements OnInit {
   private confirmedStepNumber = CONFIRMED_STEP_NUMBER;
   public id = '';
 
   constructor(
+    @Inject(DestroyService) private destroy$: Observable<void>,
     private _route: ActivatedRoute,
     private _service: ConfirmedOrderPageService,
     private _state: StepsStateService,
@@ -34,6 +38,7 @@ export class ConfirmedOrderPageComponent implements OnInit {
       tap(params => this.id = params.id),
       switchMap(() => this._service.getOrderInfo(this.id)),
       tap(info => this.setOrderInfo(info)),
+      takeUntil(this.destroy$),
     ).subscribe();
   }
 

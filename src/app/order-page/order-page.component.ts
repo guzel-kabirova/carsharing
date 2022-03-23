@@ -11,6 +11,7 @@ import {PreloaderService} from '../shared/components/preloader/preloader.service
 import {StepExtraApiService} from './steps/step-extra/services/step-extra.api.service';
 import {RefDialogDirective} from '../shared/directives/ref-dialog.directive';
 import {StepFinalApiService} from './steps/step-final/services/step-final.api.service';
+import {CONFIRMED_STEP_NUMBER} from '../confirmed-order-page/confirmed-order-page.const';
 
 @Component({
   selector: 'app-order-page',
@@ -52,7 +53,7 @@ export class OrderPageComponent implements OnInit {
   }
 
   public changeContent(step: number) {
-    if (step < 4) {
+    if (step < CONFIRMED_STEP_NUMBER) {
       this._steps.changeActiveStep(step);
       this.activeStep = step;
       return;
@@ -60,13 +61,19 @@ export class OrderPageComponent implements OnInit {
 
     this.appRefDialog.viewContainerRef.clear();
     const dialog = this.appRefDialog.createComponent();
-    dialog.instance.cancelEvent.subscribe(() => this.appRefDialog.viewContainerRef.clear());
+    dialog.instance.cancelEvent
+      .pipe(
+        tap(() => this.appRefDialog.viewContainerRef.clear()),
+        takeUntil(this.destroy$),
+      )
+      .subscribe();
     dialog.instance.confirmEvent
       .pipe(
         switchMap(() => this._apiFinal.sendOrderInfo(this._steps.getOrderInfo())),
         tap(orderInfo => {
           this._router.navigate(['/order', orderInfo.id]);
         }),
+        takeUntil(this.destroy$),
       )
       .subscribe();
   }
